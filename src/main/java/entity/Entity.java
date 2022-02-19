@@ -17,11 +17,21 @@ public abstract class Entity {
     }
 
     public void update (float deltaTime, float gravity){
-
+        this.velocityY = this.velocityY - gravity * deltaTime;
+        float dY = this.velocityY * deltaTime;
+        moveY(dY);
     }
 
     protected void moveX(float xAmount){
         this.pos.x = pos.x + xAmount;
+    }
+
+    protected void moveY(float yAmount){
+        this.pos.y = pos.y + yAmount;
+    }
+
+    public boolean rectTileCollision(float x, float y, int width, int height){
+        return false;
     }
 
     public Vector2 getPos() {
@@ -52,7 +62,7 @@ public abstract class Entity {
         return type.getWidth();
     }
 
-    public int getHeigth(){
+    public int getHeight(){
         return type.getWidth();
     }
 

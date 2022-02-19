@@ -22,11 +22,9 @@ public abstract class GameMap {
         }
     }
 
-    // For fremtidig implementering av tyngdekraft. Må først implementere kollisjoner slik
-    // at man ikke går gjennom bakken
     public void update (float delta){
         for (Entity entity: entities){
-            entity.update(delta, -9.8f);
+            entity.update(delta, 10f);
         }
     }
 
