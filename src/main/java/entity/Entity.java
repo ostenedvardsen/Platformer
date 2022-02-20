@@ -17,21 +17,33 @@ public abstract class Entity {
     }
 
     public void update (float deltaTime, float gravity){
+
         this.velocityY = this.velocityY - gravity * deltaTime;
-        float dY = this.velocityY * deltaTime;
-        moveY(dY);
+
+        float newY = getY() + this.velocityY * deltaTime;
+
+        if(map.doesEntityRectangleCollideWithTileOnAnyLayer(this.getX(), newY, this.getWidth(), this.getHeight())) {
+            if(this.velocityY < 0){
+                this.pos.y = (float) Math.floor(pos.y);
+                //System.out.println("newY collides, with negative velocity.");
+            }
+            this.velocityY = 0;
+        }
+        else{
+            this.pos.y = newY;
+        }
     }
 
     protected void moveX(float xAmount){
-        this.pos.x = pos.x + xAmount;
+        float newX = pos.x + xAmount;
+
+        if (!map.doesEntityRectangleCollideWithTileOnAnyLayer(newX, pos.y, getWidth(), getHeight())){
+            this.pos.x = newX;
+        }
     }
 
     protected void moveY(float yAmount){
         this.pos.y = pos.y + yAmount;
-    }
-
-    public boolean rectTileCollision(float x, float y, int width, int height){
-        return false;
     }
 
     public Vector2 getPos() {
@@ -58,7 +70,7 @@ public abstract class Entity {
         return map;
     }
 
-    public float getWidth(){
+    public int getWidth(){
         return type.getWidth();
     }
 
