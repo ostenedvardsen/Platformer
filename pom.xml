@@ -3,24 +3,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<!-- FIXME - set group id -->
-	<groupId>inf112.skeleton.app</groupId>
-	<!-- FIXME - set artifact name -->
+	<groupId>Mutual-Glue</groupId>
 	<artifactId>gdx-app</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<!-- FIXME - set app name -->
-	<name>mvn-app</name>
-	<!-- FIXME change it to the project's website -->
-	<url>http://www.example.com</url>
+	<name>Platformer</name>
+	<url>https://git.app.uib.no/mutual-glue/platformer</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.release>17</maven.compiler.release>
 		<libgdx.version>1.10.0</libgdx.version>
-		<!-- FIXME - set to app's main class' -->
-		<main.class>inf112.skeleton.app.Main</main.class>
+		<main.class>inf112.platformer.app.Main</main.class>
 	</properties>
 
 	<dependencies>
