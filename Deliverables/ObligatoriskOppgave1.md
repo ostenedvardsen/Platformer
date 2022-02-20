@@ -29,27 +29,23 @@ Bevege en karakter sidelengs og opp/ned i en 2d-verden, hvor man må bevege seg 
 Til første obligatoriske innlevering gjelder MVP-kravene 1-3 i de gitte kravene. Brukerhistorier til disse kravene:
 
 <b> Brukerhistorier </b>
+
 <br>Som spiller trenger jeg å kunne se spillbrettet for å kunne vite hva som skjer i verden og hvor jeg kan bevege meg.
 <br>Akseptansekriterier: Trenger et spillbrett og det skal være synlig.
-<br>Arbeidsoppgaver: 
+<br>Arbeidsoppgaver: Lage enkelt spillbrett i Tiled. Lage pakke med klasser for GameWorld og for tiles på spillbrett.
 <br>Brukerhistorien oppfyller MVP-krav 1.
+
 
 Som spiller trenger jeg å kunne se spillkarakteren min slik at jeg vet hvor på spillbrettet jeg befinner meg.
 <br>Akseptansekriterier: Spillerens karakter skal være synlig "over" spillbrettet. 
-<br>Arbeidsoppgaver: 
+<br>Arbeidsoppgaver: Lage enkel spillkarakter. Lage pakke for entitier, hvor spiller er en spesiell form for entity fra Entity-klassen.
 <br>Brukerhistorien oppfyller MVP-krav 2.
 
 
 Som spiller trenger jeg å kunne bevege karakteren at jeg kan manøvrere spillbrettet. 
-<br>Akseptansekriterier: Spilleren skal kunne bruke WASD for å bevege karakteren sin horisontalt, verikalt og diagonalt i alle retninger. 
-<br>Arbeidsoppgaver: 
+<br>Akseptansekriterier: Spilleren skal kunne bruke AD for å bevege seg horisontalt, og SPACE for å hoppe vertikalt. Skal med disse kombinert kunne bevege seg i alle retninger. 
+<br>Arbeidsoppgaver: Implementere metoder for bevegelse i x- og y-retninger. Bruke Gdx.input.isKeyPressed for å sjekke om spilleren skal bevege seg til siden eller hoppe. 
 <br>Brukerhistorien oppfyller MVP-krav 3.
-
-
-// TODO
-// TODO Skrive brukerhistorier med akseptansekritier, <b>arbeidsoppgaver</b> og MVP-krav. // TODO
-// TODO
-
 
 Format for brukerhistorier:
 <br>Som <em>rolle</em> trenger jeg <em>funksjonalitet</em> for å oppnå <em>nytteverdi</em>.
@@ -58,16 +54,8 @@ Format for brukerhistorier:
 <br>Brukerhistorien oppfyller krav … 
 
 
+### Prosjekt-retrospektiv
+Selve arbeidsmetodikken med scrum og ekstrem programmering fungerte godt. For å kickstarte prosjektet hadde vi en felles programmeringsøkt med hele gruppen, hvor alle deltok og vi satte fundamentet sammen. Utover vil vi selvfølgelig gå over til av enkel- og parprogrammering, siden det er en del mer effektivt enn at alle jobber på det samme. Det som ikke gikk så bra var nok git. Vi har brukt en del tid på sette opp origin og upstream hos alle, og alt av fetching, forking merging og branches. Så det har krevd en del tid, men vi har lært veldig mye av de feilene og har hatt veldig stor fremgang rundt våre evner på git. 
 
-// TODO
-// TODO Utfør et kort prosjekt-retrospektiv og diskuter hva som gikk bra, hva som ikke
-fungerte helt som forventet, hva (om noe) som ikke virket i det hele tatt, og
-eventuelle nye aktiviteter eller verktøy som teamet vil prøve ut i løpet av
-neste obligatoriske oppgave. Diskuter hvorfor ting fungerte eller ikke fungerte.
-Skriv opp en kort oppsummering av diskusjonen, og last opp til team repo-et.
-På slutten av denne oppgaven kan dere gjøre en liten vurdering av hvor bra dere
-traff på oppgaven. Dette kan dere bruke til å justere hvor mange oppgaver dere
-tenker å få inn i neste iterasjon, som da leveres med obligatorisk oppgave 2.
-// TODO
-// TODO
+Vil si at vi traff ganske godt på oppgaven. Vi valgte en veldig trygg mengde brukerhistorier og jobbet derfra. Sammen lagde vi en enkel prototype, og så reformaterte vi koden i en mer enkapsulert og modulær form. 
 
