@@ -26,8 +26,7 @@ Vi har avtalt å ha fokus på å være tidlig ute med å spørre om hjelp på di
 Kort beskrivelse av det overordnede målet for applikasjonen: <br>
 Bevege en karakter sidelengs og opp/ned i en 2d-verden, hvor man må bevege seg på plattformer forbi fiender for å komme i mål på andre siden av banen. «Kameraet»/verden skal bevege seg til siden i takt med spillerens bevegelser. Man skal kunne sanke poeng, og vinne og tape. Det skal kunne være opp til 2 menneskelige spillere. Spillet skal ha en startskjerm ved oppstart eller game over, og ved fullført spillbrett skal det komme et nytt spillbrett.
 
-Til første obligatoriske innlevering gjelder MVP-kravene 1-3 i de gitte kravene. Brukerhistorier til disse kravene:
-
+Til første obligatoriske innlevering gjelder MVP-kravene 1-4 i de gitte kravene. Brukerhistorier til disse kravene:
 <b> Brukerhistorier </b>
 
 <br>Som spiller trenger jeg å kunne se spillbrettet for å kunne vite hva som skjer i verden og hvor jeg kan bevege meg.
@@ -42,10 +41,16 @@ Som spiller trenger jeg å kunne se spillkarakteren min slik at jeg vet hvor på
 <br>Brukerhistorien oppfyller MVP-krav 2.
 
 
-Som spiller trenger jeg å kunne bevege karakteren at jeg kan manøvrere spillbrettet. 
+Som spiller trenger jeg å kunne bevege karakteren slik at jeg kan manøvrere spillbrettet. 
 <br>Akseptansekriterier: Spilleren skal kunne bruke AD for å bevege seg horisontalt, og SPACE for å hoppe vertikalt. Skal med disse kombinert kunne bevege seg i alle retninger. 
 <br>Arbeidsoppgaver: Implementere metoder for bevegelse i x- og y-retninger. Bruke Gdx.input.isKeyPressed for å sjekke om spilleren skal bevege seg til siden eller hoppe. 
 <br>Brukerhistorien oppfyller MVP-krav 3.
+
+
+Som spiller trenger jeg at karakteren min interagerer med terrenget og påvirkes av eksterne krefter som tyngekraft. 
+<br>Akseptansekriterier: Tiles skal ha en feltvariabel collidable. Dersom collidable er true skal spilleren ikke gå gjennom tilen. Spilleren skal kun kunne hoppe om de står på en kolliderbar tile. Dersom spilleren er på vei opp skal de kunne holde inne SPACE for å ta et lengre hopp. Entities (i dette tilfellet spesielt spilleren) skal ha en feltvariabel velocityY som vi skal kunne øke eller minke for å endre spillerens hastighet i retningY. RetningX kan komme senere. 
+<br>Arbeidsoppgaver: Implementere metode for å sjekke om en entity er inntil en tile som er collidable. Player skal kunne hoppe om den står på en collidable tile. 
+<br>Brukerhistorien oppfyller MVP-krav 4.
 
 Format for brukerhistorier:
 <br>Som <em>rolle</em> trenger jeg <em>funksjonalitet</em> for å oppnå <em>nytteverdi</em>.
