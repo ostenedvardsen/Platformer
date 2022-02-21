@@ -1,6 +1,7 @@
 # Obligatorisk oppgave 1: Prosjekt Plattformspill – oppstart
 ### Deloppgave 1 (uke 6): Organiser teamet
 Gruppenavn: <b>Mutual-glue</b> <br>
+Gruppe: 8
 Alle fire har erfaring med programmering fra INF100, INF101 og INF102. Anton har erfaring med spillutvikling fra folkehøyskole. Det ble gjort i en game engine, så det blir nytt å skrive direkte i java.
 
 Fordeling av roller for obligatorisk oppgave 1, med begrunnelse:
@@ -27,8 +28,8 @@ Kort beskrivelse av det overordnede målet for applikasjonen: <br>
 Bevege en karakter sidelengs og opp/ned i en 2d-verden, hvor man må bevege seg på plattformer forbi fiender for å komme i mål på andre siden av banen. «Kameraet»/verden skal bevege seg til siden i takt med spillerens bevegelser. Man skal kunne sanke poeng, og vinne og tape. Det skal kunne være opp til 2 menneskelige spillere. Spillet skal ha en startskjerm ved oppstart eller game over, og ved fullført spillbrett skal det komme et nytt spillbrett.
 
 Til første obligatoriske innlevering gjelder MVP-kravene 1-4 i de gitte kravene. Brukerhistorier til disse kravene:
-<b> Brukerhistorier </b>
 
+<b> Brukerhistorier </b>
 <br>Som spiller trenger jeg å kunne se spillbrettet for å kunne vite hva som skjer i verden og hvor jeg kan bevege meg.
 <br>Akseptansekriterier: Trenger et spillbrett og det skal være synlig.
 <br>Arbeidsoppgaver: Lage enkelt spillbrett i Tiled. Lage pakke med klasser for GameWorld og for tiles på spillbrett.
