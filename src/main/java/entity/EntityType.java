@@ -19,7 +19,8 @@ public enum EntityType {
     public int getHeight() {
         return height;
     }
-
+    
+    //Add health in entity type?
     private EntityType(String id, int width, int heigth) {
         this.id = id;
         this.width = width;

@@ -4,7 +4,14 @@ import java.util.HashMap;
 
 public enum TileType {
     GRASS(1, true, "Grass"),
-    STONE(2, true, "Stone");
+    STONE(2, true, "Stone"),
+	DIRT(3, true, "Dirt"),
+	SPIKE(4, true, "Spike", 1),
+	HOLE(5, false, "Hole", 999),
+	LAVA(6, true, "Lava", 10),
+	//Platform should have different properties, maybe it moves, maybe it can only be jumped through?
+	//platform also has a different size than other tiles, it is much flatter.
+	PLATFORM(7, true, "Platform");
 
     public static final int TILE_SIZE = 32;
 
