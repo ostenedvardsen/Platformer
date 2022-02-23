@@ -7,6 +7,8 @@ import entity.Coin;
 import entity.Entity;
 import entity.EntityType;
 import entity.Player;
+import inf112.platformer.app.Game;
+import scenes.Hud;
 
 import java.util.ArrayList;
 
@@ -38,6 +40,7 @@ public abstract class GameMap {
         	}
         }
         coins.removeAll(removeCoin);
+        Hud.addScore(removeCoin.size()*100);
         for (Coin c : coins) {
         	c.render(batch);
     	}

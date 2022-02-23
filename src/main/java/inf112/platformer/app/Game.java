@@ -16,7 +16,7 @@ import world.TiledGameMap;
 public class Game extends InputAdapter implements ApplicationListener {
     private SpriteBatch batch;
     private BitmapFont font;
-    private Hud hud;
+    public Hud hud;
     
     GameMap tiledGameMap;
     private OrthographicCamera camera;
