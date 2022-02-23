@@ -9,13 +9,15 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import scenes.Hud;
 import world.GameMap;
 import world.TiledGameMap;
 
 public class Game extends InputAdapter implements ApplicationListener {
     private SpriteBatch batch;
     private BitmapFont font;
-
+    private Hud hud;
+    
     GameMap tiledGameMap;
     private OrthographicCamera camera;
 
@@ -34,6 +36,7 @@ public class Game extends InputAdapter implements ApplicationListener {
         camera.update();
 
         tiledGameMap = new TiledGameMap();
+        hud = new Hud(batch);
     }
 
     @Override
@@ -47,6 +50,9 @@ public class Game extends InputAdapter implements ApplicationListener {
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
 
+        batch.setProjectionMatrix(hud.stage.getCamera().combined);
+        hud.stage.draw();
+        
         //Moves the camera via mouse input.
         if(Gdx.input.isTouched()){
             camera.translate(Gdx.input.getDeltaX(), -Gdx.input.getDeltaY());
@@ -69,4 +75,5 @@ public class Game extends InputAdapter implements ApplicationListener {
     @Override
     public void resume() {
     }
+    
 }
