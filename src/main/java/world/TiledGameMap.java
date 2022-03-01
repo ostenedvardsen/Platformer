@@ -41,6 +41,8 @@ public class TiledGameMap extends GameMap {
 
     @Override
     public TileType getTileTypeByCoordinate(int layer, int col, int row) {
+        if (!(tiledMap.getLayers().get(layer) instanceof TiledMapTileLayer)) return null;
+
         TiledMapTileLayer.Cell cell = ((TiledMapTileLayer) tiledMap.getLayers().get(layer)).getCell(col,row);
 
         if(cell != null) {
