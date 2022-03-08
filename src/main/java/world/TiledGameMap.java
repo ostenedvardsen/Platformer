@@ -12,6 +12,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import entity.Goal;
+import entity.Skeleton;
 
 public class TiledGameMap extends GameMap {
 
@@ -35,6 +36,8 @@ public class TiledGameMap extends GameMap {
                 if (object instanceof RectangleMapObject rectangleObject) {
 
                     if (name.equals("goal")) entities.add(new Goal(rectangleObject.getRectangle().getX(), rectangleObject.getRectangle().getY(), this));
+                    else if (name.equals("skeleton")) entities.add(new Skeleton(rectangleObject.getRectangle().getX(), rectangleObject.getRectangle().getY(), this));
+                    
 
                 }
             }
