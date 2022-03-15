@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import entity.Entity;
 import entity.EntityType;
+import entity.Goal;
 import entity.Player;
 
 import java.util.ArrayList;
