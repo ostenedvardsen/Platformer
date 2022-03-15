@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import entity.Coin;
 import entity.Entity;
 import entity.EntityType;
+import entity.Goal;
 import entity.Player;
 import inf112.platformer.app.Game;
 import scenes.Hud;
