@@ -2,31 +2,56 @@ package world;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
+import entity.Coin;
 import entity.Entity;
 import entity.EntityType;
 import entity.Goal;
 import entity.Player;
+import inf112.platformer.app.Game;
+import scenes.Hud;
 
 import java.util.ArrayList;
 
 public abstract class GameMap {
     protected ArrayList<Entity> entities;
-
+    protected ArrayList<Coin> coins;
+    protected Player player;
+    
     public GameMap(){
         entities = new ArrayList<Entity>();
-        entities.add(new Player(50, 300, this));
+        coins = new ArrayList<Coin>();
+        player = new Player(50, 300, this);
+        entities.add(player);
+        coins.add(new Coin(150, 200, this));
+        coins.add(new Coin(150, 175, this));
+        coins.add(new Coin(175, 175, this));
+        coins.add(new Coin(200, 175, this));
     }
 
     public void render (OrthographicCamera camera, SpriteBatch batch){
         for (Entity entity: entities){
             entity.render(batch);
         }
+        
+        ArrayList<Coin> removeCoin = new ArrayList<Coin>();
+        for (Coin c : coins) {
+        	if (player.getCollisionRect().collidesWith(c.getCollisionRect())) {
+        		removeCoin.add(c);
+        	}
+        }
+        coins.removeAll(removeCoin);
+        Hud.addScore(removeCoin.size()*100);
+        for (Coin c : coins) {
+        	c.render(batch);
+    	}
     }
 
     public void update (float delta){
         for (Entity entity: entities){
             entity.update(delta, 100f);
         }
+        
     }
 
     public abstract void dispose ();

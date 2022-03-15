@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 import world.GameMap;
 
 public class Player extends Entity {
@@ -13,9 +14,13 @@ public class Player extends Entity {
 
     Texture playerImage;
 
+
+    
     public Player(float x, float y, GameMap map) {
         super(x, y, EntityType.PLAYER, map);
         playerImage = new Texture("player.jpg");
+        
+
     }
 
     @Override
@@ -36,14 +41,17 @@ public class Player extends Entity {
         }
 
         super.update(deltaTime, gravity);
-
+        rect.move(this.getX(), this.getY());
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             moveX(-SPEED * deltaTime);
+
         }
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
             moveX(SPEED * deltaTime);
+
         }
     }
+
 
 
 }
