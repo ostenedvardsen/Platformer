@@ -12,7 +12,7 @@ public class Coin extends Entity {
 	
 	public Coin(float x, float y, GameMap map) {
 		super(x, y, EntityType.COIN, map);
-		coinImage = new Texture("goldCoin1.png");
+		coinImage = new Texture("coin.png");
 		// TODO Auto-generated constructor stub
 	}
 

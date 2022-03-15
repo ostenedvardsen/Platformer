@@ -4,7 +4,8 @@ public enum EntityType {
     // Spillerhøyden er nå like høy som en tile. Burde kanskje være litt lavere, slik at spilleren kan snike seg gjennom litt sprekker.
     PLAYER("player", 16, 32),
     GOAL("goal", 32, 32),
-	SKELETON("skeleton", 16, 32);
+	SKELETON("skeleton", 16, 32),
+	COIN("coin", 16, 32);
 
     private String id;
     private int width, height;
