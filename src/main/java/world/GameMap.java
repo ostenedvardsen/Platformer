@@ -23,10 +23,6 @@ public abstract class GameMap {
         coins = new ArrayList<Coin>();
         player = new Player(50, 300, this);
         entities.add(player);
-        coins.add(new Coin(150, 200, this));
-        coins.add(new Coin(150, 175, this));
-        coins.add(new Coin(175, 175, this));
-        coins.add(new Coin(200, 175, this));
     }
 
     public void render (OrthographicCamera camera, SpriteBatch batch){

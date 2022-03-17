@@ -14,7 +14,9 @@ public class EntityFactory {
         if(name.equalsIgnoreCase("Goal")) {
             return new Goal(rectangleObject.getRectangle().getX(), rectangleObject.getRectangle().getY(), tiledGameMap);
         }
-
+        if(name.equalsIgnoreCase("Coin")) {
+            return new Coin(rectangleObject.getRectangle().getX(), rectangleObject.getRectangle().getY(), tiledGameMap);
+        }
         return null;
 
     }
