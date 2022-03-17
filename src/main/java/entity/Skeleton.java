@@ -2,6 +2,7 @@ package entity;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import scenes.Hud;
 import world.GameMap;
 
 public class Skeleton extends Entity {
@@ -26,4 +27,9 @@ public class Skeleton extends Entity {
 		moveX(-SPEED * deltaTime);
 	}
 
+	@Override
+	public Boolean playerInteract() {
+		Hud.removeScore(300);
+		return true;
+	}
 }

@@ -57,4 +57,8 @@ public class Hud {
 		score-=value;
 		scoreLabel.setText(String.format("%06d", score));
 	}
+
+	public static void progressStage(){
+		addScore(1000);
+	}
 }

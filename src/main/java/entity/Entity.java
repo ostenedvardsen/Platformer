@@ -38,6 +38,8 @@ public abstract class Entity {
         }
     }
 
+    public abstract Boolean playerInteract();
+
     protected void moveX(float xAmount){
         float newX = pos.x + xAmount;
 

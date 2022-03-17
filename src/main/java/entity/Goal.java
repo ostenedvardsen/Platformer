@@ -2,6 +2,7 @@ package entity;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import scenes.Hud;
 import world.GameMap;
 
 public class Goal extends Entity {
@@ -16,5 +17,11 @@ public class Goal extends Entity {
     @Override
     public void render(SpriteBatch batch) {
         batch.draw(goalImage, pos.x, pos.y, getWidth(), getHeight());
+    }
+
+    @Override
+    public Boolean playerInteract() {
+        Hud.progressStage();
+        return true;
     }
 }

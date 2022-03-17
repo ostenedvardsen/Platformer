@@ -3,6 +3,7 @@ package entity;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import scenes.Hud;
 import tools.CollisionRect;
 import world.GameMap;
 
@@ -21,5 +22,9 @@ public class Coin extends Entity {
 		batch.draw(coinImage, pos.x,pos.y,getWidth(), getHeight());
 	}
 
-	
+	@Override
+	public Boolean playerInteract() {
+		Hud.addScore(100);
+		return true;
+	}
 }

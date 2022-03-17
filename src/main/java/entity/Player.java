@@ -52,6 +52,8 @@ public class Player extends Entity {
         }
     }
 
-
-
+    @Override
+    public Boolean playerInteract() {
+        return false;
+    }
 }
