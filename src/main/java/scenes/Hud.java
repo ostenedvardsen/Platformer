@@ -52,4 +52,9 @@ public class Hud {
 		score+=value;
 		scoreLabel.setText(String.format("%06d", score));
 	}
+	
+	public static void removeScore(int value) {
+		score-=value;
+		scoreLabel.setText(String.format("%06d", score));
+	}
 }

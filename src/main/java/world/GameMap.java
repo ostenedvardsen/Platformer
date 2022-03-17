@@ -20,7 +20,6 @@ public abstract class GameMap {
     
     public GameMap(){
         entities = new ArrayList<Entity>();
-        coins = new ArrayList<Coin>();
         player = new Player(50, 300, this);
         entities.add(player);
     }
@@ -30,17 +29,7 @@ public abstract class GameMap {
             entity.render(batch);
         }
         
-        ArrayList<Coin> removeCoin = new ArrayList<Coin>();
-        for (Coin c : coins) {
-        	if (player.getCollisionRect().collidesWith(c.getCollisionRect())) {
-        		removeCoin.add(c);
-        	}
-        }
-        coins.removeAll(removeCoin);
-        Hud.addScore(removeCoin.size()*100);
-        for (Coin c : coins) {
-        	c.render(batch);
-    	}
+        checkCollisions();
     }
 
     public void update (float delta){
@@ -88,6 +77,32 @@ public abstract class GameMap {
         return false;
     }
 
+    public void checkCollisions() {
+        ArrayList<Entity> removeObj = new ArrayList<Entity>();
+        for (Entity e : entities) {
+        	if (player.getCollisionRect().collidesWith(e.getCollisionRect()) && e.getType().equals(EntityType.COIN)) {
+        		removeObj.add(e);
+        		Hud.addScore(100);
+        	}
+        	
+        	if (player.getCollisionRect().collidesWith(e.getCollisionRect()) && e.getType().equals(EntityType.SKELETON)) {
+        		//Condition
+        		
+        		//TestCondition
+        		removeObj.add(e);
+        		Hud.removeScore(100);
+        	}
+        	
+        	if (player.getCollisionRect().collidesWith(e.getCollisionRect()) && e.getType().equals(EntityType.GOAL)) {
+        		//Condition
+        		
+        		//TestCondition
+        		removeObj.add(e);
+        		Hud.addScore(10000);
+        	}
+        }
+        entities.removeAll(removeObj);
+    }
 
 
     public abstract int getWidth();
