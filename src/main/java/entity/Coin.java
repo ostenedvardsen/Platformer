@@ -14,7 +14,8 @@ public class Coin extends Entity {
 	public Coin(float x, float y, GameMap map) {
 		super(x, y, EntityType.COIN, map);
 		coinImage = new Texture("coin.png");
-		// TODO Auto-generated constructor stub
+
+		removeOnPlayerInteraction = true;
 	}
 
 	@Override
@@ -23,8 +24,7 @@ public class Coin extends Entity {
 	}
 
 	@Override
-	public Boolean playerInteract() {
+	public void playerInteract(GameMap gamemap, Player player) {
 		Hud.addScore(100);
-		return true;
 	}
 }

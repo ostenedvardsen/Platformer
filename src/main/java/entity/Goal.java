@@ -20,8 +20,7 @@ public class Goal extends Entity {
     }
 
     @Override
-    public Boolean playerInteract() {
+    public void playerInteract(GameMap gamemap, Player player) {
         Hud.progressStage();
-        return true;
     }
 }

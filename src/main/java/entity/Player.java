@@ -57,7 +57,6 @@ public class Player extends Entity {
     }
 
     @Override
-    public Boolean playerInteract() {
-        return false;
-    }
+    public void playerInteract(GameMap gamemap, Player player) { }
+
 }

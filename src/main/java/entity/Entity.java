@@ -13,7 +13,9 @@ public abstract class Entity {
     protected GameMap map;
     protected CollisionRect rect;
     protected Boolean gravityAffected = false;
-    
+    protected Boolean removeOnPlayerInteraction = false;
+
+
     public Entity(float x, float y, EntityType type, GameMap map){
         this.pos = new Vector2(x,y);
         this.type = type;
@@ -41,8 +43,6 @@ public abstract class Entity {
             this.pos.y = newY;
         }
     }
-
-    public abstract Boolean playerInteract();
 
     protected void moveX(float xAmount){
         float newX = pos.x + xAmount;
@@ -93,5 +93,11 @@ public abstract class Entity {
     public CollisionRect getCollisionRect () {
     	return rect;
     }
+
     public abstract void render (SpriteBatch batch);
+
+    public Boolean removeOnPlayerInteraction() { return removeOnPlayerInteraction; }
+
+    public abstract void playerInteract(GameMap gamemap, Player player);
+
 }
