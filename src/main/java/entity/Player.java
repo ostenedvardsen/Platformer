@@ -9,8 +9,10 @@ import world.GameMap;
 
 public class Player extends Entity {
 
-    private static final int SPEED = 50;
-    private static final int JUMP_VELOCITY = 100;
+    private static final int SPEED = 65;
+    private static final int JUMP_VELOCITY = 235;
+    private static final float MAX_JUMP_TIME = .5f;
+    private float current_jump_time = 0;
 
     Texture playerImage;
 
@@ -34,9 +36,11 @@ public class Player extends Entity {
         if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
             if(map.doesEntityRectangleCollideWithTileOnAnyLayer(this.getX(), this.getY()-0.01f, this.getWidth(), this.getHeight())){
                 this.velocityY += JUMP_VELOCITY;
+                current_jump_time = 0;
             }
             else if (this.velocityY > 0){
-                this.velocityY += JUMP_VELOCITY * deltaTime;
+                current_jump_time += deltaTime;
+                if (current_jump_time < MAX_JUMP_TIME) this.velocityY += JUMP_VELOCITY * deltaTime;
             }
         }
 

@@ -32,7 +32,7 @@ public abstract class GameMap {
 
     public void update (float delta){
         for (Entity entity: entities){
-            entity.update(delta, 100f);
+            entity.update(delta, 400f);
         }
 
         checkCollisions();
