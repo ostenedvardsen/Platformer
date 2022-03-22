@@ -20,7 +20,7 @@ public class Player extends Entity {
         super(x, y, EntityType.PLAYER, map);
         playerImage = new Texture("player.jpg");
         
-
+        gravityAffected = true;
     }
 
     @Override

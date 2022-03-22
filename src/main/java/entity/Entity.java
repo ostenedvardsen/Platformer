@@ -12,6 +12,7 @@ public abstract class Entity {
     protected float velocityY = 0;
     protected GameMap map;
     protected CollisionRect rect;
+    protected Boolean gravityAffected = false;
     
     public Entity(float x, float y, EntityType type, GameMap map){
         this.pos = new Vector2(x,y);
@@ -21,6 +22,8 @@ public abstract class Entity {
     }
 
     public void update (float deltaTime, float gravity){
+
+        if (!gravityAffected) gravity = 0;
 
         this.velocityY = this.velocityY - gravity * deltaTime;
 
