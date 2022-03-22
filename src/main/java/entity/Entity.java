@@ -22,6 +22,7 @@ public abstract class Entity {
     }
 
     public void update (float deltaTime, float gravity){
+        if (deltaTime > 0.05f) deltaTime = 0.05f;
 
         if (!gravityAffected) gravity = 0;
 
