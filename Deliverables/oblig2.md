@@ -7,9 +7,10 @@ Team: *Mutual-glue* (Gruppe 8): *Thomas Sjåstad, Anton Rønneberg, André Kvalv
 ### Deltakelse: Anton Rønneberg, Andrè Kvalvik, Østen Edvarsen
 I dette møtet var fokuset på å generalisere hvordan vi legger til entities på spillbrettet og fysikken på alle entities, altså hovedsakelig å legge rammen for MVP 6 (Vise fiender/monstre; de skal interagere med terreng og spiller). Branchen til MVP4 ble merget med MVP 6. Til neste møte skal det utvikles en EntityFactory som lar oss lese av navnene til object-layerene på .tmx-kartet og automatisk legge til disse entitiene på spillkartet. Entities inkludere ting som player, fiender og coins. Fysikken for entities skal også generaliseres og implementeres på de entitiene som skal påvirkes av fysikk. 
 
-### Møte: 15.03
+### Møte: 22.03
 ### Deltakelse: Anton Rønneberg, Andrè Kvalvik, Østen Edvarsen, Thomas Sjåstad
-
+I dette møtet har vi jobbet med å skrive svar til en del av deloppgavene i oblig 2. Vi har også jobbet en del med å
+videre generalisere koden til implementasjon av multiplayer.  
 
 
 ### Oppsummering siden oblig1
