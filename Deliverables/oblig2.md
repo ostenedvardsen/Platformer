@@ -7,10 +7,9 @@ Team: *Mutual-glue* (Gruppe 8): *Thomas Sjåstad, Anton Rønneberg, André Kvalv
 ### Deltakelse: Anton Rønneberg, Andrè Kvalvik, Østen Edvarsen
 I dette møtet var fokuset på å generalisere hvordan vi legger til entities på spillbrettet og fysikken på alle entities, altså hovedsakelig å legge rammen for MVP 6 (Vise fiender/monstre; de skal interagere med terreng og spiller). Branchen til MVP4 ble merget med MVP 6. Til neste møte skal det utvikles en EntityFactory som lar oss lese av navnene til object-layerene på .tmx-kartet og automatisk legge til disse entitiene på spillkartet. Entities inkludere ting som player, fiender og coins. Fysikken for entities skal også generaliseres og implementeres på de entitiene som skal påvirkes av fysikk. 
 
-### Møte: 22.03
+### Møte: 15.03
 ### Deltakelse: Anton Rønneberg, Andrè Kvalvik, Østen Edvarsen, Thomas Sjåstad
-I dette møtet har vi jobbet med å skrive svar til en del av deloppgavene i oblig 2. Vi har også jobbet en del med å
-videre generalisere koden til implementasjon av multiplayer.  
+
 
 
 ### Oppsummering siden oblig1
@@ -55,6 +54,7 @@ Vi liker rekkefølgen fra MVP-oversikten i oblig1, så vi følger den. Vi har ik
 Oppdater hvilke krav dere har prioritert, hvor langt dere har kommet og hva dere har gjort siden forrige gang.
 Husk å skrive hvilke bugs som finnes i de kravene dere har utført (dersom det finnes bugs).
 Til oblig1 fullført vi krav 1-4, og vi har nå har prioritert og fullført krav MVP5 og MVP6. 
+Kjente bugs: Om man endrer på skjermstørrelsen etter spillstart blir entities med tyngdekraft sendt ut av banen. 
 
 Kravlista er lang, men det er ikke nødvendig å levere på alle kravene hvis det ikke er realistisk. Det er viktigere at de oppgavene som er utført holder høy kvalitet. Utførte oppgaver skal være ferdige.
 
@@ -62,6 +62,6 @@ Kravlista er lang, men det er ikke nødvendig å levere på alle kravene hvis de
 ### Deloppgave 3
 Klassediagram:
 
-
+Tester funksjonalitet i linux: 
 
 
