@@ -3,36 +3,38 @@ package world;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import entity.Coin;
 import entity.Entity;
-import entity.EntityType;
-import entity.Goal;
 import entity.Player;
-import inf112.platformer.app.Game;
-import scenes.Hud;
 
 import java.util.ArrayList;
 
 public abstract class GameMap {
     protected ArrayList<Entity> entities;
-    protected ArrayList<Coin> coins;
-    protected Player player;
-    
+    protected ArrayList<Player> players;
+
     public GameMap(){
         entities = new ArrayList<Entity>();
-        player = new Player(50, 300, this);
-        entities.add(player);
+        players = new ArrayList<Player>();
+
+        players.add(new Player(50, 300, this));
     }
 
     public void render (OrthographicCamera camera, SpriteBatch batch){
         for (Entity entity: entities){
             entity.render(batch);
         }
+        for(Player player: players){
+            player.render(batch);
+        }
+
     }
 
     public void update (float delta){
         for (Entity entity: entities){
             entity.update(delta, 400f);
+        }
+        for (Player player: players){
+            player.update(delta, 400f);
         }
 
         checkCollisions();
@@ -77,15 +79,26 @@ public abstract class GameMap {
     }
 
     public void checkCollisions() {
-        ArrayList<Entity> removeObj = new ArrayList<Entity>();
-        for (Entity e : entities) {
-        	if (!player.getCollisionRect().collidesWith(e.getCollisionRect())) continue;
-
-            if (e.playerInteract()) removeObj.add(e);
+        ArrayList<Entity> removeObj = new ArrayList<>();
+        for (Entity entity : entities) {
+            for (Player player: players) {
+                if (player.getCollisionRect().collidesWith(entity.getCollisionRect())) {
+                    entity.playerInteract(this, player);
+                    if (entity.removeOnPlayerInteraction()) {
+                        removeObj.add(entity);
+                    }
+                }
+            }
         }
-        entities.removeAll(removeObj);
+        if (!removeObj.isEmpty()) System.out.print(removeObj);
+        for (Entity entity: removeObj){
+            if (entities.contains(entity)) entities.remove(entity);
+        }
     }
 
+    public void removeEntity(Entity entity) {
+        entities.remove(entity);
+    }
 
     public abstract int getWidth();
     public abstract int getHeight();
