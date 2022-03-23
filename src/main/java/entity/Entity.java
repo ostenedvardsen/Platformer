@@ -98,6 +98,6 @@ public abstract class Entity {
 
     public Boolean removeOnPlayerInteraction() { return removeOnPlayerInteraction; }
 
-    public abstract void playerInteract(GameMap gamemap, Player player);
+    public abstract void playerInteract(Player player);
 
 }

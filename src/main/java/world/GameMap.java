@@ -83,7 +83,7 @@ public abstract class GameMap {
         for (Entity entity : entities) {
             for (Player player: players) {
                 if (player.getCollisionRect().collidesWith(entity.getCollisionRect())) {
-                    entity.playerInteract(this, player);
+                    entity.playerInteract(player);
                     if (entity.removeOnPlayerInteraction()) {
                         removeObj.add(entity);
                     }

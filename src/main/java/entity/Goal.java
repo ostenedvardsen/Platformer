@@ -20,7 +20,7 @@ public class Goal extends Entity {
     }
 
     @Override
-    public void playerInteract(GameMap gamemap, Player player) {
+    public void playerInteract(Player player) {
         Hud.progressStage();
     }
 }

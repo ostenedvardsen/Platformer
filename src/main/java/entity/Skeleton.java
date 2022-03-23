@@ -30,7 +30,7 @@ public class Skeleton extends Entity {
 	}
 
 	@Override
-	public void playerInteract(GameMap gamemap, Player player) {
+	public void playerInteract(Player player) {
 		Hud.removeScore(300);
 	}
 }

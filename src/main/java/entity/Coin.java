@@ -24,7 +24,7 @@ public class Coin extends Entity {
 	}
 
 	@Override
-	public void playerInteract(GameMap gamemap, Player player) {
+	public void playerInteract(Player player) {
 		Hud.addScore(100);
 	}
 }
