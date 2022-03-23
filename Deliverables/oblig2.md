@@ -23,6 +23,8 @@ Gruppedynamikken og kommunikasjon fungerer bra. Vi møter opp på tirsdagsmøtet
 
 Det vi har klart til nå er å kommunisere godt på gruppemøter. Det vi kan forbedre er å bruke Trello-boardet mer, for å gi hverandre bedre oversikt over hva vi jobber med. 
 
+Det har visst vært et problem med Østens git, så commitene med "no" som author er hans. Feilen er nå fikset. 
+
 Bli enige om maks tre forbedringspunkter fra retrospektivet, som skal følges opp under neste sprint.
 Til neste spring skal vi forbedre oss på å ha tydelige arbeidsoppgaver, og mer bruk av Trello. 
 
