@@ -17,8 +17,8 @@ public class Game extends InputAdapter implements ApplicationListener {
     private SpriteBatch batch;
     private BitmapFont font;
     public Hud hud;
-    
     GameMap tiledGameMap;
+
     private OrthographicCamera camera;
 
     @Override
@@ -36,7 +36,7 @@ public class Game extends InputAdapter implements ApplicationListener {
         camera.update();
 
         tiledGameMap = new TiledGameMap();
-        hud = new Hud(batch);
+        hud = new Hud(batch, tiledGameMap.getPlayers());
     }
 
     @Override
@@ -51,14 +51,21 @@ public class Game extends InputAdapter implements ApplicationListener {
         Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
 
         batch.setProjectionMatrix(hud.stage.getCamera().combined);
-        hud.stage.draw();
-        
+
+
         //Moves the camera via mouse input.
         if(Gdx.input.isTouched()){
             camera.translate(Gdx.input.getDeltaX(), -Gdx.input.getDeltaY());
             camera.update();
         }
 
+
+        if (hud.initializedHud)
+            hud.updateHud();
+
+        hud.stage.draw();
+
+        //hud.update(tiledGameMap.getPlayers());
         camera.update();
         tiledGameMap.update(Gdx.graphics.getDeltaTime());
         tiledGameMap.render(camera, batch);

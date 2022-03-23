@@ -25,6 +25,6 @@ public class Coin extends Entity {
 
 	@Override
 	public void playerInteract(Player player) {
-		Hud.addScore(100);
+		player.addScore(100);
 	}
 }

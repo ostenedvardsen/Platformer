@@ -17,6 +17,9 @@ public abstract class GameMap {
         players = new ArrayList<Player>();
 
         players.add(new Player(50, 300, this));
+        players.add(new Player(100, 300, this));
+        //players.add(new Player(50, 300, this));
+
     }
 
     public void render (OrthographicCamera camera, SpriteBatch batch){
@@ -81,7 +84,7 @@ public abstract class GameMap {
     public void checkCollisions() {
         ArrayList<Entity> removeObj = new ArrayList<>();
         for (Entity entity : entities) {
-            for (Player player: players) {
+            for (Player player : players) {
                 if (player.getCollisionRect().collidesWith(entity.getCollisionRect())) {
                     entity.playerInteract(player);
                     if (entity.removeOnPlayerInteraction()) {
@@ -90,10 +93,15 @@ public abstract class GameMap {
                 }
             }
         }
-        if (!removeObj.isEmpty()) System.out.print(removeObj);
-        for (Entity entity: removeObj){
-            if (entities.contains(entity)) entities.remove(entity);
+        if (!removeObj.isEmpty()) {
+            for (Entity entity : removeObj) {
+                removeEntity(entity);
+            }
         }
+    }
+
+    public ArrayList<Player> getPlayers() {
+        return players;
     }
 
     public void removeEntity(Entity entity) {

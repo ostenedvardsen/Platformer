@@ -14,6 +14,7 @@ public class Player extends Entity {
     private static final float MAX_JUMP_TIME = .5f;
     private float current_jump_time = 0;
 
+    private int score = 0;
     Texture playerImage;
 
 
@@ -54,6 +55,18 @@ public class Player extends Entity {
             moveX(SPEED * deltaTime);
 
         }
+    }
+
+    public void addScore(int value) {
+        score+=value;
+    }
+
+    public void removeScore(int value) {
+        score-=value;
+    }
+
+    public int getScore(){
+        return score;
     }
 
     @Override

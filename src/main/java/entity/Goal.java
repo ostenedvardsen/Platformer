@@ -21,6 +21,6 @@ public class Goal extends Entity {
 
     @Override
     public void playerInteract(Player player) {
-        Hud.progressStage();
+        player.addScore(1000);
     }
 }
