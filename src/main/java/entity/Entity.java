@@ -35,7 +35,6 @@ public abstract class Entity {
         if(map.doesEntityRectangleCollideWithTileOnAnyLayer(this.getX(), newY, this.getWidth(), this.getHeight())) {
             if(this.velocityY < 0){
                 this.pos.y = (float) Math.floor(pos.y);
-                //System.out.println("newY collides, with negative velocity.");
             }
             this.velocityY = 0;
         }

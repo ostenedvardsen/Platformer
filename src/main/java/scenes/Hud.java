@@ -43,8 +43,8 @@ public class Hud {
 
 		scoreLabel = new Label(allScores, new Label.LabelStyle(new BitmapFont(), Color.BLACK));
 
-		table.add(scoreDisplayLabel).expandX().padTop(10); //Adding a widget to the table
-		table.row(); //New row
+		// table.add(scoreDisplayLabel).expandX().padTop(10); //Adding a widget to the table
+		// table.row(); //New row
 		table.add(scoreLabel).expandX();
 		
 		stage.addActor(table);
