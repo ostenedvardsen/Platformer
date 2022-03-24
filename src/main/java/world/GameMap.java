@@ -2,30 +2,43 @@ package world;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 import entity.Entity;
-import entity.EntityType;
 import entity.Player;
 
 import java.util.ArrayList;
 
 public abstract class GameMap {
     protected ArrayList<Entity> entities;
+    protected ArrayList<Player> players;
 
     public GameMap(){
         entities = new ArrayList<Entity>();
-        entities.add(new Player(50, 300, this));
+        players = new ArrayList<Player>();
+
+        players.add(new Player(50, 300, this));
+        players.add(new Player(100, 300, this));
     }
 
     public void render (OrthographicCamera camera, SpriteBatch batch){
         for (Entity entity: entities){
             entity.render(batch);
         }
+        for(Player player: players){
+            player.render(batch);
+        }
+
     }
 
     public void update (float delta){
         for (Entity entity: entities){
-            entity.update(delta, 100f);
+            entity.update(delta, 400f);
         }
+        for (Player player: players){
+            player.update(delta, 400f);
+        }
+
+        checkCollisions();
     }
 
     public abstract void dispose ();
@@ -66,7 +79,32 @@ public abstract class GameMap {
         return false;
     }
 
+    public void checkCollisions() {
+        ArrayList<Entity> removeObj = new ArrayList<>();
+        for (Entity entity : entities) {
+            for (Player player : players) {
+                if (player.getCollisionRect().collidesWith(entity.getCollisionRect())) {
+                    entity.playerInteract(player);
+                    if (entity.removeOnPlayerInteraction()) {
+                        removeObj.add(entity);
+                    }
+                }
+            }
+        }
+        if (!removeObj.isEmpty()) {
+            for (Entity entity : removeObj) {
+                removeEntity(entity);
+            }
+        }
+    }
 
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
+
+    public void removeEntity(Entity entity) {
+        entities.remove(entity);
+    }
 
     public abstract int getWidth();
     public abstract int getHeight();

@@ -4,18 +4,26 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+
 import world.GameMap;
 
 public class Player extends Entity {
 
-    private static final int SPEED = 50;
-    private static final int JUMP_VELOCITY = 100;
+    private static final int SPEED = 65;
+    private static final int JUMP_VELOCITY = 235;
+    private static final float MAX_JUMP_TIME = .5f;
+    private float current_jump_time = 0;
 
+    private int score = 0;
     Texture playerImage;
 
+
+    
     public Player(float x, float y, GameMap map) {
         super(x, y, EntityType.PLAYER, map);
         playerImage = new Texture("player.jpg");
+        
+        gravityAffected = true;
     }
 
     @Override
@@ -29,21 +37,39 @@ public class Player extends Entity {
         if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
             if(map.doesEntityRectangleCollideWithTileOnAnyLayer(this.getX(), this.getY()-0.01f, this.getWidth(), this.getHeight())){
                 this.velocityY += JUMP_VELOCITY;
+                current_jump_time = 0;
             }
             else if (this.velocityY > 0){
-                this.velocityY += JUMP_VELOCITY * deltaTime;
+                current_jump_time += deltaTime;
+                if (current_jump_time < MAX_JUMP_TIME) this.velocityY += JUMP_VELOCITY * deltaTime;
             }
         }
 
         super.update(deltaTime, gravity);
-
+        rect.move(this.getX(), this.getY());
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             moveX(-SPEED * deltaTime);
+
         }
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
             moveX(SPEED * deltaTime);
+
         }
     }
 
+    public void addScore(int value) {
+        score+=value;
+    }
+
+    public void removeScore(int value) {
+        score-=value;
+    }
+
+    public int getScore(){
+        return score;
+    }
+
+    @Override
+    public void playerInteract(Player player) { }
 
 }
