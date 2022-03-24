@@ -2,7 +2,6 @@ package entity;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import scenes.Hud;
 import world.GameMap;
 
 public class Goal extends Entity {
