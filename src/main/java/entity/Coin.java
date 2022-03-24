@@ -3,7 +3,6 @@ package entity;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
-import tools.CollisionRect;
 import world.GameMap;
 
 public class Coin extends Entity {
