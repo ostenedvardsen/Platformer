@@ -21,6 +21,7 @@ Thomas Sjåstad <br>
 
 
 ## License
+Textures laget av Andrè Kvalvik
 
 ## Acknowledgments
 Reformatering av kode fra 17.02.22 til koden slik den står 20.02.22 er inspirert av youtube-serien "LibGDX Platformer Miniseries" publisert av youtube-kanalen "HollowBit". <br>
