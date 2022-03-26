@@ -25,6 +25,8 @@ Det har visst vært et problem med Østens git, så commitene med "no" som autho
 
 Til neste spring skal vi forbedre oss på å ha tydelige arbeidsoppgaver, og ha mer bruk av Trello. 
 
+Trello-board: https://trello.com/b/5q8FEcxx/platformer
+
 
 ## Deloppgave 2: krav
 ### «Stretch goal»
