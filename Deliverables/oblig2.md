@@ -37,12 +37,10 @@ Stretch goalet vårt er lokal multiplayer.
 Som spiller trenger jeg å kunne ha oversikt over poengsum, og interagerer med poenggjenstander som øker poengsummen.
 <br><b>Akseptansekriterier</b>: Spilleren og poenggjenstander har en collidable rectange (CollisionRect.java), som returnerer True når de interagerer med hverandre. En HUD(Heads Up Display) skal vise poengesummen når spille kjører og skal kunne forandres når en spiller og poenggjenstand kolliderer.
 <br><b>Arbeidsoppgaver</b>: Implementere CollisionRect som i prinsippe er en boks på størrelse med entity, og implementere collidesWith() metode som sjekker vektoren til CollisionRect i forhold til mape. når vektorene til to gjenstander overlapper hverandre, blir de definert som en kollisjon. Implementere HUD med en _stage_ på størrelse med spillskjermen, der vi legger til _labels_ øverst på stage, og blir endret på når collidesWith returnerer True.
-<br>Brukerhistorien oppfyller MVP-krav 5.
 
 Som spiller trenger jeg at karakteren min interagerer med fiendtlige enheter som viser på spillbrettet. Når karakteren min interagerer med en fiendtlig gjenstand, taper jeg poeng.
 <br><b>Akseptansekriterier</b>: Spilleren og fiendtlige gjenstander har begge en collidable rectange (CollisionRect.java), som returnerer True når de interagerer med hverandre. HUD som ble implementert i MVP5 reduserer poengsummen når collidesWith() returnerer True.
 <br><b>Arbeidsoppgaver</b>: Implementere Skeleton.java som en ny _Entity_. En ny metode for Entitys, _playerInteract()_, returnerer True og en condition når en entity kolliderer med karakteren. _playerInteract()_ er en abstract metode i Entity som alle Entity bruker.
-<br>Brukerhistorien oppfyller MVP-krav 6.
 
 
 *Forklar kort hvordan dere har prioritert oppgavene fremover*
