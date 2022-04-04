@@ -12,10 +12,13 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import entity.Entity;
 import entity.EntityFactory;
+import entity.Player;
 
 public class TiledGameMap extends GameMap {
     TiledMap tiledMap;
     OrthogonalTiledMapRenderer tiledMapRenderer;
+
+    int PlayerNumber = 4;
 
     public TiledGameMap(){
         tiledMap = new TmxMapLoader().load("stage1.tmx");
@@ -25,17 +28,19 @@ public class TiledGameMap extends GameMap {
     }
 
     private void AddEntities(){
+        EntityFactory entityFactory = new EntityFactory();
         for (MapLayer layer : tiledMap.getLayers()){
             if (layer instanceof TiledMapTileLayer) continue;
 
+            String name = layer.getName();
             for (MapObject object : layer.getObjects()){
-                String name = layer.getName();
 
                 if (object instanceof RectangleMapObject rectangleObject) {
-                    EntityFactory entityFactory = new EntityFactory();
+
                     Entity newEntity = entityFactory.getEntity(rectangleObject, name, this);
                     if(newEntity != null){
-                        entities.add(newEntity);
+                        if (newEntity instanceof Player) { if (PlayerNumber > 0) players.add((Player) newEntity); PlayerNumber--; }
+                        else { entities.add(newEntity); }
                     }
                 }
             }

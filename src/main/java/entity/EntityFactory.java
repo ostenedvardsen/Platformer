@@ -8,14 +8,20 @@ public class EntityFactory {
         if(name == null){
             return null;
         }
+        float xPos = rectangleObject.getRectangle().getX();
+        float yPos = rectangleObject.getRectangle().getY();
+
         if(name.equalsIgnoreCase("Skeleton")) {
-            return new Skeleton(rectangleObject.getRectangle().getX(), rectangleObject.getRectangle().getY(), tiledGameMap);
+            return new Skeleton(xPos, yPos, tiledGameMap);
         }
         if(name.equalsIgnoreCase("Goal")) {
-            return new Goal(rectangleObject.getRectangle().getX(), rectangleObject.getRectangle().getY(), tiledGameMap);
+            return new Goal(xPos, yPos, tiledGameMap);
         }
         if(name.equalsIgnoreCase("Coin")) {
-            return new Coin(rectangleObject.getRectangle().getX(), rectangleObject.getRectangle().getY(), tiledGameMap);
+            return new Coin(xPos, yPos, tiledGameMap);
+        }
+        if(name.equalsIgnoreCase("Player")) {
+            return new Player(xPos, yPos, tiledGameMap);
         }
         return null;
 
