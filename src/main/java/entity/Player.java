@@ -16,6 +16,11 @@ public class Player extends ActiveEntity {
     private int ID = 0;
     private int score = 0;
     Texture playerImage;
+    private int leftKey;
+    private int rightKey;
+    private int jumpKey;
+    
+    
 
 
     
@@ -27,6 +32,10 @@ public class Player extends ActiveEntity {
     public void setId(int id) {
     	ID = id;
     	playerImage = new Texture("player" + Integer.toString(ID) + ".png");
+    	if (ID == 1) { leftKey = Input.Keys.LEFT; rightKey = Input.Keys.RIGHT; jumpKey = Input.Keys.UP; }
+    	if (ID == 2) { leftKey = Input.Keys.A; rightKey = Input.Keys.D; jumpKey = Input.Keys.W; }
+    	if (ID == 3) { leftKey = Input.Keys.J; rightKey = Input.Keys.L; jumpKey = Input.Keys.I; }
+    	if (ID == 4) { leftKey = Input.Keys.F; rightKey = Input.Keys.H; jumpKey = Input.Keys.T; }
     }
     
     @Override
@@ -37,8 +46,7 @@ public class Player extends ActiveEntity {
 
     @Override
     public void update(float deltaTime, float gravity) {
-        if (ID == 4) {    	
-        if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
+        if(Gdx.input.isKeyPressed(jumpKey)){
             if(map.doesEntityRectangleCollideWithTileOnAnyLayer(this.getX(), this.getY()-0.01f, this.getWidth(), this.getHeight())){
                 this.velocityY += JUMP_VELOCITY;
                 current_jump_time = 0;
@@ -52,38 +60,15 @@ public class Player extends ActiveEntity {
         super.update(deltaTime, gravity);
         rect.move(this.getX(), this.getY());
 
-	        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+	        if (Gdx.input.isKeyPressed(leftKey)) {
 	            moveX(-SPEED * deltaTime);
 	
 	        }
-	        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+	        if (Gdx.input.isKeyPressed(rightKey)) {
 	            moveX(SPEED * deltaTime);
 	        }
         }
-        if (ID == 3) {    	
-            if(Gdx.input.isKeyPressed(Input.Keys.W)){
-                if(map.doesEntityRectangleCollideWithTileOnAnyLayer(this.getX(), this.getY()-0.01f, this.getWidth(), this.getHeight())){
-                    this.velocityY += JUMP_VELOCITY;
-                    current_jump_time = 0;
-                }
-                else if (this.velocityY > 0){
-                    current_jump_time += deltaTime;
-                    if (current_jump_time < MAX_JUMP_TIME) this.velocityY += JUMP_VELOCITY * deltaTime;
-                }
-            }
-
-            super.update(deltaTime, gravity);
-            rect.move(this.getX(), this.getY());
-
-    	        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
-    	            moveX(-SPEED * deltaTime);
-    	
-    	        }
-    	        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-    	            moveX(SPEED * deltaTime);
-    	        }
-            }
-    }
+        
 
     public void addScore(int value) {
         score+=value;
