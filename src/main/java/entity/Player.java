@@ -21,12 +21,12 @@ public class Player extends ActiveEntity {
     
     public Player(float x, float y, GameMap map, int hp) {
         super(x, y, EntityType.PLAYER, map, hp);
-        playerImage = new Texture("player.jpg");
+
     }
 
     public void setId(int id) {
     	ID = id;
-    	playerImage = new Texture("player.jpg");
+    	playerImage = new Texture("player" + Integer.toString(ID) + ".png");
     }
     
     @Override
@@ -37,6 +37,7 @@ public class Player extends ActiveEntity {
 
     @Override
     public void update(float deltaTime, float gravity) {
+        if (ID == 4) {    	
         if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
             if(map.doesEntityRectangleCollideWithTileOnAnyLayer(this.getX(), this.getY()-0.01f, this.getWidth(), this.getHeight())){
                 this.velocityY += JUMP_VELOCITY;
@@ -50,7 +51,7 @@ public class Player extends ActiveEntity {
 
         super.update(deltaTime, gravity);
         rect.move(this.getX(), this.getY());
-        if (ID == 4) {
+
 	        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
 	            moveX(-SPEED * deltaTime);
 	
@@ -59,6 +60,29 @@ public class Player extends ActiveEntity {
 	            moveX(SPEED * deltaTime);
 	        }
         }
+        if (ID == 3) {    	
+            if(Gdx.input.isKeyPressed(Input.Keys.W)){
+                if(map.doesEntityRectangleCollideWithTileOnAnyLayer(this.getX(), this.getY()-0.01f, this.getWidth(), this.getHeight())){
+                    this.velocityY += JUMP_VELOCITY;
+                    current_jump_time = 0;
+                }
+                else if (this.velocityY > 0){
+                    current_jump_time += deltaTime;
+                    if (current_jump_time < MAX_JUMP_TIME) this.velocityY += JUMP_VELOCITY * deltaTime;
+                }
+            }
+
+            super.update(deltaTime, gravity);
+            rect.move(this.getX(), this.getY());
+
+    	        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+    	            moveX(-SPEED * deltaTime);
+    	
+    	        }
+    	        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+    	            moveX(SPEED * deltaTime);
+    	        }
+            }
     }
 
     public void addScore(int value) {
