@@ -7,16 +7,16 @@
   </data>
  </layer>
  <objectgroup id="11" name="player" offsetx="8" offsety="0">
-  <object id="28" x="32" y="312">
+  <object id="28" x="104" y="312">
    <point/>
   </object>
   <object id="29" x="80" y="312">
    <point/>
   </object>
-  <object id="59" x="104" y="312">
+  <object id="59" x="56" y="312">
    <point/>
   </object>
-  <object id="60" x="56" y="312">
+  <object id="60" x="32" y="312">
    <point/>
   </object>
  </objectgroup>
