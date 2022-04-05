@@ -23,25 +23,7 @@ public abstract class Entity {
         this.rect = new CollisionRect(x, y, type.getWidth(), type.getHeight());
     }
 
-    public void update (float deltaTime, float gravity){
-        if (deltaTime > 0.05f) deltaTime = 0.05f;
-
-        if (!gravityAffected) gravity = 0;
-
-        this.velocityY = this.velocityY - gravity * deltaTime;
-
-        float newY = getY() + this.velocityY * deltaTime;
-
-        if(map.doesEntityRectangleCollideWithTileOnAnyLayer(this.getX(), newY, this.getWidth(), this.getHeight())) {
-            if(this.velocityY < 0){
-                this.pos.y = (float) Math.floor(pos.y);
-            }
-            this.velocityY = 0;
-        }
-        else{
-            this.pos.y = newY;
-        }
-    }
+    public void update(float deltaTime, float gravity) { }
 
     protected void moveX(float xAmount){
         float newX = pos.x + xAmount;

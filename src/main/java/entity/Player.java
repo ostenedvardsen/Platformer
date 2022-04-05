@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import world.GameMap;
 
-public class Player extends Entity {
+public class Player extends ActiveEntity {
 
     private static final int SPEED = 65;
     private static final int JUMP_VELOCITY = 235;
@@ -19,8 +19,8 @@ public class Player extends Entity {
 
 
     
-    public Player(float x, float y, GameMap map) {
-        super(x, y, EntityType.PLAYER, map);
+    public Player(float x, float y, GameMap map, int hp) {
+        super(x, y, EntityType.PLAYER, map, hp);
         playerImage = new Texture("player.jpg");
         
         gravityAffected = true;

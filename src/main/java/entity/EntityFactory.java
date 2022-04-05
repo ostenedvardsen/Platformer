@@ -12,7 +12,7 @@ public class EntityFactory {
         float yPos = rectangleObject.getRectangle().getY();
 
         if(name.equalsIgnoreCase("Skeleton")) {
-            return new Skeleton(xPos, yPos, tiledGameMap);
+            return new Skeleton(xPos, yPos, tiledGameMap, 100);
         }
         if(name.equalsIgnoreCase("Goal")) {
             return new Goal(xPos, yPos, tiledGameMap);
@@ -21,7 +21,7 @@ public class EntityFactory {
             return new Coin(xPos, yPos, tiledGameMap);
         }
         if(name.equalsIgnoreCase("Player")) {
-            return new Player(xPos, yPos, tiledGameMap);
+            return new Player(xPos, yPos, tiledGameMap, 500);
         }
         return null;
 

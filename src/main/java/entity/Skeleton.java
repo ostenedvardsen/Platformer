@@ -4,14 +4,14 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import world.GameMap;
 
-public class Skeleton extends Entity {
+public class Skeleton extends ActiveEntity {
 	
     private static final int SPEED = 25;
 	
 	Texture skeletonImage;
 	
-	public Skeleton(float x, float y, GameMap map) {
-        super(x, y, EntityType.SKELETON, map);
+	public Skeleton(float x, float y, GameMap map, int hp) {
+        super(x, y, EntityType.SKELETON, map, hp);
         skeletonImage = new Texture("skeleton.png");
 
 		gravityAffected = true;
