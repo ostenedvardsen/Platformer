@@ -22,8 +22,6 @@ public class Player extends ActiveEntity {
     public Player(float x, float y, GameMap map, int hp) {
         super(x, y, EntityType.PLAYER, map, hp);
         playerImage = new Texture("player.jpg");
-        
-        gravityAffected = true;
     }
 
     @Override

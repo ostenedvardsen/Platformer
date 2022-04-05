@@ -12,15 +12,16 @@ public abstract class Entity {
     protected float velocityY = 0;
     protected GameMap map;
     protected CollisionRect rect;
-    protected Boolean gravityAffected = false;
+    protected int health;
     protected Boolean removeOnPlayerInteraction = false;
 
 
-    public Entity(float x, float y, EntityType type, GameMap map){
+    public Entity(float x, float y, EntityType type, GameMap map, int hp){
         this.pos = new Vector2(x,y);
         this.type = type;
         this.map = map;
         this.rect = new CollisionRect(x, y, type.getWidth(), type.getHeight());
+        this.health = hp;
     }
 
     public void update(float deltaTime, float gravity) { }

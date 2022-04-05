@@ -9,7 +9,7 @@ public class Coin extends Entity {
 	Texture coinImage;
 	
 	public Coin(float x, float y, GameMap map) {
-		super(x, y, EntityType.COIN, map);
+		super(x, y, EntityType.COIN, map, 1);
 		coinImage = new Texture("coin.png");
 
 		removeOnPlayerInteraction = true;

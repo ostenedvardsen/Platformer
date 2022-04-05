@@ -13,8 +13,6 @@ public class Skeleton extends ActiveEntity {
 	public Skeleton(float x, float y, GameMap map, int hp) {
         super(x, y, EntityType.SKELETON, map, hp);
         skeletonImage = new Texture("skeleton.png");
-
-		gravityAffected = true;
 	}
 
 	@Override

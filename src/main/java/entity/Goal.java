@@ -9,7 +9,7 @@ public class Goal extends Entity {
     Texture goalImage;
 
     public Goal(float x, float y, GameMap map) {
-        super(x, y, EntityType.GOAL, map);
+        super(x, y, EntityType.GOAL, map, 1);
         goalImage = new Texture("goal.png");
     }
 
