@@ -13,7 +13,7 @@ public class Player extends ActiveEntity {
     private static final int JUMP_VELOCITY = 235;
     private static final float MAX_JUMP_TIME = .5f;
     private float current_jump_time = 0;
-
+    private int ID = 0;
     private int score = 0;
     Texture playerImage;
 
@@ -24,6 +24,11 @@ public class Player extends ActiveEntity {
         playerImage = new Texture("player.jpg");
     }
 
+    public void setId(int id) {
+    	ID = id;
+    	playerImage = new Texture("player.jpg");
+    }
+    
     @Override
     public void render(SpriteBatch batch) {
         batch.draw(playerImage, pos.x, pos.y, getWidth(), getHeight());
@@ -45,13 +50,14 @@ public class Player extends ActiveEntity {
 
         super.update(deltaTime, gravity);
         rect.move(this.getX(), this.getY());
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            moveX(-SPEED * deltaTime);
-
-        }
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            moveX(SPEED * deltaTime);
-
+        if (ID == 4) {
+	        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+	            moveX(-SPEED * deltaTime);
+	
+	        }
+	        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+	            moveX(SPEED * deltaTime);
+	        }
         }
     }
 

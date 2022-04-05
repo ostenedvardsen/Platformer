@@ -39,8 +39,15 @@ public class TiledGameMap extends GameMap {
 
                     Entity newEntity = entityFactory.getEntity(rectangleObject, name, this);
                     if(newEntity != null){
-                        if (newEntity instanceof Player) { if (PlayerNumber > 0) players.add((Player) newEntity); PlayerNumber--; }
-                        else { entities.add(newEntity); }
+                        if (newEntity instanceof Player) { 
+                        	if (PlayerNumber > 0) { 
+                        		Player newPlayer = (Player) newEntity; 
+                        		newPlayer.setId(PlayerNumber);
+                        		players.add(newPlayer); 
+                        		PlayerNumber--; 
+                        	}
+                        			
+                        } else { entities.add(newEntity); }
                     }
                 }
             }

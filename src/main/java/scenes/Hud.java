@@ -27,6 +27,7 @@ public class Hud {
 
 	//Scene2D Widgets
 	private static Label scoreLabel;
+	
 	private Label scoreDisplayLabel;
 
 	
