@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector3;
+import screens.MainMenuScreen;
 
 public class PlatformerGame extends Game {
     public SpriteBatch batch;
@@ -21,6 +22,7 @@ public class PlatformerGame extends Game {
         camera.setToOrtho(false, w/2, h/2);
         camera.update();
 
+        this.setScreen(new MainMenuScreen(this, camera, 1.0f));
     }
 
     @Override
