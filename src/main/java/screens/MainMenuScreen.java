@@ -67,6 +67,7 @@ public class MainMenuScreen implements Screen {
 
     public void mouseClick(){
         if(startButtonIsHovered){
+            startButtonIsHovered = false;
             this.dispose();
             game.setScreen(new ActiveGameScreen(game, camera));
 
