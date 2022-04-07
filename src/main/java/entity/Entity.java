@@ -39,6 +39,12 @@ public abstract class Entity {
         this.pos.y = pos.y + yAmount;
         rect.move(this.pos.x, this.pos.y);
     }
+    
+    public boolean isDead() {
+    	if (this.health <= 0 )
+    		return true;
+    	return false;
+    }
 
     public Vector2 getPos() {
         return pos;

@@ -26,7 +26,8 @@ public class Player extends ActiveEntity {
     
     public Player(float x, float y, GameMap map, int hp) {
         super(x, y, EntityType.PLAYER, map, hp);
-
+        
+        health = 2;
     }
 
     public void setId(int id) {

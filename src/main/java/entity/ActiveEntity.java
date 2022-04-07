@@ -24,6 +24,10 @@ public abstract class ActiveEntity extends Entity {
         else{
             this.pos.y = newY;
         }
+        
+	    if (pos.y < 0) {
+	    	this.health = 0;
+	    }
     }
 
 
