@@ -64,6 +64,7 @@ public class ActiveGameScreen implements Screen {
     }
 
     private void cameraFollowPlayer() {
+        if (tiledGameMap.getPlayers().isEmpty()) return;
         Vector2 startValue = tiledGameMap.getPlayers().get(0).getPos();
         float xMax = startValue.x;
         float xMin = startValue.x;
