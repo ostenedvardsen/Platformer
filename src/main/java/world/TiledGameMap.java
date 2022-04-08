@@ -14,20 +14,23 @@ import entity.Entity;
 import entity.EntityFactory;
 import entity.Player;
 
+import java.util.ArrayList;
+
 public class TiledGameMap extends GameMap {
     TiledMap tiledMap;
     OrthogonalTiledMapRenderer tiledMapRenderer;
 
-    int PlayerNumber = 4;
+    int PlayerNumber = 1;
+    int mapCount = 2;
+    int mapNumber = 0;
 
     public TiledGameMap(){
-        tiledMap = new TmxMapLoader().load("stage2.tmx");
-        tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
-
-        AddEntities();
+        loadMap();
     }
 
-    private void AddEntities(){
+    private void AddEntities(int playerAmount){
+        entities = new ArrayList<>();
+        players = new ArrayList<>();
         EntityFactory entityFactory = new EntityFactory();
         for (MapLayer layer : tiledMap.getLayers()){
             if (layer instanceof TiledMapTileLayer) continue;
@@ -40,11 +43,11 @@ public class TiledGameMap extends GameMap {
                     Entity newEntity = entityFactory.getEntity(rectangleObject, name, this);
                     if(newEntity != null){
                         if (newEntity instanceof Player) { 
-                        	if (PlayerNumber > 0) { 
+                        	if (playerAmount > 0) {
                         		Player newPlayer = (Player) newEntity; 
                         		newPlayer.setId(PlayerNumber);
                         		players.add(newPlayer); 
-                        		PlayerNumber--; 
+                        		playerAmount--;
                         	}
                         			
                         } else { entities.add(newEntity); }
@@ -90,6 +93,17 @@ public class TiledGameMap extends GameMap {
             }
         }
         return null;
+    }
+
+    @Override
+    public void loadMap() {
+        System.out.println("load");
+        mapNumber++;
+        if (mapNumber > mapCount) return;
+        tiledMap = new TmxMapLoader().load("stage" + mapNumber + ".tmx");
+        tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
+
+        AddEntities(PlayerNumber);
     }
 
     @Override

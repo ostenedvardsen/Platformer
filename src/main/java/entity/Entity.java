@@ -55,6 +55,8 @@ public abstract class Entity {
         return pos.y;
     }
 
+    public void damage(int amount) { health-=amount; }
+
     public int getWidth(){
         return type.getWidth();
     }
