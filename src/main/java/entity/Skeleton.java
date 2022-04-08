@@ -31,5 +31,6 @@ public class Skeleton extends ActiveEntity {
 	@Override
 	public void playerInteract(Player player) {
 		player.removeScore(300);
+		player.damage(1);
 	}
 }
