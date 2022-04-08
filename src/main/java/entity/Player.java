@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import com.badlogic.gdx.math.Vector2;
 import world.GameMap;
 
 public class Player extends ActiveEntity {
@@ -83,4 +84,7 @@ public class Player extends ActiveEntity {
     @Override
     public void playerInteract(Player player) { }
 
+    public Vector2 getPos() {
+        return pos;
+    }
 }
