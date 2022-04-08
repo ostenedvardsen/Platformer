@@ -10,7 +10,7 @@ import world.GameMap;
 
 public class Player extends ActiveEntity {
 
-    private static final int SPEED = 65;
+    private static final int SPEED = 85;
     private static final int JUMP_VELOCITY = 235;
     private static final float MAX_JUMP_TIME = .5f;
     private float current_jump_time = 0;
