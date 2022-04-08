@@ -6,7 +6,7 @@ import world.GameMap;
 
 public class Skeleton extends ActiveEntity {
 	
-    private static final int SPEED = 25;
+    private int SPEED = 25;
 	
 	Texture skeletonImage;
 	
@@ -16,6 +16,19 @@ public class Skeleton extends ActiveEntity {
         
         health = 1;
 	}
+
+	@Override
+	protected void moveX(float xAmount){
+		float newX = pos.x + xAmount;
+
+		if (!map.doesEntityRectangleCollideWithTileOnAnyLayer(newX, pos.y, getWidth(), getHeight())){
+			this.pos.x = newX;
+			rect.move(this.pos.x, this.pos.y);
+		} else {
+			SPEED = -SPEED;
+		}
+	}
+
 
 	@Override
 	public void render(SpriteBatch batch) {
