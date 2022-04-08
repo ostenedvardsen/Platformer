@@ -46,9 +46,6 @@ public abstract class Entity {
     	return false;
     }
 
-    public Vector2 getPos() {
-        return pos;
-    }
 
     public float getX(){
         return pos.x;
@@ -56,18 +53,6 @@ public abstract class Entity {
 
     public float getY(){
         return pos.y;
-    }
-
-    public EntityType getType() {
-        return type;
-    }
-
-    public float getVelocityY() {
-        return velocityY;
-    }
-
-    public GameMap getMap() {
-        return map;
     }
 
     public int getWidth(){

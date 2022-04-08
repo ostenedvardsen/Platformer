@@ -19,9 +19,6 @@ public class Player extends ActiveEntity {
     private int leftKey;
     private int rightKey;
     private int jumpKey;
-    
-    
-
 
     
     public Player(float x, float y, GameMap map, int hp) {

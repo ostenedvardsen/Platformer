@@ -80,7 +80,7 @@ public class MainMenuScreen implements Screen {
     }
 
     public void draw(SpriteBatch batch){
-        //batch.draw(imageBackground, 0, 0, width/2, height);
+        batch.draw(imageBackground, 0, 0, width/2, height);
     }
     boolean test = true;
 
@@ -93,14 +93,8 @@ public class MainMenuScreen implements Screen {
 
         game.batch.draw(imageBackground, 0, 0, imageBackground.getWidth() * scale / 2, imageBackground.getHeight());
 
-
-
         mouseInputPosition.set(Gdx.input.getX(), Gdx.input.getY(), 0);
         camera.unproject(mouseInputPosition);
-
-        float centerWidth = width/2;
-        float centerHeight = height/2;
-        float marginHeight = height/8;
 
         Vector2 startButtonLowerLeft = new Vector2(width/4-buttonScale*width/2, height/4);
         Vector2 startButtonUpperRight = new Vector2(width/4-buttonScale*width/2 + buttonScale*width,height/4 + buttonScale*height);
