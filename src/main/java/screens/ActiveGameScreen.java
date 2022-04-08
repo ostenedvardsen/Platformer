@@ -21,6 +21,8 @@ public class ActiveGameScreen implements Screen {
     private float xOffset = 50;
     private float yOffset = 70;
     private float cameraSpeed = 0.04f;
+    private float minZoom = 1f;
+    private float zoomPadding = 1.35f;
     public Hud playerHud;
     GameMap tiledGameMap;
     OrthographicCamera camera;
@@ -91,6 +93,10 @@ public class ActiveGameScreen implements Screen {
         }
 
         camera.translate((xOffset + xMin - camera.position.x + (xMax-xMin)/2)*cameraSpeed,(yOffset + yMin - camera.position.y + (yMax-yMin)/2)*cameraSpeed);
+
+        float delta = (yMax-yMin)/camera.viewportHeight;
+        if ((xMax-xMin)/camera.viewportWidth > delta) delta = (xMax-xMin)/camera.viewportWidth;
+        camera.zoom=Math.max(minZoom,delta*zoomPadding);
     }
 
     @Override
