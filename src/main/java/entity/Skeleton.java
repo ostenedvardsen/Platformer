@@ -7,6 +7,7 @@ import world.GameMap;
 public class Skeleton extends ActiveEntity {
 	
     private int SPEED = 25;
+	private int moveDir = 1;
 	
 	Texture skeletonImage;
 	
@@ -21,12 +22,15 @@ public class Skeleton extends ActiveEntity {
 	protected void moveX(float xAmount){
 		float newX = pos.x + xAmount;
 
-		if (!map.doesEntityRectangleCollideWithTileOnAnyLayer(newX, pos.y, getWidth(), getHeight())){
+		boolean collidesAhead = map.doesEntityRectangleCollideWithTileOnAnyLayer(newX, pos.y, getWidth(), getHeight());
+		boolean walkingOffCliff = !map.doesEntityRectangleCollideWithTileOnAnyLayer(pos.x-(getWidth()*moveDir), pos.y-getHeight(), getWidth(), getHeight());
+
+		if (!collidesAhead){
 			this.pos.x = newX;
 			rect.move(this.pos.x, this.pos.y);
-		} else {
-			SPEED = -SPEED;
+			if (!walkingOffCliff) return;
 		}
+		moveDir=-moveDir;
 	}
 
 
@@ -38,7 +42,7 @@ public class Skeleton extends ActiveEntity {
 	@Override
 	public void update(float deltaTime, float gravity) {
 		super.update(deltaTime, gravity);
-		moveX(-SPEED * deltaTime);
+		moveX(-SPEED * deltaTime * moveDir);
 	}
 
 	@Override
