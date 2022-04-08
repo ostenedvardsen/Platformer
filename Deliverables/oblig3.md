@@ -52,3 +52,8 @@ Som spiller vil jeg kunne spille sammen med flere spillere.
 Det som nå gjenstår er MVP8 og MVP9. Vi har god kontroll på disse. Målet for brettet skal være å ta på "goalet" på slutten av banen, og så skal det komme et nytt brett. MVP8 og MVP9 henger derfor veldig sammen. TiledGameMap-objektet vårt får all informasjon om hvert brett gjennom dets .tmx-fil. Det skal derfor være en enkel prosess å få TileGameMap-objektet til å laste et nytt brett.
 
 Til oblig2 hadde vi fullført krav 1-6, og vi har nå har prioritert og fullført krav 7, 10 og 11. 
+
+### Deloppgave 3
+Klassediagram:
+![Klassediagram](/Deliverables/klassediagramOblig3.png " Klassediagram")
+
