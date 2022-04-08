@@ -77,10 +77,6 @@ public class Player extends ActiveEntity {
         score-=value;
     }
 
-    public void damage(int amount){
-        health -= amount;
-    }
-
     public int getScore(){
         return score;
     }

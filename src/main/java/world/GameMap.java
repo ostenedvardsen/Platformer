@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import entity.Entity;
+import entity.Goal;
 import entity.Player;
 
 import java.util.ArrayList;
@@ -120,7 +121,13 @@ public abstract class GameMap {
     		entities.remove(entity);
     	}
     	players.remove(entity);
+        if (players.isEmpty()) reset();
+        for (Entity e : entities) { if (e instanceof Goal) return; }
+        loadMap();
     }
+
+    public abstract void loadMap();
+    public abstract void reset();
 
     public abstract int getWidth();
     public abstract int getHeight();
