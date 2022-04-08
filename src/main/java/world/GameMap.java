@@ -15,8 +15,6 @@ public abstract class GameMap {
     public GameMap(){
         entities = new ArrayList<Entity>();
         players = new ArrayList<Player>();
-
-        players.add(new Player(50, 300, this));
     }
 
     public void render (OrthographicCamera camera, SpriteBatch batch){
@@ -37,6 +35,7 @@ public abstract class GameMap {
             player.update(delta, 400f);
         }
 
+        removeDead();
         checkCollisions();
     }
 
@@ -77,6 +76,23 @@ public abstract class GameMap {
 
         return false;
     }
+    
+    public void removeDead() {
+    	ArrayList<Entity> dead = new ArrayList<>();
+    	for (Entity entity : entities) {
+    		if (entity.isDead())
+    			dead.add(entity);
+    	}
+    	for (Player player : players) {
+    		if (player.isDead()) {
+    			dead.add(player);
+    		}
+    	}
+    	if (!dead.isEmpty()) {
+    		for (Entity entity : dead)
+    			removeEntity(entity);
+    	}
+    }
 
     public void checkCollisions() {
         ArrayList<Entity> removeObj = new ArrayList<>();
@@ -102,7 +118,10 @@ public abstract class GameMap {
     }
 
     public void removeEntity(Entity entity) {
-        entities.remove(entity);
+    	if (entities.contains(entity)) {
+    		entities.remove(entity);
+    	}
+    	players.remove(entity);
     }
 
     public abstract int getWidth();

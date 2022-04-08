@@ -1,21 +1,27 @@
 package entity;
 
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
-import world.GameMap;
+import world.TiledGameMap;
 
 public class EntityFactory {
-    public Entity getEntity(RectangleMapObject rectangleObject, String name, GameMap gameMap){
+    public Entity getEntity(RectangleMapObject rectangleObject, String name, TiledGameMap tiledGameMap){
         if(name == null){
             return null;
         }
+        float xPos = rectangleObject.getRectangle().getX();
+        float yPos = rectangleObject.getRectangle().getY();
+
         if(name.equalsIgnoreCase("Skeleton")) {
-            return new Skeleton(rectangleObject.getRectangle().getX(), rectangleObject.getRectangle().getY(), gameMap);
+            return new Skeleton(xPos, yPos, tiledGameMap, 100);
         }
         if(name.equalsIgnoreCase("Goal")) {
-            return new Goal(rectangleObject.getRectangle().getX(), rectangleObject.getRectangle().getY(), gameMap);
+            return new Goal(xPos, yPos, tiledGameMap);
         }
         if(name.equalsIgnoreCase("Coin")) {
-            return new Coin(rectangleObject.getRectangle().getX(), rectangleObject.getRectangle().getY(), gameMap);
+            return new Coin(xPos, yPos, tiledGameMap);
+        }
+        if(name.equalsIgnoreCase("Player")) {
+            return new Player(xPos, yPos, tiledGameMap, 500);
         }
         return null;
 

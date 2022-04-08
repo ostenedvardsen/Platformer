@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.1" orientation="orthogonal" renderorder="right-down" width="18" height="7" tilewidth="32" tileheight="32" infinite="0" nextlayerid="15" nextobjectid="15">
+<map version="1.8" tiledversion="1.8.1" orientation="orthogonal" renderorder="right-down" width="18" height="7" tilewidth="32" tileheight="32" infinite="0" nextlayerid="15" nextobjectid="28">
  <tileset firstgid="1" source="plcEnvTileset.tsx"/>
  <layer id="1" name="stage" width="18" height="7">
   <data encoding="base64">

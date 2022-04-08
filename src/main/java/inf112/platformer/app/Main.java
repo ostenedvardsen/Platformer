@@ -9,6 +9,6 @@ public class Main {
         cfg.setTitle("platformer");
         cfg.setWindowedMode(1280, 720);
 
-        new Lwjgl3Application(new Game(), cfg);
+        new Lwjgl3Application(new PlatformerGame(), cfg);
     }
 }

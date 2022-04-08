@@ -19,14 +19,15 @@ public class Hud {
 	 * create a new stage and a viewport to keep the Hud locked, while the eventually the screen
 	 * can move independently with the character.
 	 */
+
 	public Stage stage;
 	private Viewport viewport;
 	public boolean initializedHud = false;
 
 	ArrayList<Player> allPlayers;
 
-	//Scene2D Widgets
 	private static Label scoreLabel;
+	
 	private Label scoreDisplayLabel;
 
 	
@@ -34,17 +35,14 @@ public class Hud {
 		viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());
 		stage = new Stage(viewport, sb);
 
-		Table table = new Table(); //Creating our table of widgets
+		Table table = new Table();
 		table.top();
-		table.setFillParent(true); // makes the Table to the size of our stage.
+		table.setFillParent(true);
 
 		allPlayers = players;
 		String allScores = scoreMethod();
 
 		scoreLabel = new Label(allScores, new Label.LabelStyle(new BitmapFont(), Color.BLACK));
-
-		// table.add(scoreDisplayLabel).expandX().padTop(10); //Adding a widget to the table
-		// table.row(); //New row
 		table.add(scoreLabel).expandX();
 		
 		stage.addActor(table);

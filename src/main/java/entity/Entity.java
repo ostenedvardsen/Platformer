@@ -12,36 +12,19 @@ public abstract class Entity {
     protected float velocityY = 0;
     protected GameMap map;
     protected CollisionRect rect;
-    protected Boolean gravityAffected = false;
+    protected int health;
     protected Boolean removeOnPlayerInteraction = false;
 
 
-    public Entity(float x, float y, EntityType type, GameMap map){
+    public Entity(float x, float y, EntityType type, GameMap map, int hp){
         this.pos = new Vector2(x,y);
         this.type = type;
         this.map = map;
         this.rect = new CollisionRect(x, y, type.getWidth(), type.getHeight());
+        this.health = hp;
     }
 
-    public void update (float deltaTime, float gravity){
-        if (deltaTime > 0.05f) deltaTime = 0.05f;
-
-        if (!gravityAffected) gravity = 0;
-
-        this.velocityY = this.velocityY - gravity * deltaTime;
-
-        float newY = getY() + this.velocityY * deltaTime;
-
-        if(map.doesEntityRectangleCollideWithTileOnAnyLayer(this.getX(), newY, this.getWidth(), this.getHeight())) {
-            if(this.velocityY < 0){
-                this.pos.y = (float) Math.floor(pos.y);
-            }
-            this.velocityY = 0;
-        }
-        else{
-            this.pos.y = newY;
-        }
-    }
+    public void update(float deltaTime, float gravity) { }
 
     protected void moveX(float xAmount){
         float newX = pos.x + xAmount;
@@ -56,10 +39,13 @@ public abstract class Entity {
         this.pos.y = pos.y + yAmount;
         rect.move(this.pos.x, this.pos.y);
     }
-
-    public Vector2 getPos() {
-        return pos;
+    
+    public boolean isDead() {
+    	if (this.health <= 0 )
+    		return true;
+    	return false;
     }
+
 
     public float getX(){
         return pos.x;
@@ -67,18 +53,6 @@ public abstract class Entity {
 
     public float getY(){
         return pos.y;
-    }
-
-    public EntityType getType() {
-        return type;
-    }
-
-    public float getVelocityY() {
-        return velocityY;
-    }
-
-    public GameMap getMap() {
-        return map;
     }
 
     public int getWidth(){
