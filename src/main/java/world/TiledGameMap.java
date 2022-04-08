@@ -97,7 +97,6 @@ public class TiledGameMap extends GameMap {
 
     @Override
     public void loadMap() {
-        System.out.println("load");
         mapNumber++;
         if (mapNumber > mapCount) return;
         tiledMap = new TmxMapLoader().load("stage" + mapNumber + ".tmx");
