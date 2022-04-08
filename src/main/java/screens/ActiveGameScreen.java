@@ -47,9 +47,12 @@ public class ActiveGameScreen implements Screen {
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
 
-        if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
+        if(Gdx.input.isKeyPressed(Input.Keys.R)){
             this.dispose();
             game.setScreen(new MainMenuScreen(game, camera));
+        }
+        else if(Gdx.input.isKeyPressed(Input.Keys.E)){
+            tiledGameMap.loadNextMap();
         }
 
         game.batch.setProjectionMatrix(playerHud.stage.getCamera().combined);
