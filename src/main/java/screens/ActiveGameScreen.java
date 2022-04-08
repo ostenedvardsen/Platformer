@@ -20,6 +20,7 @@ public class ActiveGameScreen implements Screen {
     private BitmapFont font;
     private float xOffset = 50;
     private float yOffset = 70;
+    private float cameraSpeed = 0.04f;
     public Hud playerHud;
     GameMap tiledGameMap;
     OrthographicCamera camera;
@@ -86,7 +87,7 @@ public class ActiveGameScreen implements Screen {
             if (value.y < yMin) yMin = value.y;
         }
 
-        camera.translate(xOffset + xMin - camera.position.x + (xMax-xMin)/2,yOffset + yMin - camera.position.y + (yMax-yMin)/2);
+        camera.translate((xOffset + xMin - camera.position.x + (xMax-xMin)/2)*cameraSpeed,(yOffset + yMin - camera.position.y + (yMax-yMin)/2)*cameraSpeed);
     }
 
     @Override
