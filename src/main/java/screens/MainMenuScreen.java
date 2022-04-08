@@ -18,14 +18,13 @@ public class MainMenuScreen implements Screen {
     Texture imageBackground;
     float width;
     float height;
-    float scale;
 
     Texture startButton;
     private final float buttonScale = 0.1f;
 
     Texture quitButton;
 
-    public MainMenuScreen(PlatformerGame game, OrthographicCamera camera, float scale) {
+    public MainMenuScreen(PlatformerGame game, OrthographicCamera camera) {
 
         imageBackground = new Texture("main_menu_background.png");
         startButton = new Texture("startbutton.png");
@@ -35,8 +34,6 @@ public class MainMenuScreen implements Screen {
 
         this.width = Gdx.graphics.getWidth();
         this.height = Gdx.graphics.getHeight();
-
-        this.scale = scale;
 
         this.camera = camera;
 
@@ -80,7 +77,7 @@ public class MainMenuScreen implements Screen {
     }
 
     public void draw(SpriteBatch batch){
-        batch.draw(imageBackground, 0, 0, width/2, height);
+        //batch.draw(imageBackground, 0, 0, width/2, height);
     }
 
     @Override
@@ -90,7 +87,14 @@ public class MainMenuScreen implements Screen {
 
         game.batch.begin();
 
-        game.batch.draw(imageBackground, 0, 0, imageBackground.getWidth() * scale / 2, imageBackground.getHeight());
+        //camera.translate(0,0);
+
+        //camera.viewportWidth = width;
+        //camera.viewportHeight = height;
+        camera.position.set(width/4, height/2f, 0);
+        camera.update();
+
+        game.batch.draw(imageBackground, 0, 0, imageBackground.getWidth()/2, imageBackground.getHeight());
 
         mouseInputPosition.set(Gdx.input.getX(), Gdx.input.getY(), 0);
         camera.unproject(mouseInputPosition);
@@ -136,7 +140,6 @@ public class MainMenuScreen implements Screen {
 
     @Override
     public void resize(int i, int i1) {
-
     }
 
     @Override

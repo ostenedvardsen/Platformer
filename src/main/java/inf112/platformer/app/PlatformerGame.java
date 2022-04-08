@@ -22,7 +22,7 @@ public class PlatformerGame extends Game {
         camera.setToOrtho(false, w/2, h/2);
         camera.update();
 
-        this.setScreen(new MainMenuScreen(this, camera, 1.0f));
+        this.setScreen(new MainMenuScreen(this, camera));
     }
 
     @Override

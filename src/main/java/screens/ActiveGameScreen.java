@@ -1,6 +1,7 @@
 package screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -44,6 +45,11 @@ public class ActiveGameScreen implements Screen {
     public void render(float v) {
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
+
+        if(Gdx.input.isKeyPressed(Input.Keys.ESCAPE)){
+            this.dispose();
+            game.setScreen(new MainMenuScreen(game, camera));
+        }
 
         game.batch.setProjectionMatrix(playerHud.stage.getCamera().combined);
 
