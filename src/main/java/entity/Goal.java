@@ -21,6 +21,6 @@ public class Goal extends Entity {
     @Override
     public void playerInteract(Player player) {
         player.addScore(1000);
-        damage(1);
+        map.loadNextMap();
     }
 }
