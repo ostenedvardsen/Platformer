@@ -20,7 +20,7 @@ public class TiledGameMap extends GameMap {
     TiledMap tiledMap;
     OrthogonalTiledMapRenderer tiledMapRenderer;
 
-    int PlayerNumber = 1;
+    int PlayerNumber = 2;
     int mapCount = 2;
     int mapNumber = 0;
 
@@ -96,7 +96,7 @@ public class TiledGameMap extends GameMap {
     }
 
     @Override
-    public void loadMap() {
+    public void loadNextMap() {
         mapNumber++;
         if (mapNumber > mapCount) return;
         tiledMap = new TmxMapLoader().load("stage" + mapNumber + ".tmx");
@@ -108,7 +108,7 @@ public class TiledGameMap extends GameMap {
     @Override
     public void reset() {
         mapNumber = 0;
-        loadMap();
+        loadNextMap();
     }
 
     @Override

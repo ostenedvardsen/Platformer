@@ -123,10 +123,10 @@ public abstract class GameMap {
     	players.remove(entity);
         if (players.isEmpty()) reset();
         for (Entity e : entities) { if (e instanceof Goal) return; }
-        loadMap();
+        loadNextMap();
     }
 
-    public abstract void loadMap();
+    public abstract void loadNextMap();
     public abstract void reset();
 
     public abstract int getWidth();
