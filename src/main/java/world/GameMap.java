@@ -33,7 +33,7 @@ public abstract class GameMap {
             entity.update(delta, 400f);
         }
         for (Player player: players){
-            player.update(delta, 600f);
+            player.update(delta, 680f);
         }
 
         removeDead();
