@@ -25,7 +25,7 @@ public class TiledGameMap extends GameMap {
     int mapNumber = 0;
 
     public TiledGameMap(){
-        loadMap();
+        reset();
     }
 
     private void AddEntities(int playerAmount){
@@ -104,6 +104,12 @@ public class TiledGameMap extends GameMap {
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
 
         AddEntities(PlayerNumber);
+    }
+
+    @Override
+    public void reset() {
+        mapNumber = 0;
+        loadMap();
     }
 
     @Override
