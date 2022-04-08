@@ -21,7 +21,7 @@ public class TiledGameMap extends GameMap {
     int PlayerNumber = 4;
 
     public TiledGameMap(){
-        tiledMap = new TmxMapLoader().load("stage1.tmx");
+        tiledMap = new TmxMapLoader().load("stage2.tmx");
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
 
         AddEntities();
