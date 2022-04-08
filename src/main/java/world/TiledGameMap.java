@@ -45,7 +45,7 @@ public class TiledGameMap extends GameMap {
                         if (newEntity instanceof Player) { 
                         	if (playerAmount > 0) {
                         		Player newPlayer = (Player) newEntity; 
-                        		newPlayer.setId(PlayerNumber);
+                        		newPlayer.setId(playerAmount);
                         		players.add(newPlayer); 
                         		playerAmount--;
                         	}
