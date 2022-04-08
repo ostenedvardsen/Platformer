@@ -10,9 +10,12 @@ import world.GameMap;
 
 public class Player extends ActiveEntity {
 
-    private static final int SPEED = 85;
-    private static final int JUMP_VELOCITY = 235;
-    private static final float MAX_JUMP_TIME = .5f;
+    private static final int SPEED = 115;
+    private static final int JUMP_VELOCITY = 735;
+    private static final float JUMP_INTENSITY = 0.3f;
+    private static final float MAX_JUMP_TIME = .25f;
+    private static final float turn_speed = 10f;
+    private float momentum;
     private float current_jump_time = 0;
     private int ID = 0;
     private int score = 0;
@@ -47,7 +50,7 @@ public class Player extends ActiveEntity {
     public void update(float deltaTime, float gravity) {
         if(Gdx.input.isKeyPressed(jumpKey)){
             if(map.doesEntityRectangleCollideWithTileOnAnyLayer(this.getX(), this.getY()-0.01f, this.getWidth(), this.getHeight())){
-                this.velocityY += JUMP_VELOCITY;
+                this.velocityY += JUMP_VELOCITY*JUMP_INTENSITY;
                 current_jump_time = 0;
             }
             else if (this.velocityY > 0){
@@ -56,16 +59,17 @@ public class Player extends ActiveEntity {
             }
         }
 
+        if (Gdx.input.isKeyPressed(leftKey)) {
+            if (momentum > -1) momentum-= turn_speed *deltaTime;
+        } else if (Gdx.input.isKeyPressed(rightKey)) {
+            if (momentum < 1) momentum+= turn_speed *deltaTime;
+        } else momentum -= momentum*turn_speed*deltaTime;
+
+
+        moveX(SPEED*deltaTime*momentum);
+
         super.update(deltaTime, gravity);
         rect.move(this.getX(), this.getY());
-
-	        if (Gdx.input.isKeyPressed(leftKey)) {
-	            moveX(-SPEED * deltaTime);
-	
-	        }
-	        if (Gdx.input.isKeyPressed(rightKey)) {
-	            moveX(SPEED * deltaTime);
-	        }
         }
         
 
