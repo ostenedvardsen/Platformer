@@ -55,8 +55,6 @@ public abstract class GameMap {
     public abstract TileType getTileTypeByCoordinate(int layer, int col, int row);
 
     public boolean doesEntityRectangleCollideWithTileOnAnyLayer(float x, float y, int width, int height){
-        // Add some checks to see if the position is valid?
-
         int firstRow =  (int) (y / TileType.TILE_SIZE);
         double lastRow = (Math.ceil((y + height) / TileType.TILE_SIZE));
 

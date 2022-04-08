@@ -15,11 +15,6 @@ import entity.Player;
 import java.util.ArrayList;
 
 public class Hud {
-	/**
-	 * create a new stage and a viewport to keep the Hud locked, while the eventually the screen
-	 * can move independently with the character.
-	 */
-
 	public Stage stage;
 	private Viewport viewport;
 	public boolean initializedHud = false;
@@ -27,9 +22,6 @@ public class Hud {
 	ArrayList<Player> allPlayers;
 
 	private static Label scoreLabel;
-	
-	private Label scoreDisplayLabel;
-
 	
 	public Hud(SpriteBatch sb, ArrayList<Player> players) {
 		viewport = new FitViewport(Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), new OrthographicCamera());

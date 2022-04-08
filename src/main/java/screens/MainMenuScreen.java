@@ -82,7 +82,6 @@ public class MainMenuScreen implements Screen {
     public void draw(SpriteBatch batch){
         batch.draw(imageBackground, 0, 0, width/2, height);
     }
-    boolean test = true;
 
     @Override
     public void render(float v) {
@@ -124,13 +123,10 @@ public class MainMenuScreen implements Screen {
         game.batch.end();
     }
 
-    boolean test2 = true;
-    int counter = 0;
 
     public boolean mouseHover(Vector2 lowerLeft, Vector2 upperRight) {
         if(mouseInputPosition.x > lowerLeft.x && mouseInputPosition.x < upperRight.x) {
             if (mouseInputPosition.y > lowerLeft.y && mouseInputPosition.y < upperRight.y) {
-                //System.out.printf("innenfor");
                 return true;
             }
         }

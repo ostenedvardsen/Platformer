@@ -9,8 +9,6 @@ public enum TileType {
 	SPIKE(4, true, "Spike", 1),
 	HOLE(5, false, "Hole", 999),
 	LAVA(6, true, "Lava", 10),
-	//Platform should have different properties, maybe it moves, maybe it can only be jumped through?
-	//platform also has a different size than other tiles, it is much flatter.
 	PLATFORM(7, true, "Platform");
 
     public static final int TILE_SIZE = 32;

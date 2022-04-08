@@ -11,7 +11,6 @@ public class CollisionRect {
 		this.height = height;
 	}
 
-	// move the Collision rectangle
 	public void move (float x, float y) {
 		this.x = x;
 		this.y = y;
