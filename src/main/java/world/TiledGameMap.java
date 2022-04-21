@@ -20,7 +20,7 @@ public class TiledGameMap extends GameMap {
     TiledMap tiledMap;
     OrthogonalTiledMapRenderer tiledMapRenderer;
 
-    int PlayerNumber = 4;
+    static int PlayerNumber;
     int mapCount = 2;
     int mapNumber = 0;
 
@@ -127,4 +127,11 @@ public class TiledGameMap extends GameMap {
     public int getLayers() {
         return tiledMap.getLayers().getCount();
     }
+
+	public static void setPlayerNumber(int i) {
+		PlayerNumber = i;
+		
+	}
+    
+ 
 }

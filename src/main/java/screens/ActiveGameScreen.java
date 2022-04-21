@@ -123,4 +123,8 @@ public class ActiveGameScreen implements Screen {
     public void dispose() {
 
     }
+    
+    public void setPlayerNumber(int i) {
+    	TiledGameMap.setPlayerNumber(i);
+    }
 }
