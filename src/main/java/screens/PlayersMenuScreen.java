@@ -19,15 +19,24 @@ public class PlayersMenuScreen implements Screen {
     float width;
     float height;
 
-    Texture onePlayerButton;
+    
     private final float buttonScale = 0.1f;
 
     Texture quitButton;
-
+    Texture onePlayerButton;
+    Texture twoPlayerButton;
+    Texture threePlayerButton;
+    Texture fourPlayerButton;
+    
     public PlayersMenuScreen(PlatformerGame game, OrthographicCamera camera) {
 
         imageBackground = new Texture("main_menu_background.png");
-        onePlayerButton = new Texture("1playersTest.png");
+        onePlayerButton = new Texture("1playerbutton.png");
+        twoPlayerButton = new Texture("2playerbutton.png");
+        threePlayerButton = new Texture("3playerbutton.png");
+        fourPlayerButton = new Texture("4playerbutton.png");
+        
+        quitButton = new Texture("quitbutton.png");
         this.game = game;
 
         this.width = Gdx.graphics.getWidth();
@@ -57,6 +66,9 @@ public class PlayersMenuScreen implements Screen {
     }
 
     boolean onePlayerButtonIsHovered = false;
+    boolean twoPlayerButtonIsHovered = false;
+    boolean threePlayerButtonIsHovered = false;
+    boolean fourPlayerButtonIsHovered = false;
     boolean quitButtonIsHovered = false;
 
 
@@ -64,9 +76,29 @@ public class PlayersMenuScreen implements Screen {
         if(onePlayerButtonIsHovered){
         	onePlayerButtonIsHovered = false;
             this.dispose();
-            game.setScreen(new ActiveGameScreen(game, camera));
-
+            game.setScreen(new ActiveGameScreen(game, camera, 1));
         }
+        
+        
+        else if(twoPlayerButtonIsHovered){
+        	twoPlayerButtonIsHovered = false;
+            this.dispose();
+            game.setScreen(new ActiveGameScreen(game, camera, 2));
+        }
+        
+        
+        else if(threePlayerButtonIsHovered){
+        	threePlayerButtonIsHovered = false;
+            this.dispose();
+            game.setScreen(new ActiveGameScreen(game, camera, 3));
+        }
+        
+        
+        else if(fourPlayerButtonIsHovered){
+        	fourPlayerButtonIsHovered = false;
+            this.dispose();
+            game.setScreen(new ActiveGameScreen(game, camera, 4));
+        }        
         else if (quitButtonIsHovered) {
             this.dispose();
             Gdx.app.exit();
@@ -97,15 +129,29 @@ public class PlayersMenuScreen implements Screen {
         mouseInputPosition.set(Gdx.input.getX(), Gdx.input.getY(), 0);
         camera.unproject(mouseInputPosition);
 
-        Vector2 OnePlayerButtonLowerLeft = new Vector2(width/4-buttonScale*width/2, height/4);
-        Vector2 OnePlayerButtonUpperRight = new Vector2(width/4-buttonScale*width/2 + buttonScale*width,height/4 + buttonScale*height);
+        Vector2 OnePlayerButtonLowerLeft = new Vector2(width/6-buttonScale*width, height/2-buttonScale*height);
+        Vector2 OnePlayerButtonUpperRight = new Vector2(width/6-buttonScale*width + buttonScale*width,height/2-buttonScale*height + buttonScale*height);
 
+        Vector2 TwoPlayerButtonLowerLeft = new Vector2(width/3-buttonScale*width/4, height/2-buttonScale*height);
+        Vector2 TwoPlayerButtonUpperRight = new Vector2(width/3-buttonScale*width/4 + buttonScale*width,height/2-buttonScale*height + buttonScale*height);
+        
+        Vector2 ThreePlayerButtonLowerLeft = new Vector2(width/6-buttonScale*width, height/3-buttonScale*height);
+        Vector2 ThreePlayerButtonUpperRight = new Vector2(width/6-buttonScale*width + buttonScale*width,height/3-buttonScale*height + buttonScale*height);
+
+        Vector2 FourPlayerButtonLowerLeft = new Vector2(width/3-buttonScale*width/4, height/3-buttonScale*height);
+        Vector2 FourPlayerButtonUpperRight = new Vector2(width/3-buttonScale*width/4 + buttonScale*width,height/3-buttonScale*height + buttonScale*height);
+                
+        
         Vector2 quitButtonLowerLeft = new Vector2(width/4-buttonScale*width/2, height/4-height/8);
         Vector2 quitButtonUpperRight = new Vector2(width/4-buttonScale*width/2 + buttonScale*width, height/4-height/8 + buttonScale*height);
 
         if(mouseHover(OnePlayerButtonLowerLeft, OnePlayerButtonUpperRight)){
         	onePlayerButtonIsHovered = true;
-        	onePlayerButton = new Texture("1playersTestHovered.png");
+        	onePlayerButton = new Texture("1playerbuttonhovered.png");
+        }
+        else if(mouseHover(TwoPlayerButtonLowerLeft, TwoPlayerButtonUpperRight)) {
+        	twoPlayerButtonIsHovered = true;
+        	twoPlayerButton = new Texture("2playerbuttonhovered.png");
         }
         else if(mouseHover(quitButtonLowerLeft, quitButtonUpperRight)){
             quitButtonIsHovered = true;
@@ -113,15 +159,20 @@ public class PlayersMenuScreen implements Screen {
         }
         else{
         	onePlayerButtonIsHovered = false;
+        	twoPlayerButtonIsHovered = false;
             quitButtonIsHovered = false;
-            onePlayerButton = new Texture("startbutton.png");
+            onePlayerButton = new Texture("1playerbutton.png");
+            twoPlayerButton = new Texture("2playerbutton.png");
             quitButton = new Texture("quitbutton.png");
 
         }
 
         game.batch.draw(onePlayerButton, OnePlayerButtonLowerLeft.x, OnePlayerButtonLowerLeft.y,  buttonScale*width, buttonScale*height);
+        game.batch.draw(twoPlayerButton, TwoPlayerButtonLowerLeft.x, TwoPlayerButtonLowerLeft.y, buttonScale*width, buttonScale*height);
+        game.batch.draw(threePlayerButton, ThreePlayerButtonLowerLeft.x, ThreePlayerButtonLowerLeft.y, buttonScale*width, buttonScale*height);
+        game.batch.draw(fourPlayerButton, FourPlayerButtonLowerLeft.x, FourPlayerButtonLowerLeft.y, buttonScale*width, buttonScale*height);
         game.batch.draw(quitButton, quitButtonLowerLeft.x, quitButtonLowerLeft.y, buttonScale*width, buttonScale*height);
-
+        
         game.batch.end();
     }
 

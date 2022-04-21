@@ -28,10 +28,11 @@ public class ActiveGameScreen implements Screen {
     OrthographicCamera camera;
 
 
-    public ActiveGameScreen(PlatformerGame game, OrthographicCamera camera){
+    public ActiveGameScreen(PlatformerGame game, OrthographicCamera camera, int i){
         this.game = game;
         this.camera = camera;
-
+        
+        setPlayerNumber(i);
         tiledGameMap = new TiledGameMap();
         playerHud = new Hud(game.batch, tiledGameMap.getPlayers());
 

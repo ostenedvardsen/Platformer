@@ -66,7 +66,7 @@ public class MainMenuScreen implements Screen {
         if(startButtonIsHovered){
             startButtonIsHovered = false;
             this.dispose();
-            game.setScreen(new ActiveGameScreen(game, camera));
+            game.setScreen(new PlayersMenuScreen(game, camera));
 
         }
         else if (quitButtonIsHovered) {
