@@ -153,6 +153,14 @@ public class PlayersMenuScreen implements Screen {
         	twoPlayerButtonIsHovered = true;
         	twoPlayerButton = new Texture("2playerbuttonhovered.png");
         }
+        else if(mouseHover(ThreePlayerButtonLowerLeft, ThreePlayerButtonUpperRight)) {
+        	threePlayerButtonIsHovered = true;
+        	threePlayerButton = new Texture("3playerbuttonhovered.png");
+        }
+        else if(mouseHover(FourPlayerButtonLowerLeft, FourPlayerButtonUpperRight)) {
+        	fourPlayerButtonIsHovered = true;
+        	fourPlayerButton = new Texture("4playerbuttonhovered.png");
+        }
         else if(mouseHover(quitButtonLowerLeft, quitButtonUpperRight)){
             quitButtonIsHovered = true;
             quitButton = new Texture("quitbuttontouched.png");
@@ -163,6 +171,8 @@ public class PlayersMenuScreen implements Screen {
             quitButtonIsHovered = false;
             onePlayerButton = new Texture("1playerbutton.png");
             twoPlayerButton = new Texture("2playerbutton.png");
+            threePlayerButton = new Texture("3playerbutton.png");
+            fourPlayerButton = new Texture("4playerbutton.png");
             quitButton = new Texture("quitbutton.png");
 
         }
