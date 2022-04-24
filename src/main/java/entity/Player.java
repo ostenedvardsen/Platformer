@@ -38,6 +38,7 @@ public class Player extends ActiveEntity {
         gracePeriod = 0;
         health = 100;
 
+        attackDamage = 5;
         collisionHandling = new CollisionHandling();
     }
 
