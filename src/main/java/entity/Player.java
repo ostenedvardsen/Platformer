@@ -87,6 +87,10 @@ public class Player extends ActiveEntity {
                 this.pos.y = (int) Math.floor(pos.y);
             }
             this.velocityY = 0;
+
+            if(map.getTileTypeByLocation(0, this.getX(), newY) != null){
+                this.damage(map.getTileTypeByLocation(0, this.getX(), newY).getDamage());
+            }
         }
 
         if(velocityY > 0){

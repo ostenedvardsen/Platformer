@@ -17,14 +17,13 @@ public enum TileType {
     private int id;
     private boolean collidable;
     private String name;
-    private float damage;
+    private int damage;
 
     private TileType (int id, boolean collidable, String name){
         this(id, collidable, name, 0);
     }
 
-
-    private TileType (int id, boolean collidable, String name, float damage){
+    private TileType (int id, boolean collidable, String name, int damage){
         this.id = id;
         this.collidable = collidable;
         this.name = name;
@@ -43,7 +42,7 @@ public enum TileType {
         return name;
     }
 
-    public float getDamage() {
+    public int getDamage() {
         return damage;
     }
 
