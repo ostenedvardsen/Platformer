@@ -27,7 +27,7 @@ public class Player extends ActiveEntity {
     private int leftKey;
     private int rightKey;
     private int jumpKey;
-    private int gracePeriod;
+    private float gracePeriod;
 
     CollisionHandling collisionHandling;
 
@@ -77,12 +77,73 @@ public class Player extends ActiveEntity {
 
 
         moveX(SPEED*deltaTime*momentum);
+        this.velocityY = this.velocityY - gravity * deltaTime;
+        float newY = getY() + this.velocityY * deltaTime;
 
 
+        if(map.doesEntityRectangleCollideWithTileOnAnyLayer(this.getX(), newY, this.getWidth(), this.getHeight())) {
+            if(this.velocityY < 0){
+                this.pos.y = (int) Math.floor(pos.y);
+            }
+            this.velocityY = 0;
+        }
 
-        super.update(deltaTime, gravity);
+        // PÅ vei opp:
+        if(velocityY > 0){
+            newY = getY() + this.velocityY * deltaTime;
+            this.pos.y = newY;
+        }
+
+        else if(velocityY < 0) {
+            CollisionRect nextY;
+            CollisionRect approximateY;
+            ArrayList<Entity> collidedEntities = new ArrayList<>();
+
+            newY = getY() + this.velocityY * deltaTime;
+
+            nextY = new CollisionRect(pos.x, newY + 16f, getWidth(), getHeight());
+            approximateY = new CollisionRect(pos.x, pos.y-0.1f + 16f, getWidth(), getHeight());
+
+            collidedEntities = map.doesRectangleCollideWithAnyEntity(nextY);
+
+            for(Entity entityItem: map.doesRectangleCollideWithAnyEntity(approximateY)){
+                if(!collidedEntities.contains(entityItem)){
+                    collidedEntities.add(entityItem);
+                }
+            }
+
+            if(collidedEntities.isEmpty()){
+                this.pos.y = newY;
+            }
+
+            else {
+                Entity tallestCollidingEntity = collisionHandling.highestYEntity(collidedEntities);
+
+                this.velocityY = -this.velocityY;
+                this.pos.y = tallestCollidingEntity.getHeight() + tallestCollidingEntity.getY() + 0.01f + 4f;
+
+
+                for (Entity attackEntity: collidedEntities){
+                    map.damageAndKillEntity(attackEntity, attackDamage, this);
+                }
+            }
+        }
+
+        if (pos.y < 0) {
+            this.health = 0;
+        }
+
         rect.move(this.getX(), this.getY());
 
+        // graceperiod
+        if(gracePeriod <= 0){
+            gracePeriod = 0;
+        } else{
+            gracePeriod = gracePeriod - deltaTime;
+        }
+
+
+        rect.move(this.getX(), this.getY());
     }
 
     @Override
