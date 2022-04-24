@@ -3,6 +3,7 @@ package entity;
 import world.GameMap;
 
 public abstract class ActiveEntity extends Entity {
+    public int attackDamage;
 
     public ActiveEntity(float x, float y, EntityType type, GameMap map, int hp) {
         super(x, y, type, map, hp);
@@ -30,5 +31,10 @@ public abstract class ActiveEntity extends Entity {
 	    }
     }
 
+    public int getAttackDamage(){
+        return attackDamage;
+    }
+
+    public abstract void destroyedBy(Entity entity);
 
 }

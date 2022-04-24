@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import world.GameMap;
 
 public class Skeleton extends ActiveEntity {
-	
+
     private int SPEED = 25;
 	private int moveDir = 1;
 	
@@ -47,7 +47,13 @@ public class Skeleton extends ActiveEntity {
 
 	@Override
 	public void playerInteract(Player player) {
-		player.removeScore(300);
-		player.damage(1);
+		map.damageAndKillEntity(player, attackDamage, this);
+	}
+
+	@Override
+	public void destroyedBy(Entity entity){
+		if (entity instanceof Player){
+			((Player) entity).addScore(1000);
+		}
 	}
 }

@@ -14,6 +14,8 @@ public abstract class Entity {
     protected CollisionRect rect;
     protected int health;
     protected Boolean removeOnPlayerInteraction = false;
+    protected Boolean collidable = true;
+
 
 
     public Entity(float x, float y, EntityType type, GameMap map, int hp){
@@ -75,4 +77,13 @@ public abstract class Entity {
 
     public abstract void playerInteract(Player player);
 
+    public abstract void destroyedBy(Entity player);
+
+    public int getHealth(){
+        return health;
+    }
+
+    public Boolean getCollidable(){
+        return collidable;
+    }
 }

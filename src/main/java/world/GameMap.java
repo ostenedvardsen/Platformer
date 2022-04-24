@@ -19,21 +19,18 @@ public abstract class GameMap {
     }
 
     public void render (OrthographicCamera camera, SpriteBatch batch){
-        for (Entity entity: entities){
-            entity.render(batch);
-        }
         for(Player player: players){
-            player.render(batch);
-        }
-
+            player.render(batch);}
+        for (Entity entity: entities) {
+            entity.render(batch);}
     }
 
     public void update (float delta){
-        for (Entity entity: entities){
-            entity.update(delta, 400f);
-        }
         for (Player player: players){
             player.update(delta, 680f);
+        }
+        for (Entity entity: entities){
+            entity.update(delta, 400f);
         }
 
         removeDead();
@@ -54,6 +51,7 @@ public abstract class GameMap {
     }
 
     public abstract TileType getTileTypeByCoordinate(int layer, int col, int row);
+
 
     public boolean doesEntityRectangleCollideWithTileOnAnyLayer(float x, float y, int width, int height){
         int firstRow =  (int) (y / TileType.TILE_SIZE);
@@ -132,5 +130,15 @@ public abstract class GameMap {
     public abstract int getWidth();
     public abstract int getHeight();
     public abstract int getLayers();
+
+    public void damageAndKillEntity(Entity defender, int damage, Entity attacker) {
+        if(defender.getHealth() >= 0){
+            defender.damage(damage);
+            if(defender.getHealth() <= 0){
+                defender.destroyedBy(attacker);
+            }
+        }
+    }
+
 
 }

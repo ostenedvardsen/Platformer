@@ -7,11 +7,11 @@ import world.GameMap;
 public class Coin extends Entity {
 
 	Texture coinImage;
-	
+
 	public Coin(float x, float y, GameMap map) {
 		super(x, y, EntityType.COIN, map, 1);
 		coinImage = new Texture("coin.png");
-
+		collidable = false;
 		removeOnPlayerInteraction = true;
 	}
 
@@ -23,5 +23,10 @@ public class Coin extends Entity {
 	@Override
 	public void playerInteract(Player player) {
 		player.addScore(100);
+	}
+
+	@Override
+	public void destroyedBy(Entity player) {
+
 	}
 }

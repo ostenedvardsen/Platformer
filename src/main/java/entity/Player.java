@@ -85,8 +85,15 @@ public class Player extends ActiveEntity {
         return score;
     }
 
+
     @Override
-    public void playerInteract(Player player) { }
+    public void playerInteract(Player player) {
+    }
+
+    @Override
+    public void destroyedBy(Entity entity) {
+
+    }
 
     public Vector2 getPos() {
         return pos;
