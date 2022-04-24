@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import entity.Entity;
 import entity.Goal;
 import entity.Player;
+import tools.CollisionRect;
 
 import java.util.ArrayList;
 
@@ -46,16 +47,49 @@ public abstract class GameMap {
      * @param y
      * @return
      */
+
     public TileType getTileTypeByLocation(int layer, float x, float y){
         return this.getTileTypeByCoordinate(layer, (int) (x / TileType.TILE_SIZE), (int) (y / TileType.TILE_SIZE));
     }
 
     public abstract TileType getTileTypeByCoordinate(int layer, int col, int row);
 
+    public ArrayList<Entity> rectangleCollidesWithPlayers(CollisionRect collisionRect){
+        ArrayList<Entity> collidedPlayers = new ArrayList<>();
+        for (Player player : players) {
+            if (collisionRect.collidesWith(player.getCollisionRect())) {
+                collidedPlayers.add(player);
+            }
+        }
+        return collidedPlayers;
+    }
+
+
+    public ArrayList<Entity> doesRectangleCollideWithAnyEntity(CollisionRect collisionRect){
+        ArrayList<Entity> collidedEntities = new ArrayList<>();
+        for (Entity entity : entities) {
+            if (collisionRect.collidesWith(entity.getCollisionRect())) {
+                if(entity.getCollidable()){
+                    collidedEntities.add(entity);
+                }
+            }
+        }
+        return collidedEntities;
+    }
+
+    public ArrayList<Entity> collidedUncollidableEntities(Entity entity){
+        ArrayList<Entity> collidedEntities = new ArrayList<>();
+        for (Entity ent : entities) {
+            if (entity.getCollisionRect().collidesWith(ent.getCollisionRect()) && !ent.getCollidable()) {
+                collidedEntities.add(ent);
+            }
+        }
+        return collidedEntities;
+    }
 
     public boolean doesEntityRectangleCollideWithTileOnAnyLayer(float x, float y, int width, int height){
         int firstRow =  (int) (y / TileType.TILE_SIZE);
-        double lastRow = (Math.ceil((y + height) / TileType.TILE_SIZE));
+        double lastRow = (Math.ceil((y + width) / TileType.TILE_SIZE));
 
         int firstCol =  (int) (x / TileType.TILE_SIZE);
         double lastCol = (Math.ceil((x + height) / TileType.TILE_SIZE));
@@ -93,8 +127,8 @@ public abstract class GameMap {
 
     public void checkCollisions() {
         ArrayList<Entity> removeObj = new ArrayList<>();
-        for (Entity entity : entities) {
-            for (Player player : players) {
+        for (Player player : players) {
+            for (Entity entity : this.collidedUncollidableEntities(player)) {
                 if (player.getCollisionRect().collidesWith(entity.getCollisionRect())) {
                     entity.playerInteract(player);
                     if (entity.removeOnPlayerInteraction()) {
@@ -130,6 +164,11 @@ public abstract class GameMap {
     public abstract int getWidth();
     public abstract int getHeight();
     public abstract int getLayers();
+
+    public void interactEntities(Player player, Entity interactedWith){
+        interactedWith.playerInteract(player);
+    }
+
 
     public void damageAndKillEntity(Entity defender, int damage, Entity attacker) {
         if(defender.getHealth() >= 0){
