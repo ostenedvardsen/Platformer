@@ -17,7 +17,6 @@ public abstract class Entity {
     protected Boolean collidable = true;
 
 
-
     public Entity(float x, float y, EntityType type, GameMap map, int hp){
         this.pos = new Vector2(x,y);
         this.type = type;
@@ -37,17 +36,15 @@ public abstract class Entity {
         }
     }
 
-    protected void moveY(float yAmount){
-        this.pos.y = pos.y + yAmount;
-        rect.move(this.pos.x, this.pos.y);
-    }
-    
     public boolean isDead() {
-    	if (this.health <= 0 )
-    		return true;
-    	return false;
+        if (this.health <= 0 )
+            return true;
+        return false;
     }
 
+    public int getHealth(){
+        return health;
+    }
 
     public float getX(){
         return pos.x;
@@ -68,7 +65,7 @@ public abstract class Entity {
     }
 
     public CollisionRect getCollisionRect () {
-    	return rect;
+        return rect;
     }
 
     public abstract void render (SpriteBatch batch);
@@ -78,10 +75,6 @@ public abstract class Entity {
     public abstract void playerInteract(Player player);
 
     public abstract void destroyedBy(Entity player);
-
-    public int getHealth(){
-        return health;
-    }
 
     public Boolean getCollidable(){
         return collidable;
