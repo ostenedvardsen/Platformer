@@ -6,7 +6,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import com.badlogic.gdx.math.Vector2;
+import tools.CollisionHandling;
+import tools.CollisionRect;
 import world.GameMap;
+
+import java.util.ArrayList;
 
 public class Player extends ActiveEntity {
 
@@ -23,12 +27,18 @@ public class Player extends ActiveEntity {
     private int leftKey;
     private int rightKey;
     private int jumpKey;
+    private int gracePeriod;
 
-    
+    CollisionHandling collisionHandling;
+
+
+
     public Player(float x, float y, GameMap map, int hp) {
         super(x, y, EntityType.PLAYER, map, hp);
-        
+        gracePeriod = 0;
         health = 100;
+
+        collisionHandling = new CollisionHandling();
     }
 
     public void setId(int id) {
@@ -68,10 +78,49 @@ public class Player extends ActiveEntity {
 
         moveX(SPEED*deltaTime*momentum);
 
+
+
         super.update(deltaTime, gravity);
         rect.move(this.getX(), this.getY());
+
+    }
+
+    @Override
+    public void moveX(float xAmount){
+        float newX = pos.x + xAmount;
+
+        CollisionRect testRect = new CollisionRect(newX, pos.y, getWidth(), getHeight());
+        ArrayList<Entity> collidedEntities = map.doesRectangleCollideWithAnyEntity(testRect);
+
+        if(!map.doesEntityRectangleCollideWithTileOnAnyLayer(newX, pos.y, getWidth(), getHeight())){
+            if(collidedEntities.isEmpty()) {
+                this.pos.x = newX;
+            }
+
+            else {
+                if(collisionHandling.entityFromTheLeft(this, collidedEntities)){
+                    this.pos.x = collisionHandling.lowestXEntity(collidedEntities).getX()- this.getWidth() - 0.01f;
+                    this.playerAttack(collidedEntities);
+
+                } else if (collisionHandling.entityFromTheRight(this, collidedEntities)) {
+                    this.pos.x = collisionHandling.highestXEntity(collidedEntities).getX() + collisionHandling.highestXEntity(collidedEntities).getWidth() - 0.01f;
+                    this.playerAttack(collidedEntities);
+                }
+            }
         }
-        
+    }
+
+    @Override
+    public void damage(int amount){
+        if (gracePeriod == 0){
+            super.damage(amount);
+            gracePeriod = 1;
+        }
+    }
+
+    public int getID(){
+        return ID;
+    }
 
     public void addScore(int value) {
         score+=value;
@@ -85,15 +134,21 @@ public class Player extends ActiveEntity {
         return score;
     }
 
+    private void playerAttack(ArrayList<Entity> attacked){
+        for (Entity entity: attacked){
+            this.playerAttack(entity);
+        }
+    }
 
-    @Override
-    public void playerInteract(Player player) {
+    private void playerAttack(Entity attacked){
+        map.interactEntities(this, attacked);
     }
 
     @Override
-    public void destroyedBy(Entity entity) {
+    public void playerInteract(Player player) {}
 
-    }
+    @Override
+    public void destroyedBy(Entity entity) {}
 
     public Vector2 getPos() {
         return pos;
