@@ -49,9 +49,10 @@ public class Hud {
 	private String scoreMethod(){
 		String totalScoreString = "";
 		for(Player player: allPlayers){
-			int currentPlayer = allPlayers.indexOf(player) + 1;
+			int currentPlayer = player.getID();
 			totalScoreString += "Score player " + currentPlayer + ": ";
 			totalScoreString += String.format("%06d", player.getScore());
+			totalScoreString += "  HP:  " + player.getHealth();
 			totalScoreString += "      ";
 		}
 		return totalScoreString;

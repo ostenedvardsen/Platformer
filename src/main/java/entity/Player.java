@@ -88,7 +88,6 @@ public class Player extends ActiveEntity {
             this.velocityY = 0;
         }
 
-        // PÅ vei opp:
         if(velocityY > 0){
             newY = getY() + this.velocityY * deltaTime;
             this.pos.y = newY;
@@ -135,7 +134,6 @@ public class Player extends ActiveEntity {
 
         rect.move(this.getX(), this.getY());
 
-        // graceperiod
         if(gracePeriod <= 0){
             gracePeriod = 0;
         } else{
