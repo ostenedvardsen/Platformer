@@ -76,7 +76,9 @@ public class Player extends ActiveEntity {
             if (momentum < 1) momentum+= turn_speed *deltaTime;
         } else momentum -= momentum*turn_speed*deltaTime;
 
-
+        if (momentum < 0.000001f & momentum > -0.000001f){
+            momentum = 0;
+        }
         moveX(SPEED*deltaTime*momentum);
         this.velocityY = this.velocityY - gravity * deltaTime;
         float newY = getY() + this.velocityY * deltaTime;
@@ -158,6 +160,9 @@ public class Player extends ActiveEntity {
 
         if(!map.doesEntityRectangleCollideWithTileOnAnyLayer(newX, pos.y, getWidth(), getHeight())){
             if(collidedEntities.isEmpty()) {
+                if (this.getID() == 1){
+                    System.out.println("Nerd kolliderer ikke");
+                }
                 this.pos.x = newX;
             }
 
@@ -167,7 +172,7 @@ public class Player extends ActiveEntity {
                     this.playerAttack(collidedEntities);
 
                 } else if (collisionHandling.entityFromTheRight(this, collidedEntities)) {
-                    this.pos.x = collisionHandling.highestXEntity(collidedEntities).getX() + collisionHandling.highestXEntity(collidedEntities).getWidth() - 0.01f;
+                    this.pos.x = collisionHandling.highestXEntity(collidedEntities).getX() + collisionHandling.highestXEntity(collidedEntities).getWidth() + 0.01f;
                     this.playerAttack(collidedEntities);
                 }
             }
@@ -176,9 +181,9 @@ public class Player extends ActiveEntity {
 
     @Override
     public void damage(int amount){
-        if (gracePeriod == 0){
-            super.damage(amount);
-            gracePeriod = 1;
+        if (gracePeriod <= 0 && amount > 0){
+            health -= amount;
+            gracePeriod += 1;
         }
     }
 
@@ -200,12 +205,12 @@ public class Player extends ActiveEntity {
 
     private void playerAttack(ArrayList<Entity> attacked){
         for (Entity entity: attacked){
-            this.playerAttack(entity);
+            this.playerAttacker(entity);
         }
     }
 
-    private void playerAttack(Entity attacked){
-        map.interactEntities(this, attacked);
+    private void playerAttacker(Entity attacker){
+        map.interactEntities(this, attacker);
     }
 
     @Override

@@ -171,7 +171,7 @@ public abstract class GameMap {
 
 
     public void damageAndKillEntity(Entity defender, int damage, Entity attacker) {
-        if(defender.getHealth() >= 0){
+        if(defender.getHealth() > 0){
             defender.damage(damage);
             if(defender.getHealth() <= 0){
                 defender.destroyedBy(attacker);

@@ -8,7 +8,7 @@ import world.GameMap;
 
 public abstract class Entity {
     protected Vector2 pos;
-    protected EntityType type;
+    public EntityType type;
     protected float velocityY = 0;
     protected GameMap map;
     protected CollisionRect rect;
