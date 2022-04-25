@@ -41,7 +41,8 @@ public class Hud {
 		initializedHud = true;
 	}
 
-	public void updateHud(){
+	public void updateHud(ArrayList<Player> players){
+		allPlayers = players;
 		String newAllScores = scoreMethod();
 		setHudText(newAllScores);
 	}

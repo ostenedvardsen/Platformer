@@ -14,6 +14,8 @@ import world.TiledGameMap;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL30;
 
+import java.util.ArrayList;
+
 public class ActiveGameScreen implements Screen {
 
     private final PlatformerGame game;
@@ -27,12 +29,15 @@ public class ActiveGameScreen implements Screen {
     GameMap tiledGameMap;
     OrthographicCamera camera;
 
+    ArrayList<Player> mainPlayerList;
+
 
     public ActiveGameScreen(PlatformerGame game, OrthographicCamera camera, int i){
         this.game = game;
         this.camera = camera;
-        
+
         setPlayerNumber(i);
+
         tiledGameMap = new TiledGameMap();
         playerHud = new Hud(game.batch, tiledGameMap.getPlayers());
 
@@ -66,7 +71,7 @@ public class ActiveGameScreen implements Screen {
         }
 
         if (playerHud.initializedHud)
-            playerHud.updateHud();
+            playerHud.updateHud(tiledGameMap.getPlayers());
         playerHud.stage.draw();
 
         cameraFollowPlayer();

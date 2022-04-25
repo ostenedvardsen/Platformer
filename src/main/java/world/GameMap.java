@@ -14,9 +14,13 @@ public abstract class GameMap {
     protected ArrayList<Entity> entities;
     protected ArrayList<Player> players;
 
+    protected ArrayList<Integer> playerScores;
+
     public GameMap(){
         entities = new ArrayList<Entity>();
         players = new ArrayList<Player>();
+
+        playerScores = new ArrayList<Integer>();
     }
 
     public void render (OrthographicCamera camera, SpriteBatch batch){
@@ -152,7 +156,9 @@ public abstract class GameMap {
     	if (entities.contains(entity)) {
     		entities.remove(entity);
     	}
-    	players.remove(entity);
+        if (entity instanceof Player){
+            players.remove(entity);
+        }
         if (players.isEmpty()) reset();
         for (Entity e : entities) { if (e instanceof Goal) return; }
         loadNextMap();
