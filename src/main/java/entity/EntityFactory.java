@@ -23,6 +23,9 @@ public class EntityFactory {
         if(name.equalsIgnoreCase("Player")) {
             return new Player(xPos, yPos, tiledGameMap, 500);
         }
+        if(name.equalsIgnoreCase("Frog")) {
+            return new Frog(xPos, yPos, tiledGameMap, 500);
+        }
         return null;
 
     }
