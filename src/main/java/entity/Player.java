@@ -23,18 +23,19 @@ public class Player extends ActiveEntity {
     private float current_jump_time = 0;
     private int ID = 0;
     private int score = 0;
-    Texture playerImage;
     private int leftKey;
     private int rightKey;
     private int jumpKey;
-    private float gracePeriod;
+
+    Texture playerImage;
+
 
 
     public Player(float x, float y, GameMap map, int hp) {
         super(x, y, EntityType.PLAYER, map, hp);
         gracePeriod = 0;
-        health = 1000;
-
+        health = 25;
+        gracePeriodIdentifier = 0.75f;
         attackDamage = 5;
     }
 
@@ -85,6 +86,7 @@ public class Player extends ActiveEntity {
         moveX(SPEED*deltaTime*momentum);
         super.moveY(deltaTime, gravity);
 
+
         if(gracePeriod <= 0){
             gracePeriod = 0;
         } else{
@@ -107,13 +109,6 @@ public class Player extends ActiveEntity {
         rect.move(this.pos.x, this.pos.y);
     }
 
-    @Override
-    public void damage(int amount){
-        if (gracePeriod <= 0 && amount > 0){
-            health -= amount;
-            gracePeriod += 1;
-        }
-    }
 
     public int getID(){
         return ID;
@@ -130,17 +125,6 @@ public class Player extends ActiveEntity {
     public int getScore(){
         return score;
     }
-
-    private void playerAttack(ArrayList<Entity> attacked){
-        for (Entity entity: attacked){
-            this.playerAttacker(entity);
-        }
-    }
-
-    private void playerAttacker(Entity attacker){
-        map.interactEntities(this, attacker);
-    }
-
 
     @Override
     public void destroyedBy(Entity entity) {}

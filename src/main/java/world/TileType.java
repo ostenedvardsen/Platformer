@@ -6,7 +6,7 @@ public enum TileType {
     GRASS(1, true, "Grass"),
     STONE(2, true, "Stone"),
 	DIRT(3, true, "Dirt"),
-	SPIKE(4, true, "Spike", 1),
+	SPIKE(4, true, "Spike", 5),
 	HOLE(5, false, "Hole", 999),
 	LAVA(6, true, "Lava", 10),
 	PLATFORM(7, true, "Platform");

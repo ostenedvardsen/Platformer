@@ -11,6 +11,7 @@ public class Goal extends Entity {
     public Goal(float x, float y, GameMap map) {
         super(x, y, EntityType.GOAL, map, 1);
         goalImage = new Texture("goal.png");
+        collidable = false;
     }
 
     @Override

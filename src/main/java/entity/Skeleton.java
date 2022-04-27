@@ -8,18 +8,17 @@ import world.GameMap;
 
 public class Skeleton extends ActiveEntity {
 
-	private int SPEED = 25;
-	private int moveDir = 1;
-	private float gracePeriod = 0;
-
 	Texture skeletonImage;
 
 	public Skeleton(float x, float y, GameMap map, int hp) {
 		super(x, y, EntityType.SKELETON, map, hp);
 		skeletonImage = new Texture("skeleton.png");
 		attackDamage = 5;
-		health = 10;
+		health = 15;
 		collidable = true;
+		gracePeriodIdentifier = 0.2f;
+		SPEED = 25;
+		moveDir = 1;
 
 		velocityX = 1;
 	}
@@ -66,6 +65,7 @@ public class Skeleton extends ActiveEntity {
 		} else{
 			gracePeriod = gracePeriod - deltaTime;
 		}
+
 	}
 
 
@@ -83,11 +83,4 @@ public class Skeleton extends ActiveEntity {
 		}
 	}
 
-	@Override
-	public void damage(int amount){
-		if (gracePeriod <= 0 && amount > 0){
-			health -= amount;
-			gracePeriod += 1;
-		}
-	}
 }

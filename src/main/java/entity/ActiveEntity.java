@@ -7,6 +7,8 @@ public abstract class ActiveEntity extends Entity {
     public int attackDamage;
     public int moveDir;
     public int SPEED;
+    public float gracePeriod;
+    public float gracePeriodIdentifier;
 
     public ActiveEntity(float x, float y, EntityType type, GameMap map, int hp) {
         super(x, y, type, map, hp);
@@ -15,14 +17,16 @@ public abstract class ActiveEntity extends Entity {
     public void update (float deltaTime, float gravity){
         if (deltaTime > 0.05f) deltaTime = 0.05f;
 
-
         this.moveX(SPEED*deltaTime*moveDir);
         this.moveY(deltaTime, gravity);
 
-        if (pos.y < 0) {
-            this.health = 0;
-        }
         this.rect.move(this.pos.x, this.pos.y);
+
+        if(gracePeriod <= 0){
+            gracePeriod = 0;
+        } else{
+            gracePeriod = gracePeriod - deltaTime;
+        }
     }
 
     protected void moveY(float deltaTime, float gravity){
@@ -43,6 +47,11 @@ public abstract class ActiveEntity extends Entity {
                 this.damage(map.getTileTypeByLocation(0, this.getX(), newY).getDamage());
             }
         }
+
+        if (pos.y < 0) {
+            this.health = 0;
+        }
+
         this.rect.move(this.pos.x, this.pos.y);
     }
 
@@ -61,6 +70,13 @@ public abstract class ActiveEntity extends Entity {
         rect.move(this.pos.x, this.pos.y);
     }
 
+    @Override
+    public void damage(int amount){
+        if (gracePeriod <= 0 && amount > 0){
+            health -= amount;
+            gracePeriod += gracePeriodIdentifier;
+        }
+    }
     public int getAttackDamage(){
         return attackDamage;
     }

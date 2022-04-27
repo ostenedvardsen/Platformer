@@ -8,14 +8,13 @@ import world.GameMap;
 public class Frog extends ActiveEntity {
 
     Texture frogImage;
-    float gracePeriod;
 
     public Frog(float x, float y, GameMap map, int hp) {
         super(x, y, EntityType.FROG, map, hp);
         frogImage = new Texture("frog.png");
         attackDamage = 5;
         health = 10;
-        float gracePeriod = 0;
+        gracePeriodIdentifier = 0.2f;
         SPEED = 25;
         moveDir = 1;
     }
@@ -38,7 +37,7 @@ public class Frog extends ActiveEntity {
     public void update(float deltaTime, float gravity) {
         if (deltaTime > 0.05f) deltaTime = 0.05f;
 
-        boolean jumpingOffMap = !map.doesEntityRectangleCollideWithTileOnAnyLayer(pos.x- (getWidth()*moveDir) + 30*moveDir, pos.y-getHeight(), getWidth(), getHeight());
+        boolean jumpingOffMap = !map.doesEntityRectangleCollideWithTileOnAnyLayer(pos.x + 40*moveDir, pos.y-getHeight(), getWidth(), getHeight());
         if (map.doesEntityRectangleCollideWithTileOnAnyLayer(pos.x, pos.y-0.01f, getWidth(), getHeight())){
             if (!jumpingOffMap){
                 velocityY += 250;
@@ -48,11 +47,6 @@ public class Frog extends ActiveEntity {
             }
         }
 
-        if(gracePeriod <= 0){
-            gracePeriod = 0;
-        } else{
-            gracePeriod = gracePeriod - deltaTime;
-        }
         super.update(deltaTime, gravity);
     }
 
@@ -63,11 +57,4 @@ public class Frog extends ActiveEntity {
         }
     }
 
-    @Override
-    public void damage(int amount){
-        if (gracePeriod <= 0 && amount > 0){
-            health -= amount;
-            gracePeriod += 1;
-        }
-    }
 }
