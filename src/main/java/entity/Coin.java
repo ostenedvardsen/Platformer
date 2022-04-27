@@ -21,8 +21,10 @@ public class Coin extends Entity {
 	}
 
 	@Override
-	public void playerInteract(Player player) {
-		player.addScore(100);
+	public void interact(Entity entity) {
+		if (entity instanceof Player) {
+			((Player) entity).addScore(1000);
+		}
 	}
 
 	@Override

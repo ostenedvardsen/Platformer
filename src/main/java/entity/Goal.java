@@ -19,9 +19,11 @@ public class Goal extends Entity {
     }
 
     @Override
-    public void playerInteract(Player player) {
-        player.addScore(1000);
-        map.loadNextMap();
+    public void interact(Entity entity) {
+        if (entity instanceof Player){
+            ((Player) entity).addScore(1000);
+            map.loadNextMap();
+        }
     }
 
     @Override

@@ -7,9 +7,10 @@ import tools.CollisionRect;
 import world.GameMap;
 
 public abstract class Entity {
-    protected Vector2 pos;
+    public Vector2 pos;
     public EntityType type;
-    protected float velocityY = 0;
+    public float velocityY = 0;
+    public float velocityX = 0;
     protected GameMap map;
     protected CollisionRect rect;
     protected int health;
@@ -72,7 +73,11 @@ public abstract class Entity {
 
     public Boolean removeOnPlayerInteraction() { return removeOnPlayerInteraction; }
 
-    public abstract void playerInteract(Player player);
+    public abstract void interact(Entity entity);
+
+    public void flipVelocityY(){
+        velocityY = -velocityY;
+    }
 
     public abstract void destroyedBy(Entity player);
 
