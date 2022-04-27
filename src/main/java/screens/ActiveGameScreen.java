@@ -14,8 +14,6 @@ import world.TiledGameMap;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL30;
 
-import java.util.ArrayList;
-
 public class ActiveGameScreen implements Screen {
 
     private final PlatformerGame game;
@@ -23,13 +21,11 @@ public class ActiveGameScreen implements Screen {
     private float xOffset = 50;
     private float yOffset = 70;
     private float cameraSpeed = 0.04f;
-    private float minZoom = 1f;
-    private float zoomPadding = 1.35f;
+    private float minZoom = 0.75f;
+    private float zoomPadding = 2f;
     public Hud playerHud;
     GameMap tiledGameMap;
     OrthographicCamera camera;
-
-    ArrayList<Player> mainPlayerList;
 
 
     public ActiveGameScreen(PlatformerGame game, OrthographicCamera camera, int i){
@@ -52,6 +48,7 @@ public class ActiveGameScreen implements Screen {
 
     @Override
     public void render(float v) {
+
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
 
@@ -62,8 +59,6 @@ public class ActiveGameScreen implements Screen {
         else if(Gdx.input.isKeyPressed(Input.Keys.E)){
             tiledGameMap.loadNextMap();
         }
-
-        game.batch.setProjectionMatrix(playerHud.stage.getCamera().combined);
 
         //Moves the camera via mouse input.
         if(Gdx.input.isTouched()){
@@ -83,6 +78,7 @@ public class ActiveGameScreen implements Screen {
 
     private void cameraFollowPlayer() {
         if (tiledGameMap.getPlayers().isEmpty()) return;
+
         Vector2 startValue = tiledGameMap.getPlayers().get(0).getPos();
         float xMax = startValue.x;
         float xMin = startValue.x;
