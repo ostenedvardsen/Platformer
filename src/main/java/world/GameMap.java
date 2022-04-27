@@ -3,9 +3,11 @@ package world;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import entity.ActiveEntity;
 import entity.Entity;
 import entity.Goal;
 import entity.Player;
+import tools.CollisionHandling;
 import tools.CollisionRect;
 
 import java.util.ArrayList;
@@ -15,12 +17,14 @@ public abstract class GameMap {
     protected ArrayList<Player> players;
 
     protected ArrayList<Integer> playerScores;
+    public CollisionHandling collisionHandling;
 
     public GameMap(){
         entities = new ArrayList<Entity>();
         players = new ArrayList<Player>();
 
         playerScores = new ArrayList<Integer>();
+        collisionHandling = new CollisionHandling(this);
     }
 
     public void render (OrthographicCamera camera, SpriteBatch batch){
@@ -68,8 +72,22 @@ public abstract class GameMap {
         return collidedPlayers;
     }
 
+    public ArrayList<Entity> rectangleCollidesWithNonPlayerActiveEntities(CollisionRect collisionRect){
+        ArrayList<Entity> collidedActiveEntities = new ArrayList<>();
+        for (Entity entity : entities) {
+            if (entity instanceof ActiveEntity){
+                if (collisionRect.collidesWith(entity.getCollisionRect())) {
+                    if(entity.getCollidable()){
+                        collidedActiveEntities.add(entity);
+                    }
+                }
+            }
+        }
+        return collidedActiveEntities;
 
-    public ArrayList<Entity> doesRectangleCollideWithAnyEntity(CollisionRect collisionRect){
+    }
+
+    public ArrayList<Entity> rectangleCollidesWithEntities(CollisionRect collisionRect){
         ArrayList<Entity> collidedEntities = new ArrayList<>();
         for (Entity entity : entities) {
             if (collisionRect.collidesWith(entity.getCollisionRect())) {
@@ -111,22 +129,22 @@ public abstract class GameMap {
 
         return false;
     }
-    
+
     public void removeDead() {
-    	ArrayList<Entity> dead = new ArrayList<>();
-    	for (Entity entity : entities) {
-    		if (entity.isDead())
-    			dead.add(entity);
-    	}
-    	for (Player player : players) {
-    		if (player.isDead()) {
-    			dead.add(player);
-    		}
-    	}
-    	if (!dead.isEmpty()) {
-    		for (Entity entity : dead)
-    			removeEntity(entity);
-    	}
+        ArrayList<Entity> dead = new ArrayList<>();
+        for (Entity entity : entities) {
+            if (entity.isDead())
+                dead.add(entity);
+        }
+        for (Player player : players) {
+            if (player.isDead()) {
+                dead.add(player);
+            }
+        }
+        if (!dead.isEmpty()) {
+            for (Entity entity : dead)
+                removeEntity(entity);
+        }
     }
 
     public void checkCollisions() {
@@ -134,7 +152,7 @@ public abstract class GameMap {
         for (Player player : players) {
             for (Entity entity : this.collidedUncollidableEntities(player)) {
                 if (player.getCollisionRect().collidesWith(entity.getCollisionRect())) {
-                    entity.playerInteract(player);
+                    entity.interact(player);
                     if (entity.removeOnPlayerInteraction()) {
                         removeObj.add(entity);
                     }
@@ -153,9 +171,9 @@ public abstract class GameMap {
     }
 
     public void removeEntity(Entity entity) {
-    	if (entities.contains(entity)) {
-    		entities.remove(entity);
-    	}
+        if (entities.contains(entity)) {
+            entities.remove(entity);
+        }
         if (entity instanceof Player){
             players.remove(entity);
         }
@@ -171,10 +189,9 @@ public abstract class GameMap {
     public abstract int getHeight();
     public abstract int getLayers();
 
-    public void interactEntities(Player player, Entity interactedWith){
-        interactedWith.playerInteract(player);
+    public void interactEntities(Entity interacter, Entity interactedWith){
+        interacter.interact(interactedWith);
     }
-
 
     public void damageAndKillEntity(Entity defender, int damage, Entity attacker) {
         if(defender.getHealth() > 0){
@@ -184,6 +201,5 @@ public abstract class GameMap {
             }
         }
     }
-
 
 }

@@ -22,7 +22,7 @@ public class TiledGameMap extends GameMap {
 
     static int PlayerNumber;
     int mapCount = 2;
-    int mapNumber = 0;
+    int mapNumber = -1;
 
     public TiledGameMap(){
         reset();
@@ -42,14 +42,14 @@ public class TiledGameMap extends GameMap {
 
                     Entity newEntity = entityFactory.getEntity(rectangleObject, name, this);
                     if(newEntity != null){
-                        if (newEntity instanceof Player) { 
-                        	if (playerAmount > 0) {
-                        		Player newPlayer = (Player) newEntity; 
-                        		newPlayer.setId(playerAmount);
-                        		players.add(newPlayer); 
-                        		playerAmount--;
-                        	}
-                        			
+                        if (newEntity instanceof Player) {
+                            if (playerAmount > 0) {
+                                Player newPlayer = (Player) newEntity;
+                                newPlayer.setId(playerAmount);
+                                players.add(newPlayer);
+                                playerAmount--;
+                            }
+
                         } else { entities.add(newEntity); }
                     }
                 }
@@ -99,7 +99,7 @@ public class TiledGameMap extends GameMap {
     public void loadNextMap() {
         mapNumber++;
         if (mapNumber > mapCount){
-            mapNumber = 1;
+            mapNumber = 0;
         }
         tiledMap = new TmxMapLoader().load("stage" + mapNumber + ".tmx");
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
@@ -109,7 +109,7 @@ public class TiledGameMap extends GameMap {
 
     @Override
     public void reset() {
-        mapNumber = 0;
+        mapNumber = -1;
         loadNextMap();
     }
 
@@ -128,10 +128,10 @@ public class TiledGameMap extends GameMap {
         return tiledMap.getLayers().getCount();
     }
 
-	public static void setPlayerNumber(int i) {
-		PlayerNumber = i;
-		
-	}
-    
- 
+    public static void setPlayerNumber(int i) {
+        PlayerNumber = i;
+
+    }
+
+
 }
