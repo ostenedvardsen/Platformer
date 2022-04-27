@@ -14,7 +14,6 @@ public class Frog extends ActiveEntity {
         frogImage = new Texture("frog.png");
         attackDamage = 5;
         health = 10;
-        gracePeriodIdentifier = 0.2f;
         SPEED = 25;
         moveDir = 1;
     }

@@ -8,7 +8,7 @@ public abstract class ActiveEntity extends Entity {
     public int moveDir;
     public int SPEED;
     public float gracePeriod;
-    public float gracePeriodIdentifier;
+    public float gracePeriodIdentifier = 0.2f;
 
     public ActiveEntity(float x, float y, EntityType type, GameMap map, int hp) {
         super(x, y, type, map, hp);

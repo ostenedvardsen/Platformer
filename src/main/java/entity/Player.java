@@ -29,8 +29,6 @@ public class Player extends ActiveEntity {
 
     Texture playerImage;
 
-
-
     public Player(float x, float y, GameMap map, int hp) {
         super(x, y, EntityType.PLAYER, map, hp);
         gracePeriod = 0;

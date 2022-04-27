@@ -16,7 +16,6 @@ public class Skeleton extends ActiveEntity {
 		attackDamage = 5;
 		health = 15;
 		collidable = true;
-		gracePeriodIdentifier = 0.2f;
 		SPEED = 25;
 		moveDir = 1;
 
