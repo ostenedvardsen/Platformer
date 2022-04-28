@@ -15,6 +15,8 @@ import java.util.ArrayList;
 
 public class Player extends ActiveEntity {
 
+    float deathTime = 0.8f;
+
     private static final int SPEED = 105;
     private static final int JUMP_VELOCITY = 900;
     private static final float JUMP_INTENSITY = .25f;
@@ -49,9 +51,15 @@ public class Player extends ActiveEntity {
 
     @Override
     public void render(SpriteBatch batch) {
-        if (gracePeriod > 0) batch.setColor(new Color(0.7f,0.7f,0.7f,(float) (Math.cos(gracePeriod*30)+1)/2f));
+        if (health <= 0) batch.setColor(new Color(1,0,0,deathTime));
+        else if (gracePeriod > 0) batch.setColor(new Color(0.7f,0.7f,0.7f,(float) (Math.cos(gracePeriod*30)+1)/2f));
         batch.draw(playerImage, pos.x, pos.y, getWidth(), getHeight());
         batch.setColor(Color.WHITE);
+    }
+
+    @Override
+    public boolean isDead(){
+        return this.health <= 0 && deathTime <= 0;
     }
 
     @Override
@@ -62,6 +70,7 @@ public class Player extends ActiveEntity {
     @Override
     public void update(float deltaTime, float gravity) {
         if (deltaTime > 0.05f) deltaTime = 0.05f;
+        if (health <= 0) { deathTime -= deltaTime; return; }
 
         if(Gdx.input.isKeyPressed(jumpKey)){
             if(map.doesEntityRectangleCollideWithTileOnAnyLayer(this.getX(), this.getY()-0.01f, this.getWidth(), this.getHeight())){
