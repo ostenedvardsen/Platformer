@@ -21,7 +21,7 @@ public class TiledGameMap extends GameMap {
     OrthogonalTiledMapRenderer tiledMapRenderer;
 
     static int PlayerNumber;
-    int mapCount = 2;
+    int mapCount = 3;
     int mapNumber = -1;
 
     public TiledGameMap(){
