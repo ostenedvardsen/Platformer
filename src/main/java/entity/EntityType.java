@@ -5,7 +5,9 @@ public enum EntityType {
     GOAL("goal", 32, 32),
     SKELETON("skeleton", 16, 32),
     COIN("coin", 16, 32),
-    FROG("frog", 16, 32);
+    FROG("frog", 16, 32),
+    CANNON("cannon", 16, 32),
+    CANNONBALL("cannonball", 16, 32);
 
     private String id;
     private int width, height;

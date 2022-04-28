@@ -25,7 +25,12 @@ public class EntityFactory {
         }
         if(name.equalsIgnoreCase("Frog")) {
             return new Frog(xPos, yPos, tiledGameMap, 500);
+        }if(name.equalsIgnoreCase("Cannon")){
+            return new Cannon(xPos, yPos, tiledGameMap, 500);
+        }if(name.equalsIgnoreCase("Cannonball")) {
+            return new CannonBall(xPos, yPos, tiledGameMap, 500);
         }
+
         return null;
 
     }

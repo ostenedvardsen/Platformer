@@ -15,6 +15,7 @@ import java.util.ArrayList;
 public abstract class GameMap {
     protected ArrayList<Entity> entities;
     protected ArrayList<Player> players;
+    protected ArrayList<Entity> entityQueue;
 
     protected ArrayList<Integer> playerScores;
     public CollisionHandling collisionHandling;
@@ -22,6 +23,7 @@ public abstract class GameMap {
     public GameMap(){
         entities = new ArrayList<Entity>();
         players = new ArrayList<Player>();
+        entityQueue = new ArrayList<Entity>();
 
         playerScores = new ArrayList<Integer>();
         collisionHandling = new CollisionHandling(this);
@@ -38,12 +40,15 @@ public abstract class GameMap {
         for (Player player: players){
             player.update(delta, 680f);
         }
+        removeDead();
+
         for (Entity entity: entities){
             entity.update(delta, 400f);
         }
 
         removeDead();
         checkCollisions();
+        addEntities();
     }
 
     public abstract void dispose ();
@@ -165,6 +170,18 @@ public abstract class GameMap {
             }
         }
     }
+
+    public void addEntity(Entity entity){
+        entityQueue.add(entity);
+    }
+
+    public void addEntities(){
+        for (Entity entity: entityQueue){
+            entities.add(entity);
+        }
+        entityQueue.clear();
+    }
+
 
     public ArrayList<Player> getPlayers() {
         return players;
