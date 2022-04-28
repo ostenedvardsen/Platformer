@@ -41,7 +41,7 @@ public class Hud {
 		table.add(scoreLabel).expandX();
 		table.add().row();
 		gameOverLabel = new Label("GAME OVER", new Label.LabelStyle(new BitmapFont(), Color.BLACK));
-		newGameLabel = new Label("Press 'R' to start new game or 'M' to get to Main Menu", new Label.LabelStyle(new BitmapFont(), Color.BLACK));
+		newGameLabel = new Label("Press 'R' to go back to Main Menu", new Label.LabelStyle(new BitmapFont(), Color.BLACK));
 		
 		stage.addActor(table);
 		initializedHud = true;
