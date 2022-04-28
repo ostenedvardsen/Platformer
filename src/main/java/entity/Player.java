@@ -2,6 +2,7 @@ package entity;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
@@ -48,7 +49,9 @@ public class Player extends ActiveEntity {
 
     @Override
     public void render(SpriteBatch batch) {
+        if (gracePeriod > 0) batch.setColor(new Color(0.7f,0.7f,0.7f,(float) (Math.cos(gracePeriod*30)+1)/2f));
         batch.draw(playerImage, pos.x, pos.y, getWidth(), getHeight());
+        batch.setColor(Color.WHITE);
     }
 
     @Override
