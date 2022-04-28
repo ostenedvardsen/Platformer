@@ -24,9 +24,9 @@ public class TiledGameMap extends GameMap {
     int mapCount = 2;
     int mapNumber = -1;
 
-    public TiledGameMap(){
-        reset();
-    }
+    int[] playerScores;
+
+    public TiledGameMap(){  playerScores = new int[4]; reset(); }
 
     private void AddEntities(int playerAmount){
         entities = new ArrayList<>();
@@ -98,13 +98,16 @@ public class TiledGameMap extends GameMap {
     @Override
     public void loadNextMap() {
         mapNumber++;
+
         if (mapNumber > mapCount){
             mapNumber = 0;
         }
         tiledMap = new TmxMapLoader().load("stage" + mapNumber + ".tmx");
         tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
 
+        for (int i = 0; i < players.size(); i++) playerScores[i] = players.get(i).getScore();
         AddEntities(PlayerNumber);
+        for (int i = 0; i < players.size(); i++) players.get(i).setScore(playerScores[i]);
     }
 
     @Override

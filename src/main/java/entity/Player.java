@@ -142,4 +142,8 @@ public class Player extends ActiveEntity {
     public Vector2 getPos() {
         return pos;
     }
+
+    public void setScore(int playerScore) {
+        score = playerScore;
+    }
 }
