@@ -37,11 +37,7 @@ public abstract class Entity {
         }
     }
 
-    public boolean isDead() {
-        if (this.health <= 0 )
-            return true;
-        return false;
-    }
+    public boolean isDead() { return this.health <= 0; }
 
     public int getHealth(){
         return health;
