@@ -49,7 +49,7 @@ public class ActiveGameScreen implements Screen {
     @Override
     public void render(float v) {
 
-        Gdx.gl.glClearColor(1, 1, 1, 1);
+        Gdx.gl.glClearColor(0.4f, 0.6f, 0.9f, 1);
         Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
 
         if(Gdx.input.isKeyPressed(Input.Keys.R)){
