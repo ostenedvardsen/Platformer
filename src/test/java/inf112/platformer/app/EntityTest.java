@@ -13,7 +13,6 @@ import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 
 import entity.*;
 import world.GameMap;
-import world.TiledGameMap;
 
 import static org.mockito.Mockito.*;
 
