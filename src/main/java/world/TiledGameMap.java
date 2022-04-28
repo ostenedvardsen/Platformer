@@ -19,13 +19,14 @@ import java.util.ArrayList;
 public class TiledGameMap extends GameMap {
     TiledMap tiledMap;
     OrthogonalTiledMapRenderer tiledMapRenderer;
-
+    public static boolean gameIsDone;
     static int PlayerNumber;
     int mapCount = 3;
     int mapNumber = -1;
-
+    
     public TiledGameMap(){
         reset();
+        gameIsDone = false;
     }
 
     private void AddEntities(int playerAmount){
@@ -99,12 +100,16 @@ public class TiledGameMap extends GameMap {
     public void loadNextMap() {
         mapNumber++;
         if (mapNumber > mapCount){
-            mapNumber = 0;
+            gameIsDone = true;
         }
-        tiledMap = new TmxMapLoader().load("stage" + mapNumber + ".tmx");
-        tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
+        
+        else {
+        	tiledMap = new TmxMapLoader().load("stage" + mapNumber + ".tmx");
+        	tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
 
-        AddEntities(PlayerNumber);
+        	AddEntities(PlayerNumber);
+        }
+        
     }
 
     @Override

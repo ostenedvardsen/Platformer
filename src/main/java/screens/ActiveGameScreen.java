@@ -27,16 +27,14 @@ public class ActiveGameScreen implements Screen {
     GameMap tiledGameMap;
     OrthographicCamera camera;
 
-
     public ActiveGameScreen(PlatformerGame game, OrthographicCamera camera, int i){
         this.game = game;
         this.camera = camera;
 
         setPlayerNumber(i);
-
+        
         tiledGameMap = new TiledGameMap();
         playerHud = new Hud(game.batch, tiledGameMap.getPlayers());
-
         font = new BitmapFont();
         font.setColor(Color.RED);
     }
@@ -71,7 +69,9 @@ public class ActiveGameScreen implements Screen {
         if (tiledGameMap.getPlayers().size() == 0)
         	playerHud.gameOver();
 
-
+        if (gameDone()) {
+        	playerHud.gameDone();
+        }
         cameraFollowPlayer();
         camera.update();
 
@@ -133,5 +133,11 @@ public class ActiveGameScreen implements Screen {
     
     public void setPlayerNumber(int i) {
     	TiledGameMap.setPlayerNumber(i);
+    }
+    public boolean gameDone() {
+    	if (TiledGameMap.gameIsDone == true) 
+    		return true;
+    	else 
+    		return false;
     }
 }
