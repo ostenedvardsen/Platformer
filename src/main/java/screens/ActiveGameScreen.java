@@ -67,13 +67,18 @@ public class ActiveGameScreen implements Screen {
 
         if (playerHud.initializedHud)
             playerHud.updateHud(tiledGameMap.getPlayers());
-        playerHud.stage.draw();
+        
+        if (tiledGameMap.getPlayers().size() == 0)
+        	playerHud.gameOver();
+
 
         cameraFollowPlayer();
         camera.update();
 
         tiledGameMap.update(Gdx.graphics.getDeltaTime());
         tiledGameMap.render(camera, game.batch);
+        
+        playerHud.stage.draw();
     }
 
     private void cameraFollowPlayer() {
