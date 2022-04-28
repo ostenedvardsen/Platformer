@@ -73,7 +73,7 @@ public class EntityTest {
 	@Test
 	public void playerDiesUnderMap() {
 		assertEquals(false, player.isDead());
-		player2.update(0, 0);
+		player2.update(1, 10);
 		assertEquals(true, player2.isDead());
 
 	}
@@ -88,19 +88,15 @@ public class EntityTest {
 	}
 
 	@Test
-	public void skeletonKillsPlayer() {
+	public void skeletonDamagesPlayer() {
 		skeleton.interact(player);
 		assertEquals(-300, player.getScore());
-		assertEquals(false, player.isDead());
-		skeleton.interact(player);
-		assertEquals(-600, player.getScore());
-		assertEquals(true, player.isDead());
 	}
 
 	@Test
 	public void coinGivesPoints() {
 		coin.interact(player);
-		assertEquals(100, player.getScore());
+		assertEquals(1000, player.getScore());
 	}
 
 	@Test

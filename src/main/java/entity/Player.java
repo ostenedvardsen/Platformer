@@ -35,6 +35,7 @@ public class Player extends ActiveEntity {
         health = 25;
         gracePeriodIdentifier = 0.75f;
         attackDamage = 5;
+        gracePeriod = 0.01f;
     }
 
     public void setId(int id) {

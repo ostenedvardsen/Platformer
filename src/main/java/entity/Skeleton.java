@@ -69,6 +69,7 @@ public class Skeleton extends ActiveEntity {
 	public void interact(Entity entity) {
 		if (entity instanceof Player) {
 			map.damageAndKillEntity(entity, attackDamage, this);
+			((Player) entity).removeScore(300);
 		}
 	}
 
