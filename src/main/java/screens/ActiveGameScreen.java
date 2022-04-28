@@ -103,7 +103,7 @@ public class ActiveGameScreen implements Screen {
 
         float delta = (yMax-yMin)/camera.viewportHeight;
         if ((xMax-xMin)/camera.viewportWidth > delta) delta = (xMax-xMin)/camera.viewportWidth;
-        camera.zoom=Math.max(minZoom,delta*zoomPadding);
+        camera.zoom=camera.zoom*(1-cameraSpeed) + Math.max(minZoom,delta*zoomPadding)*cameraSpeed;
     }
 
     @Override
