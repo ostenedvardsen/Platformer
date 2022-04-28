@@ -177,7 +177,6 @@ public abstract class GameMap {
         if (entity instanceof Player){
             players.remove(entity);
         }
-        if (players.isEmpty()) reset();
         for (Entity e : entities) { if (e instanceof Goal) return; }
         loadNextMap();
     }
