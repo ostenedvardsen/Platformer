@@ -19,13 +19,17 @@ import java.util.ArrayList;
 public class TiledGameMap extends GameMap {
     TiledMap tiledMap;
     OrthogonalTiledMapRenderer tiledMapRenderer;
+    public static boolean gameIsDone;
+    static int PlayerNumber;
+    int mapCount = 0;
+    int mapNumber = -1;
+    int[] playerScores;
 
-    int PlayerNumber = 4;
-    int mapCount = 2;
-    int mapNumber = 0;
 
-    public TiledGameMap(){
-        reset();
+    public TiledGameMap(){  
+    	playerScores = new int[4]; 
+    	reset(); 
+    	gameIsDone = false;
     }
 
     private void AddEntities(int playerAmount){
@@ -42,14 +46,14 @@ public class TiledGameMap extends GameMap {
 
                     Entity newEntity = entityFactory.getEntity(rectangleObject, name, this);
                     if(newEntity != null){
-                        if (newEntity instanceof Player) { 
-                        	if (playerAmount > 0) {
-                        		Player newPlayer = (Player) newEntity; 
-                        		newPlayer.setId(playerAmount);
-                        		players.add(newPlayer); 
-                        		playerAmount--;
-                        	}
-                        			
+                        if (newEntity instanceof Player) {
+                            if (playerAmount > 0) {
+                                Player newPlayer = (Player) newEntity;
+                                newPlayer.setId(playerAmount);
+                                players.add(newPlayer);
+                                playerAmount--;
+                            }
+
                         } else { entities.add(newEntity); }
                     }
                 }
@@ -98,18 +102,26 @@ public class TiledGameMap extends GameMap {
     @Override
     public void loadNextMap() {
         mapNumber++;
-        if (mapNumber > mapCount){
-            mapNumber = 1;
-        }
-        tiledMap = new TmxMapLoader().load("stage" + mapNumber + ".tmx");
-        tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
 
+        if (mapNumber > mapCount){
+            gameIsDone = true;
+        }
+        
+        else {
+        	tiledMap = new TmxMapLoader().load("stage" + mapNumber + ".tmx");
+        	tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
+
+        	AddEntities(PlayerNumber);
+        }
+        
+        for (int i = 0; i < players.size(); i++) playerScores[i] = players.get(i).getScore();
         AddEntities(PlayerNumber);
+        for (int i = 0; i < players.size(); i++) players.get(i).setScore(playerScores[i]);
     }
 
     @Override
     public void reset() {
-        mapNumber = 0;
+        mapNumber = -1;
         loadNextMap();
     }
 
@@ -127,4 +139,11 @@ public class TiledGameMap extends GameMap {
     public int getLayers() {
         return tiledMap.getLayers().getCount();
     }
+
+    public static void setPlayerNumber(int i) {
+        PlayerNumber = i;
+
+    }
+
+
 }

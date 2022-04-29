@@ -8,15 +8,14 @@ Ta på et mål for å bevege deg til neste bane!
 
 
 ## Setup
+Installer Java version 17 eller nyere <br>
 Installer Maven. <br>
-Det anbefalest å bruke en IDE f.eks Eclipse eller IntelliJ når programmet klonest eller kjørest<br>
 Klon git repositoriet https://git.app.uib.no/mutual-glue/platformer.git
 
 
 ## Running
-Spillet kan kjøres ved å kjøre Main fra /src/main/java/inf112/platformer/app/Main.java.<br>
-Det kan vere at spillet må gjøre en first time setup, dette tar som regel opp til 1 minutt.<br>
-Klikk Start i hovedmenyen for å starte spillet.
+Åpne mappen platformer. Her ligger det en .jar fil som heter PlatformerGame.jar. Dersom man har java versjon 17 eller nyere kan man enkelt kjøre denne ved å dobbeltklikke på filen. <br>
+
 
 ## Controls
 Kontrollene spillet har for ulike spillere:<br>

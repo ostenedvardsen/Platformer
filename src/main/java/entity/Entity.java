@@ -1,5 +1,7 @@
 package entity;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
@@ -7,14 +9,17 @@ import tools.CollisionRect;
 import world.GameMap;
 
 public abstract class Entity {
-    protected Vector2 pos;
-    protected EntityType type;
-    protected float velocityY = 0;
+    public Vector2 pos;
+    public EntityType type;
+    public float velocityY = 0;
+    public float velocityX = 0;
     protected GameMap map;
     protected CollisionRect rect;
     protected int health;
     protected Boolean removeOnPlayerInteraction = false;
-
+    protected Boolean collidable = true;
+    Texture entityTexture;
+    boolean flip = false;
 
     public Entity(float x, float y, EntityType type, GameMap map, int hp){
         this.pos = new Vector2(x,y);
@@ -22,6 +27,8 @@ public abstract class Entity {
         this.map = map;
         this.rect = new CollisionRect(x, y, type.getWidth(), type.getHeight());
         this.health = hp;
+
+        entityTexture = new Texture("coin.png");
     }
 
     public void update(float deltaTime, float gravity) { }
@@ -35,17 +42,11 @@ public abstract class Entity {
         }
     }
 
-    protected void moveY(float yAmount){
-        this.pos.y = pos.y + yAmount;
-        rect.move(this.pos.x, this.pos.y);
-    }
-    
-    public boolean isDead() {
-    	if (this.health <= 0 )
-    		return true;
-    	return false;
-    }
+    public boolean isDead() { return this.health <= 0; }
 
+    public int getHealth(){
+        return health;
+    }
 
     public float getX(){
         return pos.x;
@@ -66,13 +67,25 @@ public abstract class Entity {
     }
 
     public CollisionRect getCollisionRect () {
-    	return rect;
+        return rect;
     }
 
-    public abstract void render (SpriteBatch batch);
-
+    public void render(SpriteBatch batch) {
+        Sprite sprite = new Sprite(entityTexture);
+        sprite.flip(flip, false);
+        batch.draw(sprite, pos.x, pos.y, getWidth(), getHeight());
+    }
     public Boolean removeOnPlayerInteraction() { return removeOnPlayerInteraction; }
 
-    public abstract void playerInteract(Player player);
+    public abstract void interact(Entity entity);
 
+    public void flipVelocityY(){
+        velocityY = -velocityY;
+    }
+
+    public abstract void destroyedBy(Entity player);
+
+    public Boolean getCollidable(){
+        return collidable;
+    }
 }

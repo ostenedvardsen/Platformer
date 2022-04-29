@@ -6,7 +6,7 @@ public enum TileType {
     GRASS(1, true, "Grass"),
     STONE(2, true, "Stone"),
 	DIRT(3, true, "Dirt"),
-	SPIKE(4, true, "Spike", 1),
+	SPIKE(4, true, "Spike", 5),
 	HOLE(5, false, "Hole", 999),
 	LAVA(6, true, "Lava", 10),
 	PLATFORM(7, true, "Platform");
@@ -17,14 +17,13 @@ public enum TileType {
     private int id;
     private boolean collidable;
     private String name;
-    private float damage;
+    private int damage;
 
     private TileType (int id, boolean collidable, String name){
         this(id, collidable, name, 0);
     }
 
-
-    private TileType (int id, boolean collidable, String name, float damage){
+    private TileType (int id, boolean collidable, String name, int damage){
         this.id = id;
         this.collidable = collidable;
         this.name = name;
@@ -43,7 +42,7 @@ public enum TileType {
         return name;
     }
 
-    public float getDamage() {
+    public int getDamage() {
         return damage;
     }
 

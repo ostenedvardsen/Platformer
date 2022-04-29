@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.1" orientation="orthogonal" renderorder="right-down" width="45" height="13" tilewidth="32" tileheight="32" infinite="0" nextlayerid="15" nextobjectid="61">
+<map version="1.8" tiledversion="1.8.1" orientation="orthogonal" renderorder="right-down" width="45" height="13" tilewidth="32" tileheight="32" infinite="0" nextlayerid="20" nextobjectid="66">
  <tileset firstgid="1" source="plcEnvTileset.tsx"/>
  <layer id="1" name="stage" width="45" height="13">
   <data encoding="base64">
@@ -83,6 +83,19 @@
  </objectgroup>
  <objectgroup id="14" name="goal">
   <object id="55" x="1408" y="160">
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="19" name="cannon">
+  <object id="65" x="612.909" y="92.5455">
+   <point/>
+  </object>
+ </objectgroup>
+ <objectgroup id="15" name="frog">
+  <object id="61" x="260.276" y="126.469">
+   <point/>
+  </object>
+  <object id="62" x="786" y="89">
    <point/>
   </object>
  </objectgroup>

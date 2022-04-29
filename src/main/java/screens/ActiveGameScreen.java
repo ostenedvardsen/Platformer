@@ -21,18 +21,20 @@ public class ActiveGameScreen implements Screen {
     private float xOffset = 50;
     private float yOffset = 70;
     private float cameraSpeed = 0.04f;
+    private float minZoom = 0.75f;
+    private float zoomPadding = 2f;
     public Hud playerHud;
     GameMap tiledGameMap;
     OrthographicCamera camera;
 
-
-    public ActiveGameScreen(PlatformerGame game, OrthographicCamera camera){
+    public ActiveGameScreen(PlatformerGame game, OrthographicCamera camera, int i){
         this.game = game;
         this.camera = camera;
 
+        setPlayerNumber(i);
+        
         tiledGameMap = new TiledGameMap();
         playerHud = new Hud(game.batch, tiledGameMap.getPlayers());
-
         font = new BitmapFont();
         font.setColor(Color.RED);
     }
@@ -44,7 +46,8 @@ public class ActiveGameScreen implements Screen {
 
     @Override
     public void render(float v) {
-        Gdx.gl.glClearColor(1, 1, 1, 1);
+
+        Gdx.gl.glClearColor(0.4f, 0.6f, 0.9f, 1);
         Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
 
         if(Gdx.input.isKeyPressed(Input.Keys.R)){
@@ -55,26 +58,32 @@ public class ActiveGameScreen implements Screen {
             tiledGameMap.loadNextMap();
         }
 
-        game.batch.setProjectionMatrix(playerHud.stage.getCamera().combined);
-
         //Moves the camera via mouse input.
         if(Gdx.input.isTouched()){
             camera.translate(Gdx.input.getDeltaX(), -Gdx.input.getDeltaY());
         }
 
         if (playerHud.initializedHud)
-            playerHud.updateHud();
-        playerHud.stage.draw();
+            playerHud.updateHud(tiledGameMap.getPlayers());
+        
+        if (tiledGameMap.getPlayers().size() == 0)
+        	playerHud.gameOver();
 
+        if (gameDone()) {
+        	playerHud.gameDone();
+        }
         cameraFollowPlayer();
         camera.update();
 
         tiledGameMap.update(Gdx.graphics.getDeltaTime());
         tiledGameMap.render(camera, game.batch);
+        
+        playerHud.stage.draw();
     }
 
     private void cameraFollowPlayer() {
         if (tiledGameMap.getPlayers().isEmpty()) return;
+
         Vector2 startValue = tiledGameMap.getPlayers().get(0).getPos();
         float xMax = startValue.x;
         float xMin = startValue.x;
@@ -91,6 +100,10 @@ public class ActiveGameScreen implements Screen {
         }
 
         camera.translate((xOffset + xMin - camera.position.x + (xMax-xMin)/2)*cameraSpeed,(yOffset + yMin - camera.position.y + (yMax-yMin)/2)*cameraSpeed);
+
+        float delta = (yMax-yMin)/camera.viewportHeight;
+        if ((xMax-xMin)/camera.viewportWidth > delta) delta = (xMax-xMin)/camera.viewportWidth;
+        camera.zoom=camera.zoom*(1-cameraSpeed) + Math.max(minZoom,delta*zoomPadding)*cameraSpeed;
     }
 
     @Override
@@ -116,5 +129,15 @@ public class ActiveGameScreen implements Screen {
     @Override
     public void dispose() {
 
+    }
+    
+    public void setPlayerNumber(int i) {
+    	TiledGameMap.setPlayerNumber(i);
+    }
+    public boolean gameDone() {
+    	if (TiledGameMap.gameIsDone == true) 
+    		return true;
+    	else 
+    		return false;
     }
 }
