@@ -7,8 +7,11 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import com.badlogic.gdx.math.Vector2;
+import tools.CollisionHandling;
 import tools.CollisionRect;
 import world.GameMap;
+
+import java.util.ArrayList;
 
 public class Player extends ActiveEntity {
 
@@ -27,7 +30,7 @@ public class Player extends ActiveEntity {
     private int rightKey;
     private int jumpKey;
 
-    Texture entityTexture;
+    Texture playerImage;
 
     public Player(float x, float y, GameMap map, int hp) {
         super(x, y, EntityType.PLAYER, map, hp);
@@ -35,12 +38,11 @@ public class Player extends ActiveEntity {
         health = 25;
         gracePeriodIdentifier = 0.75f;
         attackDamage = 5;
-        gracePeriod = 0.01f;
     }
 
     public void setId(int id) {
         ID = id;
-        entityTexture = new Texture("player" + Integer.toString(ID) + ".png");
+        playerImage = new Texture("player" + Integer.toString(ID) + ".png");
         if (ID == 1) { leftKey = Input.Keys.LEFT; rightKey = Input.Keys.RIGHT; jumpKey = Input.Keys.UP; }
         if (ID == 2) { leftKey = Input.Keys.A; rightKey = Input.Keys.D; jumpKey = Input.Keys.W; }
         if (ID == 3) { leftKey = Input.Keys.J; rightKey = Input.Keys.L; jumpKey = Input.Keys.I; }
@@ -51,7 +53,7 @@ public class Player extends ActiveEntity {
     public void render(SpriteBatch batch) {
         if (health <= 0) batch.setColor(new Color(1,0,0,deathTime));
         else if (gracePeriod > 0) batch.setColor(new Color(0.7f,0.7f,0.7f,(float) (Math.cos(gracePeriod*30)+1)/2f));
-        batch.draw(entityTexture, pos.x, pos.y, getWidth(), getHeight());
+        batch.draw(playerImage, pos.x, pos.y, getWidth(), getHeight());
         batch.setColor(Color.WHITE);
     }
 
@@ -140,9 +142,4 @@ public class Player extends ActiveEntity {
     public Vector2 getPos() {
         return pos;
     }
-
-    public void setScore(int playerScore) {
-        score = playerScore;
-    }
-
 }

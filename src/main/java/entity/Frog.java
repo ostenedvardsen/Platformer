@@ -7,13 +7,21 @@ import world.GameMap;
 
 public class Frog extends ActiveEntity {
 
+    Texture frogImage;
+
     public Frog(float x, float y, GameMap map, int hp) {
         super(x, y, EntityType.FROG, map, hp);
-        entityTexture = new Texture("frog.png");
+        frogImage = new Texture("frog.png");
         attackDamage = 5;
         health = 10;
         SPEED = 25;
         moveDir = 1;
+    }
+
+
+    @Override
+    public void render(SpriteBatch batch) {
+        batch.draw(frogImage, pos.x, pos.y, getWidth(), getHeight());
     }
 
     @Override
