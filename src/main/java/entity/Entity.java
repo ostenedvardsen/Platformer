@@ -1,5 +1,7 @@
 package entity;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 
@@ -16,7 +18,8 @@ public abstract class Entity {
     protected int health;
     protected Boolean removeOnPlayerInteraction = false;
     protected Boolean collidable = true;
-
+    Texture entityTexture;
+    boolean flip = false;
 
     public Entity(float x, float y, EntityType type, GameMap map, int hp){
         this.pos = new Vector2(x,y);
@@ -24,6 +27,8 @@ public abstract class Entity {
         this.map = map;
         this.rect = new CollisionRect(x, y, type.getWidth(), type.getHeight());
         this.health = hp;
+
+        entityTexture = new Texture("coin.png");
     }
 
     public void update(float deltaTime, float gravity) { }
@@ -65,8 +70,11 @@ public abstract class Entity {
         return rect;
     }
 
-    public abstract void render (SpriteBatch batch);
-
+    public void render(SpriteBatch batch) {
+        Sprite sprite = new Sprite(entityTexture);
+        sprite.flip(flip, false);
+        batch.draw(sprite, pos.x, pos.y, getWidth(), getHeight());
+    }
     public Boolean removeOnPlayerInteraction() { return removeOnPlayerInteraction; }
 
     public abstract void interact(Entity entity);

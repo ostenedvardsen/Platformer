@@ -21,12 +21,15 @@ public class TiledGameMap extends GameMap {
     OrthogonalTiledMapRenderer tiledMapRenderer;
     public static boolean gameIsDone;
     static int PlayerNumber;
-    int mapCount = 3;
+    int mapCount = 0;
     int mapNumber = -1;
-    
-    public TiledGameMap(){
-        reset();
-        gameIsDone = false;
+    int[] playerScores;
+
+
+    public TiledGameMap(){  
+    	playerScores = new int[4]; 
+    	reset(); 
+    	gameIsDone = false;
     }
 
     private void AddEntities(int playerAmount){
@@ -99,6 +102,7 @@ public class TiledGameMap extends GameMap {
     @Override
     public void loadNextMap() {
         mapNumber++;
+
         if (mapNumber > mapCount){
             gameIsDone = true;
         }
@@ -110,6 +114,9 @@ public class TiledGameMap extends GameMap {
         	AddEntities(PlayerNumber);
         }
         
+        for (int i = 0; i < players.size(); i++) playerScores[i] = players.get(i).getScore();
+        AddEntities(PlayerNumber);
+        for (int i = 0; i < players.size(); i++) players.get(i).setScore(playerScores[i]);
     }
 
     @Override

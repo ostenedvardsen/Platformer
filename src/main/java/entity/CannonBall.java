@@ -1,7 +1,6 @@
 package entity;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import tools.CollisionRect;
 import world.GameMap;
 
@@ -9,15 +8,13 @@ import java.util.ArrayList;
 
 public class CannonBall extends ActiveEntity {
 
-    Texture cannonBallImage;
-
     public CannonBall(float x, float y, GameMap map, int hp){
         super(x, y, EntityType.CANNONBALL, map, hp);
     }
 
     public CannonBall(float x, float y, GameMap map, int hp, int dirX, int dirY){
         super(x, y, EntityType.CANNONBALL, map, hp);
-        cannonBallImage = new Texture("canonball.png");
+        entityTexture = new Texture("canonball.png");
 
         attackDamage = 5;
         health = 1;
@@ -44,6 +41,12 @@ public class CannonBall extends ActiveEntity {
         moveX(velocityX*deltaTime);
 
         this.rect.move(this.pos.x, this.pos.y);
+
+        if (moveDir == 1){
+            flip = true;
+        } else{
+            flip = false;
+        }
     }
 
     @Override
@@ -87,10 +90,6 @@ public class CannonBall extends ActiveEntity {
         this.rect.move(this.pos.x, newY);
     }
 
-    @Override
-    public void render(SpriteBatch batch) {
-        batch.draw(cannonBallImage, pos.x, pos.y, getWidth(), getHeight());
-    }
 
     @Override
     public void interact(Entity entity) {
