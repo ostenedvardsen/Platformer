@@ -12,12 +12,17 @@ import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 
 import entity.*;
+import tools.*;
 import world.GameMap;
 
 import static org.mockito.Mockito.*;
 
 public class EntityTest {
 
+	
+	private CollisionRect rect1;
+	private CollisionRect rect2;
+	private CollisionHandling handler;
 	private Player player;
 	private Player player2;
 	private Skeleton skeleton;
@@ -49,6 +54,8 @@ public class EntityTest {
 	@BeforeEach
 	public void entityCreator() {
 		GameMap map = mock(GameMap.class);
+		rect1 = new CollisionRect(0, 0, 32, 32);
+		rect2 = new CollisionRect(20, 0, 32, 32);
 		//Player class overrides health given to player when creating new
 		//default health is currently 25
 		player = new Player(1, 20, map, 2);
@@ -94,7 +101,7 @@ public class EntityTest {
 	}
 
 	@Test
-	public void skeletonDamagesPlayer() {
+	public void skeletonTakesPoints() {
 		skeleton.interact(player);
 		assertEquals(-300, player.getScore());
 	}
@@ -116,4 +123,12 @@ public class EntityTest {
 		healthpack.interact(player);
 		assertEquals(35, player.getHealth());
 	}
+	
+	@Test
+	public void rectsCollideWhenClose() {
+		assertTrue(rect1.collidesWith(rect2));
+		rect2.move(34, 0);
+		assertFalse(rect1.collidesWith(rect2));
+	}
+	
 }
