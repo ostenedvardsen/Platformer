@@ -139,9 +139,6 @@ public class ActiveGameScreen implements Screen {
     }
     
     public boolean gameDone() {
-    	if (TiledGameMap.gameIsDone == true) 
-    		return true;
-    	else 
-    		return false;
+        return TiledGameMap.gameIsDone;
     }
 }

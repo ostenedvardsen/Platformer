@@ -27,11 +27,7 @@ public abstract class ActiveEntity extends Entity {
             gracePeriod = gracePeriod - deltaTime;
         }
 
-        if (moveDir == 1){
-            flip = true;
-        } else{
-            flip = false;
-        }
+        flip = moveDir == 1;
     }
 
     protected void moveY(float deltaTime, float gravity){

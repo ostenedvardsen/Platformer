@@ -14,10 +14,10 @@ public enum TileType {
     public static final int TILE_SIZE = 32;
 
 
-    private int id;
-    private boolean collidable;
-    private String name;
-    private int damage;
+    private final int id;
+    private final boolean collidable;
+    private final String name;
+    private final int damage;
 
     private TileType (int id, boolean collidable, String name){
         this(id, collidable, name, 0);
@@ -46,7 +46,7 @@ public enum TileType {
         return damage;
     }
 
-    private static HashMap<Integer, TileType> tileMap;
+    private static final HashMap<Integer, TileType> tileMap;
 
     static {
         tileMap = new HashMap<Integer, TileType>();

@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import inf112.platformer.app.PlatformerGame;
-import org.lwjgl.system.CallbackI;
 
 public class PlayersMenuScreen implements Screen {
 
@@ -42,8 +41,6 @@ public class PlayersMenuScreen implements Screen {
         this.width = camera.viewportWidth;
         this.height = camera.viewportHeight;
 
-        //this.width = Gdx.graphics.getWidth();
-        //this.height = Gdx.graphics.getHeight();
 
         this.camera = camera;
 
@@ -117,15 +114,12 @@ public class PlayersMenuScreen implements Screen {
     public void render(float v) {
         this.width = camera.viewportWidth;
         this.height = camera.viewportHeight;
-        //System.out.println("this.width: " + this.width + " this.height" + this.height);
-
 
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
 
         game.batch.begin();
 
-        // camera.position.set(width/2, height/2, 0);
         camera.update();
 
         game.batch.draw(imageBackground, 0, 0, camera.viewportWidth, camera.viewportHeight);
@@ -196,9 +190,7 @@ public class PlayersMenuScreen implements Screen {
 
     public boolean mouseHover(Vector2 lowerLeft, Vector2 upperRight) {
         if(mouseInputPosition.x > lowerLeft.x && mouseInputPosition.x < upperRight.x) {
-            if (mouseInputPosition.y > lowerLeft.y && mouseInputPosition.y < upperRight.y) {
-                return true;
-            }
+            return mouseInputPosition.y > lowerLeft.y && mouseInputPosition.y < upperRight.y;
         }
         return false;
     }

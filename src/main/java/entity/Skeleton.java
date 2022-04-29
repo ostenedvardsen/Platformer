@@ -38,11 +38,7 @@ public class Skeleton extends ActiveEntity {
 
 		rect.move(this.pos.x, this.pos.y);
 
-		if (moveDir == 1){
-			flip = true;
-		} else{
-			flip = false;
-		}
+		flip = moveDir == 1;
 	}
 
 	@Override

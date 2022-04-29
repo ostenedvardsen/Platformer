@@ -97,11 +97,7 @@ public class Cannon extends ActiveEntity {
                 bombtimer -= 1;
             }
 
-            if (pointDirX == 1) {
-                flip = true;
-            } else {
-                flip = false;
-            }
+            flip = pointDirX == 1;
         }
     }
 

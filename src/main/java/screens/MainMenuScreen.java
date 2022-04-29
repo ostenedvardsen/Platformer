@@ -137,9 +137,7 @@ public class MainMenuScreen implements Screen {
 
     public boolean mouseHover(Vector2 lowerLeft, Vector2 upperRight) {
         if(mouseInputPosition.x > lowerLeft.x && mouseInputPosition.x < upperRight.x) {
-            if (mouseInputPosition.y > lowerLeft.y && mouseInputPosition.y < upperRight.y) {
-                return true;
-            }
+            return mouseInputPosition.y > lowerLeft.y && mouseInputPosition.y < upperRight.y;
         }
         return false;
     }

@@ -10,8 +10,9 @@ public enum EntityType {
     CANNONBALL("cannonball", 16, 32),
     HEALTHPACK("healthpack", 32, 30);
 
-    private String id;
-    private int width, height;
+    private final String id;
+    private final int width;
+    private final int height;
 
 
     public String getId() {
