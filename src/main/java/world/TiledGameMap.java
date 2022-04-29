@@ -19,14 +19,18 @@ import java.util.ArrayList;
 public class TiledGameMap extends GameMap {
     TiledMap tiledMap;
     OrthogonalTiledMapRenderer tiledMapRenderer;
-
+    public static boolean gameIsDone;
     static int PlayerNumber;
     int mapCount = 2;
     int mapNumber = -1;
 
     int[] playerScores;
 
-    public TiledGameMap(){  playerScores = new int[4]; reset(); }
+    public TiledGameMap(){  
+    	playerScores = new int[4]; 
+    	reset(); 
+    	gameIsDone = false;	
+    }
 
     private void AddEntities(int playerAmount){
         entities = new ArrayList<>();
