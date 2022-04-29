@@ -1,14 +1,18 @@
 package entity;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import tools.CollisionHandling;
 import tools.CollisionRect;
 import world.GameMap;
 
 public class Skeleton extends ActiveEntity {
 
+	Texture skeletonImage;
+
 	public Skeleton(float x, float y, GameMap map, int hp) {
 		super(x, y, EntityType.SKELETON, map, hp);
-		entityTexture = new Texture("skeleton.png");
+		skeletonImage = new Texture("skeleton.png");
 		attackDamage = 5;
 		health = 15;
 		collidable = true;
@@ -37,12 +41,11 @@ public class Skeleton extends ActiveEntity {
 		}
 
 		rect.move(this.pos.x, this.pos.y);
+	}
 
-		if (moveDir == 1){
-			flip = true;
-		} else{
-			flip = false;
-		}
+	@Override
+	public void render(SpriteBatch batch) {
+		batch.draw(skeletonImage, pos.x, pos.y, getWidth(), getHeight());
 	}
 
 	@Override
@@ -69,7 +72,6 @@ public class Skeleton extends ActiveEntity {
 	public void interact(Entity entity) {
 		if (entity instanceof Player) {
 			map.damageAndKillEntity(entity, attackDamage, this);
-			((Player) entity).removeScore(300);
 		}
 	}
 

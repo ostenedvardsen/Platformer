@@ -1,4 +1,5 @@
 package entity;
+
 import tools.CollisionRect;
 import world.GameMap;
 
@@ -25,12 +26,6 @@ public abstract class ActiveEntity extends Entity {
             gracePeriod = 0;
         } else{
             gracePeriod = gracePeriod - deltaTime;
-        }
-
-        if (moveDir == 1){
-            flip = true;
-        } else{
-            flip = false;
         }
     }
 
@@ -85,7 +80,6 @@ public abstract class ActiveEntity extends Entity {
     public int getAttackDamage(){
         return attackDamage;
     }
-
 
     public abstract void destroyedBy(Entity entity);
 }

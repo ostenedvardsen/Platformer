@@ -128,6 +128,7 @@ public class Cannon extends ActiveEntity {
         if(flip){
             Sprite sprite = new Sprite(cannonImage);
             sprite.flip(true, false);
+            //batch.draw(cannonImage, pos.x, pos.y, -getWidth(), getHeight());
             batch.draw(sprite, pos.x, pos.y, getWidth(), getHeight());
         } else{
             batch.draw(cannonImage, pos.x, pos.y, getWidth(), getHeight());

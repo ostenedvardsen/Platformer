@@ -1,0 +1,1 @@
+java -jar out\artifacts\gdx_app_jar\gdx-app.jar
