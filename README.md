@@ -8,13 +8,13 @@ For å bevege seg til neste bane må man nå alle målene i banen.
 
 
 ## Setup
+Installer Java version 17 eller nyere <br>
 Installer Maven. <br>
-Det anbefalest å bruke en IDE f.eks Eclipse eller IntelliJ når programmet klonest eller kjørest<br>
 Klon git repositoriet https://git.app.uib.no/mutual-glue/platformer.git
 
 
 ## Running
-i mappen platformer ligger det en .jar fil som heter PlatformerGame.jar. hvis man har java versjon 17 eller nyere kan man kjøre denne enkelt ved å dobbeltklikke den.
+Åpne mappen platformer. Her ligger det en .jar fil som heter PlatformerGame.jar. Dersom man har java versjon 17 eller nyere kan man enkelt kjøre denne ved å dobbeltklikke på filen. <br>
 
 
 ## Controls
