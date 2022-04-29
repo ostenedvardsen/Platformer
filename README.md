@@ -12,8 +12,8 @@ Spillet er over når du har nådd målflagget i hver bane! <br>
 ## Setup
 Intaller Java version 17 eller nyere
 Installer Maven. <br>
-Klon git repositoriet https://git.app.uib.no/mutual-glue/platformer.git.
-koden skal være kompilert og klar til kjøring. hvis det ikke går å kjøre koden som beskrevet under går det ann å kjøre koden direkte gjennom en ide.
+Klon git repositoriet https://git.app.uib.no/mutual-glue/platformer.git. 
+
 
 ## Running
 Naviger til prosjektets hovedmappe "platformer". Kjør PlatformerGame.jar-filen for å sette i gang. Krever Maven og Java version 17 eller nyere. 
