@@ -1,6 +1,8 @@
 # Oblig 4 - "Prosjekt plattformspill"
 ## Deloppgave 1: Team og prosjekt
 Team: *Mutual-glue* (Gruppe 8): *Thomas Sjåstad, Anton Rønneberg, Andrè Kvalvik, Østen Edvardsen*
+Trello-board: https://trello.com/b/5q8FEcxx/platformer
+(Invite-link: https://trello.com/invite/b/5q8FEcxx/a7ea8f18fcfa5833bd33c3848cbe66f2/platformer)
 
 ### Møte: 19.03
 ### Deltakelse: Thomas Sjåstad, Østen Edvardsen
@@ -10,7 +12,8 @@ Andrè lå syk og Anton hadde ikke mulighet til å stille. Det ble derfor ikke n
 ### Deltakelse: Anton Rønneberg, Andrè Kvalvik (digitalt), Østen Edvardsen
 I dette møtet la vi frem hva vi hadde gjort uken før, og tydeliggjorde hva alle skulle drive med frem til fristen. Slik som i forrige uke så jobber vi nå komfortablet om hverandre, og kommuniserer godt over discord. Vi snakket med gruppeleder om å lage .jar-fil. 
 
-### Oppsummering siden oblig2
+
+### Oppsummering siden oblig3
 Rollene i teamet har fungert godt siden forrige sprint. Vi jobber nå veldig komfortabelt med hverandre. Vi har god kontroll på hvert av våre områder, og hjelper de andre der det trengs. Vi har lagt til en til rolle, som er grafisk designer. All kunsten i spillet vårt er egenutviklet av Andrè (utenom menyen som er laget av Østen og Thomas). Her er litt gjentagelse fra forrige innlevering om hva de forskjellige rollene betyr for oss: "Team lead Thomas holder god oversikt på prosjektet, prosjekt lead Anton har god oversikt over kodebasen og hva som må utbedres. Sektretær, git-ansvarlig og kundekontakt Østen skriver referaterer og innleveringer, og kontrollerer giten." Siden sist sprint har Andrè ordnet JUnit-tester. 
 
 I den forrige sprinten var fokuset på å være tydeligere med arbeidsoppgaver ved bruk av Trello-brettet. Vi hadde også kommet oss gjennom alle MVP-kravene, så fokuset i denne sprinten har vært å jobbe gjennom oppgavene på brettet.
@@ -23,13 +26,22 @@ Vi startet prosjektet godt med godt oppmøte på de standard gruppetimene, og p�
 Det vi ville ha gjort annerledes fra starten av er bruken av arbeidstavlen, møtereferater, og å jobbe utenom møtene. Git er noe vi kunne ha vært bedre på fra starten av, men på starten av prosjektet så var vi ikke like kompetente med git som vi er nå. Å jobbe utenom møtene tidlig i prosjektet ville ha gjort det mye enklere for oss å diskutere problemene vi møtte, istedenfor å støte på dem i løpet av møtet. I starten følte vi ikke at vi visste helt hvor vi skulle begynne, så vi mistet nok en uke eller to på å ikke jobbe utenfor møter, og å så gå sakte frem på møtene. Dette løste vi mot slutten av første sprint ved å ta ett langt møte hvor vi jobbet sammen hele gruppen for å få en grunnleggende kode som alle kunne jobbe med. Om vi hadde tatt denne lange kodeøkten med en gang så ville vi ha fått gjort mye mer i løpet av den første sprinten. Bruken av arbeidstavlen og møtereferater ville ha gitt alle mye mer oversikt, slik at flere ikke jobbet med det samme unødvendig. 
 
 
+<b>Prosjektmetodikk</b>
+Planen vår fra oblig1 for prosjektmetodikken vår var som følger: 
+"Scrum blir rammeverket for å organisere og planlegge gjøremål for å sørge for at vi alltid jobber mot å få et fungerende produkt. Gjennom Otrello har vi satt opp en scrum-tavle som er delt inn i "gjøremål", "pågår", "testes", og "ferdig". Arbeidsoppgavene i "gjøremål" er sortert etter hvor viktige de er for å få prosjektet til å møte MVP-kravene. Lenger nede finner man mindre kritiske elementer som vi ønsker å implementere om vi får tid. Hver av oss drar en arbeidsoppgave fra "gjøremål" til "pågår". Når den er implementert går oppgaven til "testes". Når oppgaven er implementert og testet blir den merge requestet til prosjekt-repoet. Der blir den gått igjennom av en annen på teamet, og potensielt dratt til ferdig. Så begynner man på nytt med prosessen.
+
+Kodepraksisen og arbeidsteknikken vår vil ta elementer fra ekstrem programmering. Som nevnt i scrum vil enhver feature bli kontinuerlig testet og så gått igjennom av en annen på teamet før den får bli lagt til i prosjekt-repoet. Å rangere gjøremål etter hvor viktige de er og å kun jobbe med en arbeidsoppgave hver om gangen hjelpe oss med å ha ikke implementere features før de er nødvendige. Vi skal også være beredt på endringer i krav til sluttresultat. Dette får vi ved å jobbe modulært med hver oppgave, og å passe på at hvert element så enkelt som mulig skal kunne fjernes og erstattes uten å ødelegge noe annet i koden. Vi skal til tider dra nytte av parprogrammering for å få maksimal kodegjennomgang, men som det står i Agile Technical Practices Distilled skal parprogrammering være frivillig."
+
+Planen for prosjektmetodikken ble ganske vellykket. Det tok oss en stund før vi virkelig kom i gang med bruken av arbeidstavlen, men når vi gjorde det så var den veldig nyttig. Planen for Kodepraksisen og arbeidsteknikken holdt godt i starten, men vi glapp litt ut mot slutten. Vi ble verre på å merge og lese hverandres kode, og lente mot å pushe og pulle imens vi gikk, og rullet tilbake i git når noe gikk galt. Mot slutten hadde vi kun parprogrammering når det var tid til overs på møtene. 
+
+
 ## Deloppgave 2: krav
 ### «Stretch goal»
 Stretch goalet vårt var multiplayer på samme maskin, og eventuelt multiplayer over LAN om vi fikk ekstra med tid. Vi endte opp med multiplayer på samme maskin. Vi vil si at implementeringen av flerspiller fungerte veldig godt. Vi skrev modulær kode, slik at vi hovedsakelig bare måtte legge til flere instanser av Player-objektet for å legge til multiplayer. Siden planen var å legge til flere spillere så var den relevante dataen om spilleren ofte lagret i lister, slik at det var enkelt å legge til flere. 
 
 
 ### MVP og annet
-""*Oppdater hvilke krav dere har prioritert, hvor langt dere har kommet og hva dere har gjort siden forrige gang.* <br> Vi har hatt fokus på alle de gjenværende kravene MVP7-MVP11. Siden forrige gang har vi har fullført MVP7, MVP10 og MVP11. Det som nå gjenstår er MVP8 og MVP9. ""
+""*Oppdater hvilke krav dere har prioritert, hvor langt dere har kommet og hva dere har gjort siden forrige gang.* 
 Til forrige sprint hadde vi fullført alle MVP-kravene. I den sprinten var fokuset på å være tydeligere med arbeidsoppgaver ved bruk av Trello-brettet. Fokuset i denne sprinten var dermed å jobbe gjennom oppgavene på brettet. Oppgavene har blitt prioritert etter hvor mye ekstra funksjonalitet hver oppgave vil gi, og hvor mye enklere oppgaven ville gjøre det å legge til mer funksjonalitet. For eksempel så ble CollisionHandling prioritert i starten av sprinten, slik at det gikk fort å legge til nye fiender og entities mot slutten av sprinten. Mer spesifikt så har vi jobbet med kollisjoner, fiender, interaksjon mellom spiller og terreng, gamefeel, animasjoner og testing. 
 
 
@@ -69,4 +81,3 @@ Prosjektet er over, men ved videre utvikling ville vi nok ha prioritert å legge
 ### Deloppgave 3
 Klassediagram:
 ![Klassediagram](/Deliverables/klassediagramObli4.png " Klassediagram")
-
