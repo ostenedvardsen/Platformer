@@ -80,4 +80,4 @@ Prosjektet er over, men ved videre utvikling ville vi nok ha prioritert å legge
 
 ### Deloppgave 3
 Klassediagram:
-![Klassediagram](/Deliverables/klassediagramObli4.png " Klassediagram")
+![Klassediagram](/Deliverables/klassediagramOblig4.png " Klassediagram")
