@@ -56,7 +56,7 @@ Arbeidsoppgaver: Legg til en egen label for Game over og beskjeden i Hud.
 
 Som spiller trenger jeg en enkel fil for å starte spille, for å oppnå enkel oppstart av spillet uten å bruke IDE.
 Akseptansekriterier: ved å starte en enkelt fil i filutforsker, så starter spillet.
-Arbeidsoppgaver: lage en .jar fil, som deretter blir starter i cmd i en .bat fil.
+Arbeidsoppgaver: lage en .jar fil som er lett tilgjengelig.
 
 
 <b>Brukerhistorier </b> <br>

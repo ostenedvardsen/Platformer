@@ -14,9 +14,8 @@ Klon git repositoriet https://git.app.uib.no/mutual-glue/platformer.git
 
 
 ## Running
-Spillet kan kjøres ved å kjøre Main fra /src/main/java/inf112/platformer/app/Main.java.<br>
-Det kan vere at spillet må gjøre en first time setup, dette tar som regel opp til 1 minutt.<br>
-Klikk Start i hovedmenyen for å starte spillet.
+i mappen platformer ligger det en .jar fil som heter PlatformerGame.jar. hvis man har java versjon 17 eller nyere kan man kjøre denne enkelt ved å dobbeltklikke den.
+
 
 ## Controls
 Kontrollene spillet har for ulike spillere:<br>
