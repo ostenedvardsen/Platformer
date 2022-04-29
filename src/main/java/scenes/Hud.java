@@ -77,6 +77,7 @@ public class Hud {
 		scoreLabel.setText(totalScoreString);
 	}
 
+	//Game over message
 	public void gameOver() {
 		table.clear();
 		table.center();
@@ -88,6 +89,7 @@ public class Hud {
 		newGameLabel.setFontScale(2, 2);
 	}
 	
+	//Game done message
 	public void gameDone() {
 		table.clear();
 		table.center();
