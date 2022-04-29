@@ -72,6 +72,9 @@ public class ActiveGameScreen implements Screen {
         	playerHud.gameOver();
 
 
+        if (gameDone()) 
+        	playerHud.gameDone();
+
         cameraFollowPlayer();
         camera.update();
 
@@ -133,5 +136,12 @@ public class ActiveGameScreen implements Screen {
     
     public void setPlayerNumber(int i) {
     	TiledGameMap.setPlayerNumber(i);
+    }
+    
+    public boolean gameDone() {
+    	if (TiledGameMap.gameIsDone == true) 
+    		return true;
+    	else 
+    		return false;
     }
 }

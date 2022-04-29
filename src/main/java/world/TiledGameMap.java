@@ -104,14 +104,18 @@ public class TiledGameMap extends GameMap {
         mapNumber++;
 
         if (mapNumber > mapCount){
-            mapNumber = 0;
+            gameIsDone = true;
         }
-        tiledMap = new TmxMapLoader().load("stage" + mapNumber + ".tmx");
-        tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
-
-        for (int i = 0; i < players.size(); i++) playerScores[i] = players.get(i).getScore();
-        AddEntities(PlayerNumber);
-        for (int i = 0; i < players.size(); i++) players.get(i).setScore(playerScores[i]);
+        
+        else {
+        	tiledMap = new TmxMapLoader().load("stage" + mapNumber + ".tmx");
+	        tiledMapRenderer = new OrthogonalTiledMapRenderer(tiledMap);
+	
+	        for (int i = 0; i < players.size(); i++) playerScores[i] = players.get(i).getScore();
+	        AddEntities(PlayerNumber);
+	        for (int i = 0; i < players.size(); i++) players.get(i).setScore(playerScores[i]);
+        }
+        
     }
 
     @Override
