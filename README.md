@@ -1,21 +1,26 @@
-(Veldig enkel README.md)
 # Mutual-Glue Platformer
 Dette er Mutual-Glues platformerspill-prosjekt i INF112.
 
 I platformspillet må man unngå fiender og bunnløse groper.<br>
-Man får poeng ved å plukke opp penger i de ulike banene.<br>
-For å bevege seg til neste bane må man nå alle målene i banen.
+Hopp på fiender for å skade dem, men unngå å bli truffet fra sidene eller ovenfra!<br>
+Du får poeng ved å plukke opp mynter og bekjempe fiender på de ulike banene.<br>
+Nå målflagget for å gå videre til neste bane.<br>
+Samle så mange poeng du kan! <br>
+Spillet er over når du har nådd målflagget i hver bane! <br>
 
 
 ## Setup
-koden skal være kompilert og klar til kjøring. hvis det ikke går å kjøre koden som beskrevet under går det ann å kjøre koden direkte gjennom en ide. du trenger Java 17 for å kjøre koden.
+Intaller Java version 17 eller nyere
+Installer Maven. <br>
+Klon git repositoriet https://git.app.uib.no/mutual-glue/platformer.git
+koden skal være kompilert og klar til kjøring. hvis det ikke går å kjøre koden som beskrevet under går det ann å kjøre koden direkte gjennom en ide.
 
 ## Running
-i mappen platformer ligger det en .jar fil som heter PlatformerGame.jar. hvis man har java versjon 17 eller nyere kan man kjøre denne enkelt ved å dobbeltklikke den.
+Naviger til prosjektets hovedmappe "platformer". Kjør PlatformerGame.jar-filen for å sette i gang. Krever Maven og Java version 17 eller nyere. 
 
 
 ## Controls
-Kontrollene spillet har for ulike spillere:<br>
+Kontrolltastene for hver spiller:<br>
 player 1: pil opp = hopp, pil venstre = venstre, pil høyre = høyre<br>
 player 2: W = hopp, A = venstre, D = høyre<br>
 player 3: I = hopp, J = venstre, L = høyre<br>
