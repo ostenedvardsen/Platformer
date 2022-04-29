@@ -4,7 +4,7 @@ Dette er Mutual-Glues platformerspill-prosjekt i INF112.
 
 I platformspillet må man unngå fiender og bunnløse groper.<br>
 Man får poeng ved å plukke opp penger i de ulike banene.<br>
-For å bevege seg til neste bane må man nå alle målene i banen.
+Ta på et mål for å bevege deg til neste bane!
 
 
 ## Setup
@@ -23,6 +23,10 @@ player 1: pil opp = hopp, pil venstre = venstre, pil høyre = høyre<br>
 player 2: W = hopp, A = venstre, D = høyre<br>
 player 3: I = hopp, J = venstre, L = høyre<br>
 player 4: T = hopp, F = venstre, H = høyre
+
+System-kontrollere:
+Trykk R for å gå tilbake til menyen
+Trykk E for å gå til neste bane
 
 
 ## Authors

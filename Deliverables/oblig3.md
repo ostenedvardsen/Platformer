@@ -26,7 +26,7 @@ Forbedringspunktet til neste sprint er å dra mer nytte av hjelp fra gruppeleder
 Stretch goalet vårt er lokal multiplayer. Det var en god idé å ha det i bakhodet fra tidlig av. Det førte til at vi skrev mer generell og modulær kode, som ga oss muligheten til å enkelt implementere multiplayer over én klient allerede nå. Dette er en veldig enkel multiplayer, men den viser at funksjonaliteten vi har til nå fungerer godt med multiplayer. Om vi får tid vil stretch goalet bli en multiplayer over LAN. 
 
 ### MVP og annet
-*Oppdater hvilke krav dere har prioritert, hvor langt dere har kommet og hva dere har gjort siden forrige gang.* <br> Vi har hatt fokus på alle de gjenværende kravene MVP7-MVP11. Siden forrige gang har vi har fullført MVP7, MVP10 og MVP11. Det som nå gjenstår er MVP8 og MVP9. 
+*Oppdater hvilke krav dere har prioritert, hvor langt dere har kommet og hva dere har gjort siden forrige gang.* <br> Vi har hatt fokus på og fullført alle de gjenværende kravene MVP7-MVP11.  
 
 <b>Brukerhistorier </b> <br>
 
@@ -49,9 +49,9 @@ Som spiller vil jeg kunne spille sammen med flere spillere.
 
 
 *Forklar kort hvordan dere har prioritert oppgavene fremover*
-Det som nå gjenstår er MVP8 og MVP9. Vi har god kontroll på disse. Målet for brettet skal være å ta på "goalet" på slutten av banen, og så skal det komme et nytt brett. MVP8 og MVP9 henger derfor veldig sammen. TiledGameMap-objektet vårt får all informasjon om hvert brett gjennom dets .tmx-fil. Det skal derfor være en enkel prosess å få TileGameMap-objektet til å laste et nytt brett.
+Vi har nå funksjonalitet på alle kravene. Planen frem til oblig4 er å jobbe med tester og å legge til mer funksjonalitet innenfor hvert krav. Vi skal legge til flere fiender, flere baner, en game-over skjerm, og en skjerm som viser kontrollene. Vi skal også gi player evnen til å skade fiender. Om vi har tid så skal vi legge til multiplayer over LAN. 
 
-Til oblig2 hadde vi fullført krav 1-6, og vi har nå har prioritert og fullført krav 7, 10 og 11. 
+Til oblig2 hadde vi fullført krav 1-6, og vi har nå har prioritert og fullført resten av MVP-kravene. 
 
 ### Deloppgave 3
 Klassediagram:
