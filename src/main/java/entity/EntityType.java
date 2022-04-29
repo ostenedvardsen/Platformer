@@ -7,7 +7,8 @@ public enum EntityType {
     COIN("coin", 16, 32),
     FROG("frog", 16, 32),
     CANNON("cannon", 16, 32),
-    CANNONBALL("cannonball", 16, 32);
+    CANNONBALL("cannonball", 16, 32),
+    HEALTHPACK("healthpack", 32, 30);
 
     private String id;
     private int width, height;

@@ -20,6 +20,9 @@ public class EntityFactory {
         if(name.equalsIgnoreCase("Coin")) {
             return new Coin(xPos, yPos, tiledGameMap);
         }
+        if(name.equalsIgnoreCase("Healthpack")) {
+            return new Healthpack(xPos, yPos, tiledGameMap);
+        }
         if(name.equalsIgnoreCase("Player")) {
             return new Player(xPos, yPos, tiledGameMap, 500);
         }

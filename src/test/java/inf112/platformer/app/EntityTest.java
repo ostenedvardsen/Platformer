@@ -23,6 +23,7 @@ public class EntityTest {
 	private Skeleton skeleton;
 	private Coin coin;
 	private Goal goal;
+	private Healthpack healthpack;
 
 	/**
 	 * Will essentially run a game instance, while we do our tests,
@@ -48,9 +49,12 @@ public class EntityTest {
 	@BeforeEach
 	public void entityCreator() {
 		GameMap map = mock(GameMap.class);
+		//Player class overrides health given to player when creating new
+		//default health is currently 25
 		player = new Player(1, 20, map, 2);
 		player2 = new Player(1, -20, map, 2);
 		skeleton = new Skeleton(10, -10, map, 2);
+		healthpack = new Healthpack(1, 123, map);
 		coin = new Coin(1, 123, map);
 		goal = new Goal(1, 123, map);
 	}
@@ -69,6 +73,8 @@ public class EntityTest {
 		assertEquals(20, player.getY());
 	}
 
+	//Test currently gives error due to update requiring an actual game map, which is mocked in tests
+	//Cannot use actual maps due to shader compiling errors in unit tests
 	@Test
 	public void playerDiesUnderMap() {
 		assertEquals(false, player.isDead());
@@ -77,6 +83,7 @@ public class EntityTest {
 
 	}
 
+	//see above test: playerDiesUnderMap()
 	@Test
 	public void skeletonDiesUnderMap() {
 		//Before we update, the skeleton is not dead, as the game has not checked what
@@ -102,5 +109,11 @@ public class EntityTest {
 	public void goalAdvancesToNextMap() {
 		goal.interact(player);
 		assertEquals(1000, player.getScore());
+	}
+	
+	@Test
+	public void healthpackGivesHealthToPlayer() {
+		healthpack.interact(player);
+		assertEquals(35, player.getHealth());
 	}
 }
