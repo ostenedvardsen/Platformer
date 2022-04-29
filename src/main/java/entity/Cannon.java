@@ -70,10 +70,10 @@ public class Cannon extends ActiveEntity {
                     cannonImage = cannonImage1;
                 } else if (pointDirY == 2) {
                     cannonImage = cannonImage2;
-                } else if (pointDirY == 3) {
+                } else {
                     cannonImage = cannonImage2;
                 }
-            } else if (pointDirX == 0) {
+            } else {
                 cannonImage = cannonImage3;
             }
 

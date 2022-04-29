@@ -1,7 +1,6 @@
 package entity;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import world.GameMap;
 
 public class Healthpack extends Entity {
@@ -17,7 +16,7 @@ public class Healthpack extends Entity {
 	@Override
 	public void interact(Entity entity) {
 		if (entity instanceof Player) {
-			((Player) entity).health = ((Player) entity).getHealth() + 10;
+			entity.health = entity.getHealth() + 10;
 		}
 	}
 

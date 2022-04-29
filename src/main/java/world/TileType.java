@@ -49,7 +49,7 @@ public enum TileType {
     private static final HashMap<Integer, TileType> tileMap;
 
     static {
-        tileMap = new HashMap<Integer, TileType>();
+        tileMap = new HashMap<>();
         for(TileType tileType: TileType.values()){
             assert tileMap != null;
             tileMap.put(tileType.getId(), tileType);

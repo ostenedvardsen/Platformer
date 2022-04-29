@@ -78,9 +78,6 @@ public abstract class ActiveEntity extends Entity {
             gracePeriod += gracePeriodIdentifier;
         }
     }
-    public int getAttackDamage(){
-        return attackDamage;
-    }
 
 
     public abstract void destroyedBy(Entity entity);

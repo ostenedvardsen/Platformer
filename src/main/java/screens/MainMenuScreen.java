@@ -74,7 +74,7 @@ public class MainMenuScreen implements Screen {
     }
 
     public void draw(SpriteBatch batch){
-        //batch.draw(imageBackground, 0, 0, width/2, height);
+        batch.draw(imageBackground, 0, 0, width/2, height);
     }
 
     @Override

@@ -216,7 +216,6 @@ public class CollisionHandling {
                 }
 
                 else if(!collidedPlayersApproximateY.isEmpty() || !collidedActiveEntitiesApproximateY.isEmpty()){
-                    entity.pos.y = entity.pos.y;
                     entity.velocityY = 0;
 
                 }
@@ -230,9 +229,7 @@ public class CollisionHandling {
                         entity.pos.y = (float) Math.floor(entity.pos.y);
                     }
 
-                    for (Entity attackEntity : allCollidedActiveEntities) {
-                        //map.damageAndKillEntity(entity, ((ActiveEntity) attackEntity).attackDamage, attackEntity);
-                    }
+                    //map.damageAndKillEntity(entity, ((ActiveEntity) attackEntity).attackDamage, attackEntity);
                     entity.velocityY = 0;
                 }
             }

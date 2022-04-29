@@ -21,11 +21,11 @@ public abstract class GameMap {
     public CollisionHandling collisionHandling;
 
     public GameMap(){
-        entities = new ArrayList<Entity>();
-        players = new ArrayList<Player>();
-        entityQueue = new ArrayList<Entity>();
+        entities = new ArrayList<>();
+        players = new ArrayList<>();
+        entityQueue = new ArrayList<>();
 
-        playerScores = new ArrayList<Integer>();
+        playerScores = new ArrayList<>();
         collisionHandling = new CollisionHandling(this);
     }
 
@@ -176,9 +176,7 @@ public abstract class GameMap {
     }
 
     public void addEntities(){
-        for (Entity entity: entityQueue){
-            entities.add(entity);
-        }
+        entities.addAll(entityQueue);
         entityQueue.clear();
     }
 
@@ -188,9 +186,7 @@ public abstract class GameMap {
     }
 
     public void removeEntity(Entity entity) {
-        if (entities.contains(entity)) {
-            entities.remove(entity);
-        }
+        entities.remove(entity);
         if (entity instanceof Player){
             players.remove(entity);
         }
