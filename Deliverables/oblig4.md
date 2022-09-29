@@ -1,34 +1,83 @@
-###Excercise 00:
-The vulnerability: the buffer is 16 characters , while fgets takes in a much larger amount. This means that we can send in something larger than what has been allocated for buffer in the stack. Our goal is to change locals.check from 0xabcdc3cf to 0x79beef8b so that the if statement passes. Personally i used gdb and the command "x/ 20 $sp" to view the stack. Here we can see 0xabcdc3cf and a row of zeroes, aka the buffer. So our input has to first fill the 16 characters of the buffer, and then override locals.check with 0x79beef8b. I used p64() from pwntools to add 0x79beef8b as a bytes object.
-<br>
-<b>We then receive the flag: INF226{s3cR3t_f1Agz}.</b>
+# Oblig 4 - "Prosjekt plattformspill"
+## Deloppgave 1: Team og prosjekt
+Team: *Mutual-glue* (Gruppe 8): *Thomas Sjåstad, Anton Rønneberg, Andrè Kvalvik, Østen Edvardsen*
+Trello-board: https://trello.com/b/5q8FEcxx/platformer
+(Invite-link: https://trello.com/invite/b/5q8FEcxx/a7ea8f18fcfa5833bd33c3848cbe66f2/platformer)
+
+### Møte: 19.03
+### Deltakelse: Thomas Sjåstad, Østen Edvardsen
+Andrè lå syk og Anton hadde ikke mulighet til å stille. Det ble derfor ikke noe møte denne uken, men Østen var innom gruppetimen for å snakke litt med gruppeleder. På Trello har vi tydelige arbeidsoppgaver for hva som gjenstår før innlevering, vi vet nå godt hvordan hverandre jobber, og vi kommuniserer godt over discord, så ting fungerte godt uten et standard møte. Anton skal fokusere se på bakgrunn og animasjoner, Østen fokuserer på kollisjoner og entities, Andrè fokuserer på tester og grafikk, og Thomas fokuserer på menyer, game over-skjerm og brukerhistorier. 
+
+### Møte: 26.03
+### Deltakelse: Anton Rønneberg, Andrè Kvalvik (digitalt), Østen Edvardsen
+I dette møtet la vi frem hva vi hadde gjort uken før, og tydeliggjorde hva alle skulle drive med frem til fristen. Slik som i forrige uke så jobber vi nå komfortablet om hverandre, og kommuniserer godt over discord. Vi snakket med gruppeleder om å lage .jar-fil. 
 
 
-###Excercise 01:
-Once again we have a buffer that is smaller than what fgets takes in, so we can have a stack overflow buffer attack. funcPointer is currently pointing at NULL, but we want it to point at getFlag(). funcPointer is  also volatile, which means that the compiler will always assume that the value that funcPointer is pointing at might have changed, even if nothing in the code implies that it has changed. Using "objdump -dissassemble 01" we can find the pointer address of "cat flag". We now do like we did in excercise00 to send in and input of 16 characters to fill the buffer and also the memory address that we found using objdump. stores.funcPointer is no longer NULL, so the if statement passes. stores.funcPointer() is then called and is now pointing at cat flag: 
-<br>
-<b> so we get the flag: INF226{2b_0r_!2b}. </b>
+### Oppsummering siden oblig3
+Rollene i teamet har fungert godt siden forrige sprint. Vi jobber nå veldig komfortabelt med hverandre. Vi har god kontroll på hvert av våre områder, og hjelper de andre der det trengs. Vi har lagt til en til rolle, som er grafisk designer. All kunsten i spillet vårt er egenutviklet av Andrè (utenom menyen som er laget av Østen og Thomas). Her er litt gjentagelse fra forrige innlevering om hva de forskjellige rollene betyr for oss: "Team lead Thomas holder god oversikt på prosjektet, prosjekt lead Anton har god oversikt over kodebasen og hva som må utbedres. Sektretær, git-ansvarlig og kundekontakt Østen skriver referaterer og innleveringer, og kontrollerer giten." Siden sist sprint har Andrè ordnet JUnit-tester. 
+
+I den forrige sprinten var fokuset på å være tydeligere med arbeidsoppgaver ved bruk av Trello-brettet. Vi hadde også kommet oss gjennom alle MVP-kravene, så fokuset i denne sprinten har vært å jobbe gjennom oppgavene på brettet.
+
+Kommunkasjonen i teamet fungerer veldig godt. Vi har ikke hatt like mange møter i denne sprinten, men vi er komfortable med hverandre og har blitt gode på å spille på hverandres sterke sider. Vi diskuterte arbeidsoppgavene tydelig og fikk dem opp på arbeidstavlen. Så tok man en relevant arbeidsoppgave på tavlen, markerte den som sin, satte i gang, og tok kontakt med de andre når vi møtte på problemer. 
+
+*For siste innlevering (Oblig 4): Gjør et retrospektiv hvor dere vurderer prosjektet har gått. Hva har dere gjort bra, hva hadde dere gjort annerledes hvis dere begynte på nytt?*
+Vi startet prosjektet godt med godt oppmøte på de standard gruppetimene, og på ekstra møter. Det ga oss et godt grunnlag for å komme med innspill om hvordan prosjektet skulle se ut, hvordan vi skulle jobbe, og å bli kjent med hverandre. Vi lærte fort var at det var viktig å jobbe godt mellom møtene, slik at møtetiden ble produktiv brukt på å planlegge og diskutere problemer som oppstod utenom møtene. Inndelingen av roller fungerte godt. Alle fikk lede i den avdelingen de var sterkest i og kunne alltid spørre de andre om hjelp når arbeidsmengden innenfor et område ble for stor. Bruken av git har vært et utvikling-område i løpet av prosjektet. Om man ser på starten av prosjektet så ble det gjort store omveltninger i løpet av veldig få commits, og commit-meldingene var ikke like gode som de er nå. Branches, commits og relevante commit-meldinger er noe vi har blitt mye bedre på. Bruken av Trello-arbeidstavlen var definitivt et område vi var trege på å utvikle oss innen. Det tok lang tid før vi virkelig brukte det med tydelige arbeidsoppgaver og tildelte oppgavene til medlemmer. Å virkelig bruke arbeidstavlen var veldig gunstig i de siste to sprintene, og spesielt i den siste. Møtereferater var også noe vi manglet i starten, men som var til stor hjelp da vi mot slutten av prosjektet hadde flere møter hvor alle ikke kunne stille. Møtereferatene i kombinasjon med arbeidstavlen gjorde det enklere å få oversikt hva som hadde blitt diskutert, hva som skulle bli gjort, og om man eventuelt hadde kommet frem til at ting ikke skulle bli gjort på en viss måte. 
+
+Det vi ville ha gjort annerledes fra starten av er bruken av arbeidstavlen, møtereferater, og å jobbe utenom møtene. Git er noe vi kunne ha vært bedre på fra starten av, men på starten av prosjektet så var vi ikke like kompetente med git som vi er nå. Å jobbe utenom møtene tidlig i prosjektet ville ha gjort det mye enklere for oss å diskutere problemene vi møtte, istedenfor å støte på dem i løpet av møtet. I starten følte vi ikke at vi visste helt hvor vi skulle begynne, så vi mistet nok en uke eller to på å ikke jobbe utenfor møter, og å så gå sakte frem på møtene. Dette løste vi mot slutten av første sprint ved å ta ett langt møte hvor vi jobbet sammen hele gruppen for å få en grunnleggende kode som alle kunne jobbe med. Om vi hadde tatt denne lange kodeøkten med en gang så ville vi ha fått gjort mye mer i løpet av den første sprinten. Bruken av arbeidstavlen og møtereferater ville ha gitt alle mye mer oversikt, slik at flere ikke jobbet med det samme unødvendig. 
 
 
-###Excercise 02:
-This program has a stack canary, which is a random integer placed just before the stack return pointer. If it is overwritten in a stack buffer overflow, it will terminate the process. In this excercise we want to overwrite the stack return pointer, but in order to do so we first have to find out the canary value.
-<br>
-The first input value of the program is saved to &offset. Offset is later used in line 21:
-printf("%lx\n", *(unsigned long*)(buffer+offset));
-<br>
-*(unsigned long*)(buffer+offset)<br>
-From what i can understand of C, this line will first perform buffer + offset, which will take the memory address of buffer and add the int value that is stored in offset. (unsigned long*) then typecasts this to a pointer to unsigned long. The first * dereferences it to assign its value to whatever variable printf uses.
-<br>
-Using this we can make the printf() give us the canary. When our first input is 0 we get the output 706050403020100. This is the beginning of the buffer. When our first input is 16 we get past the buffer. When the input is 24 we hit the canary. At values between 16 and 24 can be pretty confusing and it is sometimes less than 16 symbols, but i think that comes down to how the program, server or my script treats zeroes. Between the buffer and the canary there always seems to be some value 00007ffc.
-<br>
-The last piece we need is where we want the stack return pointer to go. Using objdump -dissassemble 02 we get the memory address of cat flag (0x0000000000401257).
-<br>
-Now that we finally have the canary we can get to stack buffer overflowing the second input. We have to send in 16 ints (to get past the buffer), 8 ints (to get past the offset between the buffer and the canary), the canary (to make the program think that we haven't changed the canary) and then the memory address of cat flag (where we want the stack return pointer to go).
-<br>
-<b>We then get the flag: INF226{s3r1nu5_cAnar1a}.</b>
+<b>Prosjektmetodikk</b>
+Planen vår fra oblig1 for prosjektmetodikken vår var som følger: 
+"Scrum blir rammeverket for å organisere og planlegge gjøremål for å sørge for at vi alltid jobber mot å få et fungerende produkt. Gjennom Otrello har vi satt opp en scrum-tavle som er delt inn i "gjøremål", "pågår", "testes", og "ferdig". Arbeidsoppgavene i "gjøremål" er sortert etter hvor viktige de er for å få prosjektet til å møte MVP-kravene. Lenger nede finner man mindre kritiske elementer som vi ønsker å implementere om vi får tid. Hver av oss drar en arbeidsoppgave fra "gjøremål" til "pågår". Når den er implementert går oppgaven til "testes". Når oppgaven er implementert og testet blir den merge requestet til prosjekt-repoet. Der blir den gått igjennom av en annen på teamet, og potensielt dratt til ferdig. Så begynner man på nytt med prosessen.
+
+Kodepraksisen og arbeidsteknikken vår vil ta elementer fra ekstrem programmering. Som nevnt i scrum vil enhver feature bli kontinuerlig testet og så gått igjennom av en annen på teamet før den får bli lagt til i prosjekt-repoet. Å rangere gjøremål etter hvor viktige de er og å kun jobbe med en arbeidsoppgave hver om gangen hjelpe oss med å ha ikke implementere features før de er nødvendige. Vi skal også være beredt på endringer i krav til sluttresultat. Dette får vi ved å jobbe modulært med hver oppgave, og å passe på at hvert element så enkelt som mulig skal kunne fjernes og erstattes uten å ødelegge noe annet i koden. Vi skal til tider dra nytte av parprogrammering for å få maksimal kodegjennomgang, men som det står i Agile Technical Practices Distilled skal parprogrammering være frivillig."
+
+Planen for prosjektmetodikken ble ganske vellykket. Det tok oss en stund før vi virkelig kom i gang med bruken av arbeidstavlen, men når vi gjorde det så var den veldig nyttig. Planen for Kodepraksisen og arbeidsteknikken holdt godt i starten, men vi glapp litt ut mot slutten. Vi ble verre på å merge og lese hverandres kode, og lente mot å pushe og pulle imens vi gikk, og rullet tilbake i git når noe gikk galt. Mot slutten hadde vi kun parprogrammering når det var tid til overs på møtene. 
 
 
+## Deloppgave 2: krav
+### «Stretch goal»
+Stretch goalet vårt var multiplayer på samme maskin, og eventuelt multiplayer over LAN om vi fikk ekstra med tid. Vi endte opp med multiplayer på samme maskin. Vi vil si at implementeringen av flerspiller fungerte veldig godt. Vi skrev modulær kode, slik at vi hovedsakelig bare måtte legge til flere instanser av Player-objektet for å legge til multiplayer. Siden planen var å legge til flere spillere så var den relevante dataen om spilleren ofte lagret i lister, slik at det var enkelt å legge til flere. 
 
-Tools/libraries:
-    pwntools
-    gdb
+
+### MVP og annet
+""*Oppdater hvilke krav dere har prioritert, hvor langt dere har kommet og hva dere har gjort siden forrige gang.* 
+Til forrige sprint hadde vi fullført alle MVP-kravene. I den sprinten var fokuset på å være tydeligere med arbeidsoppgaver ved bruk av Trello-brettet. Fokuset i denne sprinten var dermed å jobbe gjennom oppgavene på brettet. Oppgavene har blitt prioritert etter hvor mye ekstra funksjonalitet hver oppgave vil gi, og hvor mye enklere oppgaven ville gjøre det å legge til mer funksjonalitet. For eksempel så ble CollisionHandling prioritert i starten av sprinten, slik at det gikk fort å legge til nye fiender og entities mot slutten av sprinten. Mer spesifikt så har vi jobbet med kollisjoner, fiender, interaksjon mellom spiller og terreng, gamefeel, animasjoner og testing. 
+
+
+<b>Brukerhistorier </b> <br>
+
+Som spiller trenger jeg en meny for å velge antall spillere, for å oppnå riktige innstillinger for hvor mange spillere som skal være med i spillet.
+Akseptansekriterier: Når jeg trykker på enten en knapp ved navn 1 player, 2 players, 3 players eller 4 players, så starter spille med tilsvarende antall spillere.
+Arbeidsoppgaver: Lage en ny Klasse som representerer en PlayerMenuScreen. Designe knappene, og få lagt de inn i assets. Knappene må implementeres slik at antall spillere starter etter hva knappen viser. 
+
+
+Som spiller trenger jeg et siffer på skjermen som viser livene til karakteren min, for å oppnå oversikt over hvor mye liv karakteren min har for en bedre spillopplevelse. 
+Akseptansekriterier: HP viser i Headsup Displayet på skjermen.
+Arbeidsoppgaver: Legge inn HP og en metode som henter spillerens nåværende HP som blir oppdatert på samme måte som Score blir oppdatert i Labelen.
+
+Som spiller trenger jeg en «game over» meny eller lignende, for å oppnå å enklest mulig kunne gå tilbake til main menu hvis jeg taper eller spillet er ferdig.
+Akseptansekriterier: Etter spillet er ferdig, kommer det opp en melding som viser hvilken knapp en skal trykke på for å gå tilbake til Main Menu. Når knappen trykkes på, returnerer spille til Main Menu.
+Arbeidsoppgaver: Legg til en egen label for Game over og beskjeden i Hud. 
+
+
+Som spiller trenger jeg en enkel fil for å starte spille, for å oppnå enkel oppstart av spillet uten å bruke IDE.
+Akseptansekriterier: ved å starte en enkelt fil i filutforsker, så starter spillet.
+Arbeidsoppgaver: lage en .jar fil som er lett tilgjengelig.
+
+
+<b>Brukerhistorier </b> <br>
+
+Som spiller trenger jeg utfordringen ved at spilleren min dør om jeg interagerer med fiendtlige enheter eller faller utfor spillbrettet.
+<br><b>Akseptansekriterier</b>: Spilleren og fiendtlige gjenstander har egen Collidable Rectangle som returnerer True når de interagerer med hverandre. Spilleren skal forsvinne fra kartet når spilleren dør.
+<br><b>Arbeidsoppgaver</b>: Implementere Healthpoints for Entities, og en metode som fjerner Entity når Healthpoints <= 0.
+<br>Brukerhistorien oppfyller MVP-krav 7.
+
+
+*Forklar kort hvordan dere har prioritert oppgavene fremover*
+Prosjektet er over, men ved videre utvikling ville vi nok ha prioritert å legge til flere fiender, baner og tiles. Spillet er nå et godt grunnlag for videre utvikling. 
+
+
+### Deloppgave 3
+Klassediagram:
+![Klassediagram](/Deliverables/klassediagramOblig4.png " Klassediagram")
